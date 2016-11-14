@@ -1,0 +1,35 @@
+
+
+<script>
+$(window).load(function(){
+ $('pre').addClass('prettyprint linenums').attr('style', 'overflow:auto;');
+   prettyPrint();
+ })
+</script>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+<% if (theme.fancybox){ %>
+  <%- css('fancybox/jquery.fancybox') %>
+  <%- js('fancybox/jquery.fancybox.pack') %>
+<% } %>
+
+<%- js('js/script') %>
+
+<!--<script src="/js/navigation.js"></script>-->
+
+<div id="bg"></div>
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<% if (page.path === 'demo/index.html') { %>
+    <script type="text/javascript" src="/js/jquery.pjax.js"></script>
+    <script>
+        $(document).pjax('a[data-pjax]','#pjax-container');
+        $(document).on('pjax:start', function() { NProgress.start(); });
+        $(document).on('pjax:end',   function() { NProgress.done();  });
+    </script>
+<% } %>
+
+

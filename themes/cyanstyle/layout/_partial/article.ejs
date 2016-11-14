@@ -1,0 +1,53 @@
+<article id="<%= post.layout %>-<%= post.slug %>" class="<%= post.layout %>-<%= post.slug %> post type-post status-publish format-standard hentry">
+    <!--<%- partial('post/gallery') %>-->
+
+      <header class="entry-header">
+        <% if (post.link || post.title){ %>
+        <%- partial('post/title', {class_name: 'article-title'}) %>
+        <% } %>
+        <div class="comments-link">
+            <% if (post.comments && theme.duoshuo_shortname){ %>
+            <a href="<%- url_for(post.path) %>#comments" class="leave-reply"><%= theme.reply %></a>
+            <% } %>
+            <a href="javascript:void(0);" data-url="<%- post.permalink %>" data-id="<%= post._id %>" class="leave-reply bdsharebuttonbox" data-cmd="more"><%= theme.share %></a>
+        </div><!-- .comments-link -->
+      </header><!-- .entry-header -->
+
+    <% if (page.path === 'demo/index.html') { %>
+        <div id="pjax-container"></div>
+        <div >
+        <br/>
+        <a data-pjax href="/demo/pjax/test1">爱妃平身</a>
+        <a data-pjax href="/demo/pjax/test2">爷爷快板打得好</a>
+        </div>
+    <% } %>
+
+    <div class="entry-content">
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link){ %>
+          <p class="article-more-link">
+            <a href="<%- url_for(post.path) %>#more" class="more-link"><%= theme.excerpt_link %></a>
+          </p>
+        <% } %>
+      <% } else { %>
+        <%- post.content %>
+      <% } %>
+    </div><!-- .entry-content -->
+
+
+    <footer class="entry-meta">
+    <%- partial('post/date', {class_name: 'article-date', date_format: null}) %>
+    <%- partial('post/category') %>
+    <%- partial('post/tag') %>
+    </footer>
+</article>
+
+
+
+<% if (!index){ %>
+    <%- partial('post/nav') %>
+<% } %>
+
+<%- partial('comment') %>
+

@@ -1,0 +1,18 @@
+<p>
+    <span id="busuanzi_container_page_pv">
+      <span id="busuanzi_value_page_pv"></span> views
+    </span>
+</p>
+</br>
+<% if (post.prev || post.next){ %>
+<nav class="nav-single">
+    <h3 class="assistive-text">文章导航</h3>
+    <% if (post.prev){ %>
+        <p><span class="nav-previous"><a href="<%- url_for(post.prev.path) %>" rel="prev"><span class="meta-nav">上一篇：</span><% if (post.prev.title){ %><%= post.prev.title %><% } else { %>(no title)<% } %></a></span></p>
+    <% } %>
+    <% if (post.next){ %>
+        <p><span class="nav-next"><a href="<%- url_for(post.next.path) %>" rel="next"><span class="meta-nav">下一篇：</span><% if (post.next.title){ %><%= post.next.title %><% } else { %>(no title)<% } %> </a></span></p>
+    <% } %>
+</nav><!-- .nav-single -->
+<% } %>
+
