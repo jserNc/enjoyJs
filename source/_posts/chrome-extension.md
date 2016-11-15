@@ -16,7 +16,7 @@ Chrome扩展本质上就是web应用，它可以使用浏览器提供的所有ap
 
 下面，我们跟着[谷歌官网教程](https://developer.chrome.com/extensions/getstarted) 做一个获取图片的小插件。首先新建一个文件夹getPic。
 
-### 创建manifest.json配置文件
+### 1.创建manifest.json配置文件
 
 文件夹getPic内创建一个名为manifest.json的配置文件。这个文件以json格式声明扩展程序的基本信息。如扩展程序名、版本号、功能描述等。更高级点的扩展还会声明这个扩展要做什么以及需要什么样的权限等信息。下面manifest.json文件中，我们声明一个browser action。其中包括activeTab（获取当前tab的url）和host权限(获取外部的谷歌图片搜索API)。
 
@@ -37,7 +37,7 @@ Chrome扩展本质上就是web应用，它可以使用浏览器提供的所有ap
 }
 ```
 
-### 创建资源文件
+### 2.创建资源文件
 
 我们看到manifest.json中声明了该扩展的两个资源文件（icon.png和popup.html）,下面我们在文件夹getPic中创建这两个文件。
 
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 getCurrentTabUrl方法获取当前tab标签的url，获取到url后触发callback回调方法；getImageUrl方法获取图片，并填充popup.html主体内容。该方法第一个参数为查询关键字，第二个参数是成功取回图片后的回调方法，第三个参数是图片请求失败的错误处理方法。
 
-### 安装
+### 3.安装
 
 安装该插件。以上步骤操作完毕后，文件夹getPic内应该有manifest.json,icon.png, popup.html, popup.js. 等4个文件。下面我们需要把文件夹getPic打包成.crx文件。打开chrome，更多工具->扩展程序(或者输入地址：chrome://extensions/)打开chrome扩展页面。勾选页面上方的“开发者模式”。点击“打包扩展程序…”按钮，在弹窗里选中文件夹getPic，点击“打包扩展程序”。打包完毕后，我们可以在getPic的父级文件夹里找到打包好的crx文件。然后把这个crx文件拖拽到刚才打开的chrome扩展页面即可安装。如果不能安装该crx文件，可以点击“加载已解压的扩展程序...”直接选择文件夹getPic。
 
