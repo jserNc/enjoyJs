@@ -4,6 +4,7 @@
   font-family: Monaco,Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Consolas, monospace !important;
   border: 0 !important;
   font-size: 1.1em;
+  white-space:nowrap !important;
 }
 
 .pln {
