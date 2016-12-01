@@ -178,8 +178,6 @@ npm install
 安装依赖。新建webpack.config.js配置文件：
 
 ```
-var webpack = require('webpack')
-
 module.exports = {
   entry: './entry.js',
   output: {
