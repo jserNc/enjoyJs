@@ -102,6 +102,8 @@ webpack entry.js bundle.js
 npm install css-loader style-loader
 ```
 
+我们需要两种loader来转换css文件。css-loader用来读取css文件，style-loader用来将style标签插入html页面。
+
 新建一个style.css文件：
 
 ```
@@ -191,6 +193,7 @@ module.exports = {
   }
 }
 ```
+不同的loader用感叹号（!）分隔，上面的style和css分别指Style-loader和CSS-loader。
 
 同时简化 entry.js 中的 style.css 加载方式：
 
