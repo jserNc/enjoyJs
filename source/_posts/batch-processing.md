@@ -32,7 +32,7 @@ rd /s/q middleFile
 
 其中，::为cmd文件注释，echo 命令中<、>等符号均需用^转义；
 
-以上除了 sed 命令，仅为基本的cmd命令。** sed 全名叫stream editor，流编辑器，用程序的方式来编辑文本。sed 基本上就是玩正则模式匹配，所以，玩sed，对正则表达式要求比较高 **。
+以上除了 sed 命令，均为基本的cmd命令。** sed 全名叫stream editor，流编辑器，用程序的方式来编辑文本。sed 基本上就是玩正则模式匹配，所以，玩sed，对正则表达式要求比较高 **。
 
 要在cmd中使用 sed 命令，我们需要先进行一个简单的配置操作：
 > 1.下载[sed for Windows](http://gnuwin32.sourceforge.net/packages/sed.htm) ,进入网站后，下载Binaries zip文件，解压后在bin目录找到sed.exe文件;
