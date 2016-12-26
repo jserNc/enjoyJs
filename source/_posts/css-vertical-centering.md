@@ -134,5 +134,5 @@ margin-top设置为负的div.content高度。这种方法兼容性好，只是�
 
 参考：
 [1] http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html
-[2] https://www.qianduan.net/css-to-achieve-the-vertical-center-of-the-five-kinds-of-methods/
-[3] http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/
+[2] http://zerosixthree.se/vertical-align-anything-with-just-3-lines-of-css/
+[3] https://www.qianduan.net/css-to-achieve-the-vertical-center-of-the-five-kinds-of-methods/
