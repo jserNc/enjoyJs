@@ -1,7 +1,7 @@
 ---
 title: hexo新建博文操作指南
 date: 2016-9-30 16:10:38
-tags:
+tags: method
 ---
 
 ## Quick Start

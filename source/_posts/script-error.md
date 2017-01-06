@@ -1,7 +1,7 @@
 ---
 title: script.onerror的兼容写法
 date: 2016-10-27 18:26:33
-tags:
+tags: problem
 ---
 
 script的onerror事件IE6~8与opera11都不支持，但是，我们又经常遇到需要检测脚本是否出错的场景。下面给出一种可以兼容各种浏览器的解决方法：

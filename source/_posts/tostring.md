@@ -1,7 +1,7 @@
 ---
 title: toString.call()引起的一些思考
 date: 2016-10-14 17:20:13
-tags:
+tags: grammar
 ---
 
 toString作为全局方法时，挂载于window对象。Object对象也有自己的Object.prototype.toString方法，Array、String、Boolean、Function、Date等也都部署了自己的toString方法。[原型链]的作用是，读取对象的某个属性时，JS引擎先寻找对象本身的属性，如果找不到，就到它的原型去找，如果还是找不到，就到原型的原型去找。如果直到最顶层的Object.prototype还是找不到，则返回undefined。

@@ -1,7 +1,7 @@
 ---
 title: 关于script脚本加载方式（译）
 date: 2016-10-28 14:10:12
-tags:
+tags: problem
 ---
 
 原文： http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html

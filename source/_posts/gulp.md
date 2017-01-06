@@ -1,7 +1,7 @@
 ---
 title: 前端构建工具gulp
 date: 2016-11-17 09:58:52
-tags:
+tags: tools
 ---
 
 在前端开发过程中，源代码编写完成后，一般还要经过代码语法检查、文件合并、代码压缩、浏览器刷新查看效果等步骤。gulp就是可以替我们开发者完成这些重复工作的自动化构建工具。换句话说，gulp是一个编译、打包、压缩javascript/coffee/sass/less/html/image/css等文件的工具。类似的工具还有较早的ant、grunt等。

@@ -1,7 +1,7 @@
 ---
 title: 关于ajax请求status值为0
 date: 2016-12-19 09:44:25
-tags:
+tags: problem
 ---
 
 一个ajax请求，onreadystatechange事件会触发5次，分别对应readyState从0到4的变化。例如：值为4表示请求已经完成或者传输过程中出现错误。readyState总共有5个状态值，分别为0~4，每个值代表了不同的含义：

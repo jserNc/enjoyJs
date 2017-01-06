@@ -1,7 +1,7 @@
 ---
 title: 关于document.write引入第三方脚本问题
 date: 2016-10-13 16:10:38
-tags:
+tags: problem
 ---
 
 一般情况下，我们会选择异步方式调取js文件，但是某些场景又不得不使用同步方式来调用js。除了直接用script标签插入同步脚本，document.write也是一种选择。然而，chrome认为其会拖慢页面加载速度，牺牲用户体验。所以，新版chrome决定对用document.write注入第三方脚本的方式采取一些干预措施。

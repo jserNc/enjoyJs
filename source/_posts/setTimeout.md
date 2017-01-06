@@ -1,7 +1,7 @@
 ---
 title: JavaScript中setTimeout该如何理解？
 date: 2016-11-03 14:46:59
-tags:
+tags: js
 ---
 
 setTimeout(code,ms) 方法用于在指定的毫秒数后调用函数或计算表达式。这种定时功能我们又叫定时器，该方法返回一个整数num，标识该定时器，之后可以用clearTimeout(num)方法来取消该定时器。

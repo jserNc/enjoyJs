@@ -1,7 +1,7 @@
 ---
 title: JavaScript闭包（译）
 date: 2016-11-01 15:55:44
-tags:
+tags: js
 ---
 
 原文： http://dmitrysoshnikov.com/ecmascript/javascript-the-core/
