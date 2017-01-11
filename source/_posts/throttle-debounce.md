@@ -65,7 +65,15 @@ window.addEventListener('scroll',debounce(2000,f),false);
 
 也就是说，假定事件A会触发回调函数callback，当事件A连续发生时，理论上会连续触发回调函数callback。但是，如果两次调用callback函数的事件间隔小于指定时间，就不让callback函数执行，当下次调用callback函数并且和上次调用时间间隔超过指定时间，再执行一次callback。即：函数无法在很短的时间间隔内连续调用，当过了规定的时间间隔，才能进行该函数的下一次调用。
 
+throttle函数简单实现如下：
+
 ```
+/**
+* 频率控制，action 执行频率限定为 1次 / delay
+* @param delay  {number}    延迟时间，单位毫秒
+* @param action {function}  实际执行的函数
+* @return {function}    返回事件需绑定的回调函数
+*/
 var throttle = function(delay, action){
     var last = 0;
     return function(){
