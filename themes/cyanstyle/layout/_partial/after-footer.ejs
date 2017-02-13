@@ -16,6 +16,19 @@ $(window).load(function(){
 
 <%- js('js/script') %>
 
+<%- js('js/jquery.goup.min') %>
+<script>
+$(document).ready(function () {  
+    $.goup({  
+        trigger: 100,  
+        bottomOffset: 62,       //距底部偏移量   
+        locationOffset: 150,     //距右部偏移量  
+        title: '返回顶部',  
+        titleAsText: true       //是否显示title  
+    });  
+}); 
+</script>
+
 <!--<script src="/js/navigation.js"></script>-->
 
 <div id="bg"></div>
