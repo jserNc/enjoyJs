@@ -96,7 +96,7 @@ beacon = function (src,cb) {
 ```
 这种模式称为图像灯塔（image beacon）。这在向服务器发送日志数据时很有用的，比如收集网页访问者的统计信息。
 
-** 最后再强调一点，只创建script节点和设置其src属性并不会发起加载js的请求（ie6~9除外），必须等到scriptNode插入到dom后才会发起请求。这和图片img的预加载是不同的，图片设置src属性后会立即发起请求，所以以上beacon方法中，img的onload、onerror、onabort等回调函数都需要定义在src属性之前！ ** 
+最后再强调一点，** 只创建script节点和设置其src属性并不会发起加载js的请求（ie6~9除外），必须等到scriptNode插入到dom后才会发起请求。这和图片img的预加载是不同的，图片设置src属性后会立即发起请求，所以以上beacon方法中，img的onload、onerror、onabort等回调函数都需要定义在src属性之前！ ** 
 
 参考：
 [1] 《JavaScript模式》Stoyan Stefanov 著
