@@ -63,7 +63,7 @@ tags: css
 
 <div style="height:200px;"><div id="wrapper" style="position: absolute; height:200px;width:600px;background-color: #0f0;"><div class="content" style="position: absolute;top: 50%;margin-top: -10px;height: 20px;background-color: #ff0;">content</div></div></div>
 
-margin-top设置为负的div.content高度的一半。这种方法兼容性好，只是空间不够时，content会消失。
+margin-top设置为负的div.content高度的一半。这种方法兼容性比较好，只是div.content空间不够时，content会消失。
 
 ** 方法三：同样使用绝对定位，结合top、bottom、margin等属性**
 ```
@@ -89,9 +89,9 @@ margin-top设置为负的div.content高度的一半。这种方法兼容性好�
 ```
 <div style="height:200px;"><div id="wrapper" style="height:200px;width:600px;background-color: #0f0;position: absolute;"><div id="content" style="position: absolute;top: 0;bottom: 0;margin: auto;height: 20px;background-color: #ff0;"> Content goes here</div></div></div>
 
-使用绝对定位。这个div的top和bottom均为0，但是它有高度，实际上并不能上下偏移都为0，margin设为auto会使它居中（如果需要水平也居中，可以说将left、right也设置为0）。遗憾的是ie兼容性不好，空间不够时，content会被截断。
+使用绝对定位。这个div的top和bottom均为0，但是它有高度，实际上并不能上下偏移都为0，margin设为auto会使它居中（如果需要水平也居中，可以说将left、right也设置为0）。只是ie兼容性不好，空间不够时，content会被截断。
 
-** 方法四：css3属性transform，3行搞定**
+** 方法四：css3属性transform**
 ```
 <style>
 	#wrapper {
