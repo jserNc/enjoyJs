@@ -262,7 +262,7 @@ fn();    //undefined
 fn(1);   //undefined
 ```
 
-如果去掉外层函数的形参x，会怎样？
+如果去掉外层函数的形参 x，会怎样？
 
 ```
 var fn = (function(){
