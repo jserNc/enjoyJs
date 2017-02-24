@@ -4,7 +4,7 @@ date: 2017-01-11 09:49:12
 tags: js
 ---
 
-查看[JSFuck源码](https://github.com/aemkei/jsfuck/blob/master/jsfuck.js) ，我们发现，之所以能用[，]，(，)，!，+ 等6个字符来写JavaScript代码，是因为所有的字符（变量）都可以通过这6个字符来表示（直接或者间接转换），下面我们分析各个字符和这6个元字符之间的映射关系。
+查看 [JSFuck源码](https://github.com/aemkei/jsfuck/blob/master/jsfuck.js) ，我们发现，之所以能用** [，]，(，)，!，+  **等 6 个字符来写 JavaScript 代码，是因为所有的字符（变量）都可以通过这 6 个字符来表示（直接或者间接转换），下面我们分析各个字符和这 6 个元字符之间的映射关系。
 
 <!-- more -->
 
@@ -166,7 +166,7 @@ RegExp === Function("return/"+false+"/")().constructor
 -> "z"
 ```
 
-说明一点：将一个值转换成字符串有两种方法，一是使用toString()方法，二是使用转型函数String()，几乎每个值都有toString()方法，但是 null 和 undefined没有该方法。
+说明一点：将一个值转换成字符串有两种方法，一是使用 toString() 方法，二是使用转型函数 String()，几乎每个值都有 toString() 方法（ null 和 undefined 没有该方法）。
 
 ** 大写字母映射 **
 
