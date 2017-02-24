@@ -1,5 +1,5 @@
 ---
-title: 关于ajax请求status值为0
+title: 关于 ajax 请求 status 值为 0
 date: 2016-12-19 09:44:25
 tags: problem
 ---

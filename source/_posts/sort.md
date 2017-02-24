@@ -1,5 +1,5 @@
 ---
-title: JavaScript排序算法
+title: JavaScript 排序算法
 date: 2016-10-13 17:12:08
 tags: algorithm
 ---

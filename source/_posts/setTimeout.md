@@ -1,5 +1,5 @@
 ---
-title: JavaScript中setTimeout该如何理解？
+title: 理解 JavaScript 中 setTimeout
 date: 2016-11-03 14:46:59
 tags: js
 ---

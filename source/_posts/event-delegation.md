@@ -1,5 +1,5 @@
 ---
-title: JavaScript事件代理（委托）
+title: JavaScript 事件代理（委托）
 date: 2016-10-24 13:09:38
 tags: method
 ---

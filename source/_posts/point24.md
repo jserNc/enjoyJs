@@ -1,5 +1,5 @@
 ---
-title: JavaScript24点游戏算法
+title: JavaScript 24 点游戏算法
 date: 2016-10-14 14:22:09
 tags: algorithm
 ---

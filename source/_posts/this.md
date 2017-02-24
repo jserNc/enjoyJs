@@ -1,5 +1,5 @@
 ---
-title: JavaScript中this该如何理解？
+title: 理解 JavaScript 中 this
 date: 2016-11-02 09:53:32
 tags: js
 ---

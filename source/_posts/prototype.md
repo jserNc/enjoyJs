@@ -1,5 +1,5 @@
 ---
-title: JavaScript原型链
+title: JavaScript 原型链
 date: 2016-10-24 15:00:44
 tags: js
 ---

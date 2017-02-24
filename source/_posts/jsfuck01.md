@@ -1,5 +1,5 @@
 ---
-title: jsfuck 6个字符写js代码（二）
+title: jsfuck 6 个字符写 js 代码（二）
 date: 2017-01-09 16:51:17
 tags: js
 ---

@@ -1,5 +1,5 @@
 ---
-title: JSONP和图像灯塔
+title: JSONP 和图像灯塔
 date: 2016-12-28 17:13:08
 tags: js
 ---

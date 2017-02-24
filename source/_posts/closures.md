@@ -1,5 +1,5 @@
 ---
-title: JavaScript闭包（译）
+title: JavaScript 闭包（译）
 date: 2016-11-01 15:55:44
 tags: js
 ---

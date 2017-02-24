@@ -1,5 +1,5 @@
 ---
-title: 浅谈JavaScript链式调用
+title: 浅谈 JavaScript 链式调用
 date: 2016-10-25 16:34:44
 tags: js
 ---

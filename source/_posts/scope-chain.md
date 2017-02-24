@@ -1,5 +1,5 @@
 ---
-title: JavaScript作用域链（译）
+title: JavaScript 作用域链（译）
 date: 2016-11-01 09:46:50
 tags: js
 ---

@@ -1,5 +1,5 @@
 ---
-title: script.onerror的兼容写法
+title: script.onerror 的兼容写法
 date: 2016-10-27 18:26:33
 tags: problem
 ---

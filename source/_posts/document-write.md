@@ -1,5 +1,5 @@
 ---
-title: 关于document.write引入第三方脚本问题
+title: 关于 document.write 引入第三方脚本
 date: 2016-10-13 16:10:38
 tags: problem
 ---

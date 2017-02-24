@@ -1,5 +1,5 @@
 ---
-title: toString.call()引起的一些思考
+title: toString.call() 引起的一些思考
 date: 2016-10-14 17:20:13
 tags: grammar
 ---

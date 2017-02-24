@@ -1,5 +1,5 @@
 ---
-title: 关于script脚本加载方式（译）
+title: 关于 script 脚本加载方式（译）
 date: 2016-10-28 14:10:12
 tags: problem
 ---
