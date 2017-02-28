@@ -113,7 +113,9 @@ body { background: yellow; }
 修改 entry.js：
 
 ```
-require("!style-loader!css-loader!./style.css") // 载入 style.css
+// 载入 style.css
+require("!style-loader!css-loader!./style.css") 
+
 document.write('It works.')
 document.write(require('./module.js'))
 ```
@@ -134,7 +136,7 @@ require("./style.css")
 相应地，编译打包方式修改为：
 
 ```
-webpack entry.js bundle.js --module-bind 'css=style!css'
+webpack entry.js bundle.js --module-bind 'css=style-loader!css-loader'
 ```
 
 ### 4.配置文件
@@ -166,7 +168,7 @@ webpack
     "devDependencies": {
     "css-loader": "^0.21.0",
     "style-loader": "^0.13.0",
-    "webpack": "^1.12.2"
+    "webpack": "^2.2.1"
     }
 }
 ```
@@ -188,7 +190,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      {test: /\.css$/, loader: 'style!css'}
+      {test: /\.css$/, loader: 'style-loader!css-loader'}
     ]
   }
 }
