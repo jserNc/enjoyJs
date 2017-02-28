@@ -10,31 +10,31 @@ Webpack 是一个模块打包器。它将根据模块的依赖关系进行静态
 
 ![作用域链](/css/images/webpack/webpack.png)
 
-互相依赖的模块，经过webpack的处理，生成相应的静态资源。webpack在这里起到模块定义、依赖和导出的作用。
+互相依赖的模块，经过 webpack 的处理，生成相应的静态资源。webpack 在这里起到模块定义、依赖和导出的作用。
 
 ### 为什么要模块化加载？
 
-目前，越来越多的网站已经从网页模式进化到了webapp模式，页面需要的JavaScript、css、图片等等各种资源也越来越多，特别是大量的js代码会给前端开发流程和资源组织带来巨大挑战。
+目前，越来越多的网站已经从网页模式进化到了 webapp 模式，页面需要的 JavaScript、css、图片等等各种资源也越来越多，特别是大量的 js 代码会给前端开发流程和资源组织带来巨大挑战。
 
-前端资源是通过增量加载的方式在浏览器端运行，如何组织好前端代码和资源，使它们能够快速、优雅地加载和更新，是一个模块化系统需要解决的问题。
+** 前端资源是通过增量加载的方式在浏览器端运行，如何组织好前端代码和资源，使它们能够快速、优雅地加载和更新，是一个模块化系统需要解决的问题。**
 
 前端模块需要增量加载到用户浏览器中执行。关于这个过程，我们设想两种极端的方式：一种是每个模块都单独请求；另一种是把所有文件打包成一个文件，然后请求一次。很明显，这两种方式简单粗暴的方式都不够好，第一种方式请求数太多，网页响应速度太慢；第二种会导致流量浪费、初始化过程慢。
 
 ### 分块传输，按需进行懒加载，在实际用到某些模块的时候再增量更新，才是较为合理的模块加载方案。
 
-要实现模块的按需加载，就需要一个对整个代码库中的模块进行静态分析、编译打包的过程。这就是webpack要做的工作。
+要实现模块的按需加载，就需要一个对整个代码库中的模块进行静态分析、编译打包的过程。这就是 webpack 要做的工作。
 
-下面，就以一个简单实例介绍webpack的使用流程。
+下面，就以一个简单实例介绍 webpack 的使用流程。
 
-### 1.安装webpack
+### 1.安装 webpack
 
-首先，得具备node环境。安装node会顺带安装包管理器npm，我们用npm全局安装webpack。
+首先，得具备 node 环境。安装 node 会顺带安装包管理器 npm，我们用 npm 全局安装 webpack。
 
 ```
 npm install webpack -g
 ```
 
-然后，我们新建一个项目目录myWebpack。项目本地安装webpack。
+然后，我们新建一个项目目录 myWebpack。项目本地安装 webpack。
 
 ```
 # 进入项目目录
@@ -45,7 +45,7 @@ npm install webpack --save-dev
 
 ### 2.小试牛刀
 
-首先新建index.html页面：
+首先新建 index.html 页面：
 
 ```
 <html>
@@ -58,27 +58,27 @@ npm install webpack --save-dev
 </html>
 ```
 
-然后，新建entry.js文件：
+然后，新建 entry.js 文件：
 
 ```
 document.write('It works.');
 ```
 
-最后，使用webpack编译entry.js并打包到bundle.js：
+最后，使用 webpack 编译 entry.js 并打包到 bundle.js：
 
 ```
 webpack entry.js bundle.js
 ```
 
-用浏览器直接打开index.html(不需要web服务器)，我们会看到页面显示：It works.
+用浏览器直接打开 index.html(不需要web服务器)，我们会看到页面显示：It works.
 
-这是没有文件依赖的情况。下面我们新增一个模块module.js：
+这是没有文件依赖的情况。下面我们新增一个模块 module.js：
 
 ```
 module.exports = 'It works from module.js.'
 ```
 
-同时，修改entry.js：
+同时，修改 entry.js：
 
 ```
 document.write('It works.')
@@ -91,29 +91,29 @@ document.write(require('./module.js'))
 webpack entry.js bundle.js
 ```
 
-刷新index.html,页面显示为：It works.It works from module.js.
+刷新 index.html,页面显示为：It works.It works from module.js.
 
 
 ### 3.loader
 
-以上我们打包的模块都是js文件，实际上，webpack本身也只能处理JavaScript模块。如果要处理css、图片等非js文件，就需要使用loader进行转换。在这里，loader充当一个模块和资源之间的转换器。我们用npm来安装loader：
+以上我们打包的模块都是 js 文件，实际上，webpack 本身也只能处理 JavaScript 模块。如果要处理 css、图片等非 js 文件，就需要使用 loader 进行转换。在这里，loader 充当一个模块和资源之间的转换器。我们用 npm 来安装 loader：
 
 ```
 npm install css-loader style-loader
 ```
 
-我们需要两种loader来转换css文件。css-loader用来读取css文件，style-loader用来将style标签插入html页面。
+我们需要两种 loader 来转换 css 文件。css-loader 用来读取 css 文件，style-loader 用来将 style 标签插入html页面。
 
-新建一个style.css文件：
+新建一个 style.css 文件：
 
 ```
 body { background: yellow; }
 ```
 
-修改entry.js：
+修改 entry.js：
 
 ```
-require("!style!css!./style.css") // 载入 style.css
+require("!style-loader!css-loader!./style.css") // 载入 style.css
 document.write('It works.')
 document.write(require('./module.js'))
 ```
@@ -123,9 +123,9 @@ document.write(require('./module.js'))
 webpack entry.js bundle.js
 ```
 
-刷新index.html页面，我们看到，背景已经变成样式里写的黄色了。
+刷新 index.html 页面，我们看到，背景已经变成样式里写的黄色了。
 
-如果觉得entry.js中加载style.css的方式比较冗长，我们可以将entry.js中的style.css加载方式改为：
+如果觉得 entry.js 中加载 style.css 的方式比较冗长，我们可以将 entry.js 中的 style.css 加载方式改为：
 
 ```
 require("./style.css")
@@ -145,9 +145,9 @@ webpack entry.js bundle.js --module-bind 'css=style!css'
 webpack
 ```
 
-命令来实现编译，打包过程。我们只需要事先准备好一个配置文件webpack.config.js。
+命令来实现编译，打包过程。我们只需要事先准备好一个配置文件 webpack.config.js。
 
-首先，我们更改package.json，添加webpack所需的依赖：
+首先，我们更改 package.json，添加 webpack 所需的依赖：
 
 ```
 {
@@ -177,7 +177,7 @@ webpack
 npm install
 ```
 
-安装依赖。新建webpack.config.js配置文件：
+安装依赖。新建 webpack.config.js 配置文件：
 
 ```
 module.exports = {
@@ -193,7 +193,7 @@ module.exports = {
   }
 }
 ```
-不同的loader用感叹号（!）分隔，上面的style和css分别指Style-loader和CSS-loader。
+不同的 loader 用感叹号（!）分隔，上面的 style 和 css 分别指 Style-loader 和 CSS-loader。
 
 同时简化 entry.js 中的 style.css 加载方式：
 
@@ -201,7 +201,7 @@ module.exports = {
 require('./style.css')
 ```
 
-最后运行webpack编译打包，刷新页面，就可以看到之前的效果了。
+最后运行 webpack 编译打包，刷新页面，就可以看到之前的效果了。
 
 ```
 webpack
