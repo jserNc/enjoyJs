@@ -51,7 +51,7 @@ sed "s/str1/str2/g" a.txt
 s 表示替换命令，将 a.txt 中的字符串 “str1” 替换为 “str2”，/g 表示一行上的替换所有的匹配，上面 tg.cmd 例子中，我们字符串中包含 / 字符，所以用到 \/ 进行转义。
 
 
-参考：
+参考： 
 [1] http://coolshell.cn/articles/9104.html
 [2] https://dotblogs.com.tw/jses88001/2014/11/13/147283
 [3] http://gnuwin32.sourceforge.net/packages/sed.htm
