@@ -1,5 +1,5 @@
 ---
-title: css 实现三角形效果
+title: css 三角形 扇形
 date: 2017-02-14 11:05:36
 tags: css
 ---
@@ -65,3 +65,80 @@ tags: css
 <div style="border:30px solid;border-color:#f5f5f5 #f5f5f5 blue #f5f5f5;height :0;width:0;background:#f5f5f5;"><div>
 
 这样，一个三角形就出现了。我们通过改变边框颜色，宽度，就可以随意改变这个三角形了。
+
+如果，我们想得到的是扇形，只需对边框附加一个 border-radius 属性即可。下面，我们分别给上边 3 个图形加上该属性：
+
+```
+.div { 
+    border-radius : 100px;
+    border : 30px solid;
+    border-color : red yellow blue green;
+    height : 100px;
+    width : 100px;
+    background : #f5f5f5;
+}
+```
+
+<div style="border-radius:100px;border:30px solid;border-color:red yellow blue green;height:100px;width:100px;background:#f5f5f5;"><div>
+
+矩形框，变成了圆环。接着把内容设为空：
+
+```
+.div { 
+    border-radius : 30px;
+    border : 30px solid;
+    border-color : red yellow blue green;
+    height : 0;
+    width : 0;
+    background : #f5f5f5;
+}
+```
+
+<div style="border-radius:30px;border:30px solid;border-color:red yellow blue green;height:0;width:0;background:#f5f5f5;"><div>
+
+把三个边框设为背景色：
+
+```
+.div { 
+    border-radius : 30px;
+    border : 30px solid;
+    border-color : #f5f5f5 #f5f5f5 blue #f5f5f5;
+    height : 0;
+    width : 0;
+    background : #f5f5f5;
+}
+```
+
+<div style="border-radius:30px;border:30px solid;border-color:#f5f5f5 #f5f5f5 blue #f5f5f5;height:0;width:0;background:#f5f5f5;"><div>
+
+我们看到，扇形左右两侧有蓝色的弧形，下面，我们把 3 个边框背景透明化：
+
+```
+.div { 
+    border-radius : 30px;
+    border : 30px solid;
+    border-color : transparent transparent blue transparent;
+    height : 0;
+    width : 0;
+    background : #f5f5f5;
+}
+```
+
+<div style="border-radius:30px;border:30px solid;border-color:transparent transparent blue transparent;height :0;width:0;background:#f5f5f5;"><div>
+
+于是，得到一个扇形，我们还可以将 div 背景色设为透明：
+
+```
+.div { 
+    border-radius : 30px;
+    border : 30px solid;
+    border-color : transparent transparent blue transparent;
+    height : 0;
+    width : 0;
+    background : transparent;
+}
+```
+
+<div style="border-radius:30px;border:30px solid;border-color:transparent transparent blue transparent;height :0;width:0;background:transparent;"><div>
+
+
