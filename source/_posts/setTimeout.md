@@ -108,7 +108,7 @@ longTask2();
 longTask3();
 ```
 
-可以用setTimeout把这些大任务拆开。这样就可以优先来响应其他小任务了，不至于堵在这种耗时大任务这里。
+可以用 setTimeout 把这些大任务拆开。这样就可以优先来响应其他小任务了，不至于堵在这种耗时大任务这里。
 
 ```
 var arr = [longTask1, longTask2, longTask3],
@@ -144,7 +144,7 @@ function func() {
 timer = setTimeout(func, 0);
 ```
 
-上面代码有两种写法，都是改变一个网页元素的背景色。写法一会造成浏览器“堵塞”，因为 DOM 操作消耗较大，这种连续的 DOM 操作会造成大量DOM操作“堆积”，浏览器卡顿。而写法二将任务分散在空余时间执行，就不会造成“堵塞”，这就是 setTimeout(f, 0) 的好处。
+上面代码有两种写法，都是改变一个网页元素的背景色。写法一会造成浏览器“堵塞”，因为 DOM 操作消耗较大，这种连续的 DOM 操作会造成大量 DOM 操作“堆积”，浏览器卡顿。而写法二将任务分散在空余时间执行，就不会造成“堵塞”，这就是 setTimeout(f, 0) 的好处。
 
 参考：
 [1] http://javascript.ruanyifeng.com/advanced/timer.html
