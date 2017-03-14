@@ -40,14 +40,14 @@ getScript = function (url, config) {
     s.onerror = function (){
         if (config.errCb) {config.errCb()};
     };
-    s.src =url;
+    s.src = url;
     head.insertBefore(s, head.firstChild);
 };
 ```
 
 这个方法第一个参数 url 是待请求的资源地址，第二个参数 config 是配置对象，可以定义接口请求成功后的回调函数 config.callback 或接口出错的回调函数 config.errCb 以及脚本编码 config.charset 等等。
 
-例如：地址 //www.ad.com/index.php 有我们想要的广告数据，我们想拿到这个页面里的广告数据，然后在我们的页面里把数据拼接渲染出来，等到数据渲染完成后控制台打印“广告成功渲染”。若是广告数据请求失败，控制台打印“数据请求失败”。
+例如：地址 //www.ad.com/index.php 有我们想要的广告数据，我们想拿到这个页面里的广告数据，然后在我们的页面里把数据拼接渲染出来。等到数据渲染完成后控制台打印“广告成功渲染”，若是广告数据请求失败，控制台打印“数据请求失败”。
 
 ** 具体操作步骤如下：**
 
@@ -58,13 +58,13 @@ function renderAd(data){
 }
 ```
 
-** 2.//www.ad.com/index.php 页面里调用 renderAd 方法 **
+** 2. //www.ad.com/index.php 页面里调用 renderAd 方法 **
 ```
 adData = ['ad1','ad2','ad3'];
 renderAd(adData);
 ```
 
-** 3.我们自己页面里调用 getScript 请求资源 **
+** 3. 我们自己页面里调用 getScript 请求资源 **
 ```
 getScript('//www.ad.com/index.php', {
     callback: function(){
