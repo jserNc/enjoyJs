@@ -121,7 +121,7 @@ Number({
 [] + []
 ```
 
-两个运算子都是非原始类型的数据（数组对象），先对两个 [] 均执行 valueOf 方法，返回该 [] 本身（其实，默认情况下，对象的 valueOf 方法都返回该对象本身），然后对 [] 调用 toString 方法方法（数组执行 toString 方法一般返回数组的字符串形式，如 [1,2,3].toString() 返回 "1,2,3" ），返回 ""，所以相当于 "" + ""，最终结果为 ""，空字符串。
+两个运算子都是非原始类型的数据（数组对象），先对两个 [] 均执行 valueOf 方法，返回该 [] 本身（其实，默认情况下，对象的 valueOf 方法都返回该对象本身），然后对 [] 调用 toString 方法方法（数组执行 toString 方法一般返回数组的字符串形式，如 [1,2,3].toString() 返回 "1,2,3"），返回 ""，所以相当于 "" + ""，最终结果为 ""，空字符串。
 
 ** (2) 空数组 + 空对象 **
 
@@ -129,7 +129,7 @@ Number({
 [] + {}
 ```
 
-分析方法同上，不过默认情况下，对象的toString方法，返回 "[object Object]"，所以，以上表达式相当于 "" + "[object Object]"，最终结果为 "[object Object]"。
+分析方法同上，不过默认情况下，对象的 toString 方法，返回 "[object Object]"，所以，以上表达式相当于 "" + "[object Object]"，最终结果为 "[object Object]"。
 
 ** (3) 空对象 + 空对象 **
 
@@ -138,9 +138,9 @@ Number({
 ({}) + {}
 ```
 
-首先看 {} + {}，JavaScript 引擎将第一个空对象视为一个空代码块，忽略，变成了 +{}，这里的 + 为一元运算符，它相当于调用 Number 方法，强制将运算子转为数值。而这里的运算子是对象 {}，+{} 相当于，先对 {} 调用 valueOf 方法得到其自身，然后调用 toString 方法，得到 "[object Object]"，最后相当于 +"[object Object]"，这个字符串转换为数值为 NaN,即最终结果是 NaN。
+首先看 {} + {}，JavaScript 引擎将第一个空对象视为一个空代码块，忽略，变成了 +{}，这里的 + 为一元运算符，它相当于调用 Number 方法，强制将运算子转为数值。而这里的运算子是对象 {}，+{} 相当于，先对 {} 调用 valueOf 方法得到其自身，然后调用 toString 方法，得到 "[object Object]"，最后相当于 +"[object Object]"，这个字符串转换为数值为 NaN，即最终结果是 NaN。
 
-再看 ({}) + {}，两个{}均调用toString方法，相当于"[object Object]" + "[object Object]"，最终结果是 "[object Object][object Object]"。
+再看 ({}) + {}，两个 {} 均调用 toString 方法，相当于 "[object Object]" + "[object Object]"，最终结果是 "[object Object][object Object]"。
 
 ** (4) 空对象 + 空数组 **
 
@@ -151,7 +151,7 @@ Number({
 
 先看 {} + []，{} 视作空代码块被忽略，相对于 +[] ，[] 也是对象的一种，所以调用 toString 方法，相当 +""，最终结果为 0。
 
-再看  ({}) + []，两个运算子均为对象，分别调用toString方法，相当于"[object Object]" + ""，最终结果为 "[object Object]"。
+再看  ({}) + []，两个运算子均为对象，分别调用 toString 方法，相当于 "[object Object]" + ""，最终结果为 "[object Object]"。
 
 以上是最基本的数组类型转换，也是 jsFuck 的基本原理之一。暂时先到这里，后面我们会继续探讨这个话题。
 
