@@ -40,7 +40,7 @@ window -> document -> body -> div -> p；
 
 ② 目标节点
 
-事件到达最深层的节点，这个节点称为**目标节点**,在这里是 p 节点；
+事件到达最深层的节点，这个节点称为**目标节点**，在这里是 p 节点；
 
 ③ 事件冒泡
 
@@ -90,7 +90,7 @@ function handler(event) {
 }
 ```
 
-再注意一下 event.target,将其和 event.currentTarget 对比一下：
+再注意一下 event.target，将其和 event.currentTarget 对比一下：
 
 **event.currentTarget**：返回事件当前所在的节点，会随着事件捕获和事件冒泡改变。也就是事件监听函数中的 this。
 
@@ -124,6 +124,8 @@ function myHandler(e){
     }
 }
 ```
+
+以上代码中取消了事件的传播，这个处理不是必须的，可以省略。但是如果不这样，会导致事件传播到最顶层元素，甚至是 window 对象。
 
 
 
