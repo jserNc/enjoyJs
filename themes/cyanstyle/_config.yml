@@ -14,6 +14,12 @@ reply: Reply
 share: Share
 fancybox: true
 
+# links 友链
+#links: 
+#  - Hexo: http://zespia.tw/hexo/
+#  - github: https://github.com/
+
+
 # Sidebar
 widgets:
 #- search
@@ -22,6 +28,7 @@ widgets:
 - recent_posts
 - tag
 - tagcloud
+- links
 
 # Miscellaneous
 google_analytics:

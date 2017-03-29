@@ -1,0 +1,19 @@
+<% if (theme.links){ %>
+  <aside class="widget">
+    <h3 class="widget-title">Links</h3>
+    <div class="widget-content">
+      <ul>
+        <% theme.links.forEach(function(item){ %>
+        <%
+          var description, linkURL
+          for (var tmp in item) {
+            description = tmp;
+            linkURL = item[tmp];
+          }
+        %>
+        <li><a href="<%- linkURL %>" target="_blank"><%= description %></a></li>
+      <% }); %>
+      </ul>
+    </div>
+  </aside>
+<% } %>
