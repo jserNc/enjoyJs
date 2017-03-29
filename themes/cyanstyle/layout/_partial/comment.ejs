@@ -1,20 +1,16 @@
-<% if (!index && (page.path !== 'demo/index.html') && post.comments && theme.duoshuo_shortname){ %>
+<% if (!index && (page.path !== 'demo/index.html') && post.comments){ %>
 <section id="comments">
-  <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="<%= post.layout %>-<%= post.slug %>" data-title="<%= post.title %>" data-url="<%= page.permalink %>"></div>
-  <!-- 多说评论框 end -->
-  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-  <script type="text/javascript">
-  var duoshuoQuery = {short_name:'<%= theme.duoshuo_shortname %>'};
-    (function() {
-	  var ds = document.createElement('script');
-	  ds.type = 'text/javascript';ds.async = true;
-	  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-	  ds.charset = 'UTF-8';
-	  (document.getElementsByTagName('head')[0]
-	   || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
+  <!--网易云跟帖 开始-->
+  <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+  <script>
+  var cloudTieConfig = {
+    url: document.location.href, 
+    sourceId: "",
+    productKey: "5a032688db1348678f3949687092d2c3",
+    target: "cloud-tie-wrapper"
+  };
   </script>
-  <!-- 多说公共JS代码 end -->
+  <script src="https://img1.cache.netease.com/f2e/tie/yun/sdk/loader.js"></script>
+  <!--网易云跟帖 结束-->
 </section>
 <% } %>
