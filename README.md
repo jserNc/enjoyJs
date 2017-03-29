@@ -1,2 +1,2 @@
 # enjoyJs
-Nanchao's personal blog site http://nanchao.win
+Nanchao's blog : http://nanchao.win
