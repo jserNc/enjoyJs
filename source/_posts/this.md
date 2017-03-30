@@ -315,7 +315,7 @@ print()
 // 1490857265085
 ```
 
-对于，不支持 bind 方法的 ie8 以下浏览器，自定定义 bind 方法：
+对于不支持 bind 方法的 ie8 以下浏览器，自行定义 bind 方法：
 
 ```
 if(!('bind' in Function.prototype)){
