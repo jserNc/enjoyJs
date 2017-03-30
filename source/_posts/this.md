@@ -315,6 +315,21 @@ print()
 // 1490857265085
 ```
 
+对于，不支持 bind 方法的 ie8 以下浏览器，自定定义 bind 方法：
+
+```
+if(!('bind' in Function.prototype)){
+  Function.prototype.bind = function(){
+    var fn = this;
+    var context = arguments[0];
+    var args = Array.prototype.slice.call(arguments,1);
+    return function(){
+      return fn.apply(context,args);
+    }
+  }
+}
+```
+
 
 参考：
 [1] http://javascript.ruanyifeng.com/oop/this.html
