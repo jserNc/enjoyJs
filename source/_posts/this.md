@@ -241,13 +241,11 @@ element.setAttribute('onclick','doSomething()')
 <element onclick="doSomething()">
 ```
 
-** 固定 this 指向 **
+** 固定 this 指向： **
 
-函数中 this 的指向这么多变，在某些场景下可能使问题复杂化，不过，这种灵活的语法不正是 JavaScript 的趣味性所在吗？
+函数中 this 指向的多变，在某些场景下可能使问题复杂化，不过，这种灵活语法不正是 JavaScript 的趣味性所在吗？
 
-有时候我们想明确地知名函数执行时其内部 this 的指向。为此，JavaScript 提供了 call、apply、bind 等 3 个方法来切换/固定 this 的指向。
-
-这 3 个方法均是 Function 构造函数的原型方法，即定义于 Function.prototype 对象。下面分别看看它们的用法：
+有时候我们想明确地知名函数执行时其内部 this 的指向。为此，JavaScript 提供了 call、apply、bind 等 3 个方法来切换/固定 this 的指向。这 3 个方法均是 Function 构造函数的原型方法，即定义于 Function.prototype 对象上。
 
 **(1) Function.prototype.call**
 
@@ -268,7 +266,7 @@ f.call(o,1,2) === o;
 // true
 ```
 
-函数 f 内部的 this 指向 call 方法第一个实参 o，其余参数 1,2 分别作为函数 f 执行时的实参。
+函数 f 内部的 this 指向 call 方法第一个实参 o，其余参数（ 1 , 2 ）分别作为函数 f 执行时的实参。
 
 **(2) Function.prototype.apply**
 
@@ -278,10 +276,10 @@ apply 方法和 call 方法作用和用法几乎一样，都是改变函数内�
 f.call(thisValue,arg1,arg2,arg3...);
 // 各个参数以逗号 , 分隔
 f.apply(thisValue,[arg1,arg2,arg3...]);
-// 第一个参数为 this 要绑定的对象，第二个参数为数组，包含函数执行时的参数。
+// 第二个参数为数组，包含函数执行时的参数。
 ```
 
-本来 JavaScript 没有提供获取数组中最大值的原生 api。下面我们可以利用 apply 方法来获取数组的最大值。
+JavaScript 没有提供获取数组中最大值的原生 api，我们可以利用 apply 方法来获取数组的最大值。
 
 ```
 Math.max(x...)
@@ -293,7 +291,7 @@ Math.max.apply(null,a);
 // 66
 ```
 
-call/apply 方法的第一个参数如果为空、null 或者 undefined，则将函数内部 this 执行全局对象 window。
+如果 call / apply 方法的第一个参数为空、null 或者 undefined，则将函数内部 this 指向全局对象 window。
 
 **(3) Function.prototype.bind**
 
@@ -309,7 +307,7 @@ print();
 // Uncaught TypeError: this is not a Date object.
 ```
 
-全局函数 print 执行时，其内部的 this 指向全局函数 window，不是 Date 实例对象，导航函数执行出错。可以使用 bind 方法，将 print 函数内部 this 执行 Date 实例对象 d。
+全局函数 print 执行时，其内部的 this 指向全局函数 window（不是 Date 的实例对象），导致函数执行出错。可以使用 bind 方法，将 print 函数内部 this 指向 Date 实例对象 d。
 
 ```
 var print = d.getTime.bind(d);
