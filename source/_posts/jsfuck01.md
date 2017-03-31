@@ -1,7 +1,7 @@
 ---
 title: jsfuck 6 个字符写 js 代码（二）
 date: 2017-01-09 16:51:17
-tags: js
+tags: grammar
 ---
 
 前文我们讨论了一下 JavaScript 数据类型转换的原理和几个基础的实例。下面，我们接着看一些 JavaScript 表达式实例，增强理解，为我们理解 JSFuck 的原理打下基础。

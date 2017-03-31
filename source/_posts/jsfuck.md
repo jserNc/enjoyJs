@@ -1,7 +1,7 @@
 ---
 title: jsfuck 6 个字符写 js 代码（一）
 date: 2017-01-06 16:15:14
-tags: js
+tags: grammar
 ---
 
 JavaScript 是一门灵活的语言，表达力很丰富。JSFuck 使得我们可以只使用** [，]，(，)，!，+ **等 6 个字符来写 JavaScript 代码。虽然实际应用中根本不会有人这么写代码，但是这种做法很有趣，对其原理的探讨也很有助于加深我们对 JavaScript 基础知识的理解。
