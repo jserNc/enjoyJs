@@ -33,10 +33,10 @@ tags: problem
 
 **减少「重绘」和「回流」：**
 
-（1）不要一条条修改样式，尽量通过 className 来修改；
+（1）**不要一条条修改样式，尽量通过 className 来修改；**
 
 ```
-// 反模式
+// 反模式，不推荐
 var left = 10,top = 20;
 el.style.left = left + "px";
 el.style.top = top + "px";
@@ -48,20 +48,76 @@ el.className += " newClassName";
 el.style.cssText += ";left:"+left+"px;top:"+top+"px;";
 
 ```
-（2）dom 离线后修改；
+（2）**dom 离线后修改；**
 
-  · clone一份要修改的DOM节点，改完后，覆盖在线的对应节点；
+  · clone 一份要修改的 DOM 节点，改完后，覆盖在线的对应节点；
 
   · 先把 DOM 给 display:none （有一次 reflow），然后修改。改好了再把它显示出来。
 
-（3）如果需要创建多个 dom 节点，使用 documentFragment 创建完后一次性加入 document；
+```
+var oldNode = document.getElementById("res"),
+    clone = oldNode.cloneNode(true);
 
-（4）不要把 dom 节点的属性放在循环里，不然会大量读取这个节点的属性；
+// 处理克隆对象...
 
-（5）尽可能地修改层级比较低的 dom；
+// 完成后：
+oldNode.parentNode.replaceChild(clone,oldNode);
+```
 
-（6）动画节点的 position 属性设置为 fixed 或 absoult，修改他们的 CSS 是不会 reflow 的；
+（3）**如果创建多个 dom 节点，使用 documentFragment 创建完后一次性加入 document；**
 
-（7）不要使用table布局。因为可能很小的一个小改动会造成整个table的重新布局。
+```
+// 反模式，创建完节点立即添加进文档
+var p,t;
+
+p = document.createElement('p');
+t = document.createTextNode('first paragraph');
+p.appendChild(t);
+document.body.appendChild(p);
+
+p = document.createElement('p');
+t = document.createTextNode('second paragraph');
+p.appendChild(t);
+document.body.appendChild(p);
+
+// 推荐，使用文档碎片，添加一次碎片节点
+var p,t,frag;
+
+frag = document.createDocumentFragment();
+
+p = document.createElement('p');
+t = document.createTextNode('first paragraph');
+p.appendChild(t);
+frag.appendChild(p);
+
+p = document.createElement('p');
+t = document.createTextNode('second paragraph');
+p.appendChild(t);
+frag.appendChild(p);
+
+document.body.appendChild(frag);
+```
+
+（4）**不要把 dom 节点的属性放在循环里，以免大量读取这个节点的属性；**
+
+```
+// 反模式
+for (var i = 0;i < 100;i++){
+    document.getElementById("res").innerHTML += i;
+}
+
+// 推荐
+var i = 0,content = "";
+for (;i < 100;i++){
+    content += i;
+}
+document.getElementById("res").innerHTML += content;
+```
+
+（5）**尽可能地修改层级比较低的 dom；**
+
+（6）**动画节点的 position 属性设置为 fixed 或 absolute；**
+
+（7）**不要使用 table 布局。因为可能很小的一个小改动会造成整个 table 的重新布局。**
 
 
