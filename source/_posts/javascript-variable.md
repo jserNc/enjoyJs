@@ -12,6 +12,8 @@ JavaScript 数据类型共有 6 种：数值（number）、字符串（string）
 >（1）**基本类型：** number、string、boolean、null、undefined
 >（2）**引用类型：** object
 
+js 标识符是严格区分大小写的，所以必须注意 null、undefined 等关键词全为小写字母构成。
+
 **那么，基本类型数据怎么能调用方法呢？**
 
 5 种基本类型，除了 null 和 undefined 以外，其他 3 种都有与之对应的特殊的引用类型——包装类型。当代码被解释执行时，底层会对基本类型做一个类型转换，转换成相应的引用类型，然后就可以调用相应引用类型有权访问的方法（或属性）了。
@@ -26,9 +28,7 @@ oStringObject.length  // 16
 oStringObject.toUpperCase();  // "ENJOY JAVASCRIPT"
 ```
 
-js 标识符是严格区分大小写的，所以必须注意 null、undefined 等关键词全为小写字母构成。
-
-JavaScript 有 3 种方法，可以确定一个值到底什么类型：
+**JavaScript 有 3 种方法，可以确定一个值到底什么类型：**
 
 > ① typeof 运算符
 > ② instanceof 运算符
