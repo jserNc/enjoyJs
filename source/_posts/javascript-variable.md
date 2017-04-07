@@ -4,9 +4,27 @@ date: 2017-04-07 09:25:30
 tags: js
 ---
 
-JavaScript 数据类型共有 6 种：数值（number）、字符串（string）、布尔值（boolean）、null、undefined、对象（object）。其中，数值、字符串、布尔值为最基本的数据类型。对象又可以分为 3 个子类型：狭义的对象（object）、数组（array）、函数（function）。
+JavaScript 数据类型共有 6 种：数值（number）、字符串（string）、布尔值（boolean）、null、undefined、对象（object）。对象又可以分为 3 个子类型：狭义的对象（object）、数组（array）、函数（function）。
 
 <!-- more -->
+
+按照数据存储方式，JavaScript 数据可以分为两大类：
+>（1）**基本类型：** number、string、boolean、null、undefined
+>（2）**引用类型：** object
+
+**那么，基本类型数据怎么能调用方法呢？**
+
+5 种基本类型，除了 null 和 undefined 以外，其他 3 种都有与之对应的特殊的引用类型——包装类型。当代码被解释执行时，底层会对基本类型做一个类型转换，转换成相应的引用类型，然后就可以调用相应引用类型有权访问的方法（或属性）了。
+
+```
+"enjoy javascript".length;  // 16
+"enjoy javascript".toUpperCase();  // "ENJOY JAVASCRIPT"
+
+// 相当于：
+var oStringObject = new String("enjoy javascript");
+oStringObject.length  // 16
+oStringObject.toUpperCase();  // "ENJOY JAVASCRIPT"
+```
 
 js 标识符是严格区分大小写的，所以必须注意 null、undefined 等关键词全为小写字母构成。
 
@@ -16,7 +34,7 @@ JavaScript 有 3 种方法，可以确定一个值到底什么类型：
 > ② instanceof 运算符
 > ③ Object.prototype.toString 方法
 
-**typeof 运算符**
+**① typeof 运算符**
 
 数值、字符串、布尔值分别返回 "number"、"string"、"boolean"
 
@@ -48,7 +66,7 @@ typeof []          // "object"
 typeof null        // "object"
 ```
 
-**instanceof 运算符**
+**② instanceof 运算符**
 
 instanceof 运算的实质是：检查运算符右边的构造函数的 prototype 属性是否在左边的实例对象的原型链上。
 
@@ -64,7 +82,7 @@ Array.prototype.__proto__ === Object.prototype //true
 ```
 所有对象（除了null）的原型链的顶层对象就是 Object.prototype，所以，任何对象对 Object 进行 instanceof 运算都会返回 true。
 
-**Object.prototype.toString 方法**
+**③ Object.prototype.toString 方法**
 
 该方法返回值为 "[object 参数的构造函数]"
 
