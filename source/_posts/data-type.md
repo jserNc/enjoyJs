@@ -66,6 +66,39 @@ typeof []          // "object"
 typeof null        // "object"
 ```
 
+**typeof 运算符还可以检测一个变量是否已经声明**
+
+```
+// 没有用 var 声明也没有被赋值的变量，直接使用会报错！
+v
+// Uncaught ReferenceError: v is not defined
+
+// 用 typeof 运算符不报错
+typeof v
+// undefined
+```
+
+没有用 var 声明也没有被赋值的变量，直接使用会报错！但是，用 typeof 对变量进行运算，如果返回值为 undefined，就知道其未定义。
+
+```
+// 变量 v 未定义
+// 这样写会报错
+if (v){
+    //...
+    // error 报错！！
+}
+
+// 正确姿势
+if (typeof v === "undefined"){
+    //...
+}
+
+// 注意 typeof undefined 返回值是 "undefined"
+// 而不是 undefined
+typeof undefined
+// "undefined"
+```
+
 **② instanceof 运算符**
 
 instanceof 运算的实质是：检查运算符右边的构造函数的 prototype 属性是否在左边的实例对象的原型链上。
