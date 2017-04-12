@@ -8,7 +8,7 @@ tags: method
 
 <!-- more -->
 
-这里主要讨论一下 cookie 和 localStorage 两种本地存储方式。
+目前，主流的本地存储技术有，cookie、localStorage、Session Storage、IndexedDB 以及 Web SQL，这里主要讨论一下 cookie 和 localStorage 两种本地存储方式。
 
 ## cookie：
 
