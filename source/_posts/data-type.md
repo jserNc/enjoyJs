@@ -10,7 +10,7 @@ JavaScript 数据类型共有 6 种：数值（number）、字符串（string）
 
 按照数据存储方式，JavaScript 数据可以分为两大类：
 >（1）**基本类型：** number、string、boolean、null、undefined
->（2）**引用类型：** object
+>（2）**引用类型：** object、array、function
 
 js 标识符是严格区分大小写的，所以必须注意 null、undefined 等关键词全为小写字母构成。
 
@@ -26,7 +26,83 @@ js 标识符是严格区分大小写的，所以必须注意 null、undefined �
 var oStringObject = new String("enjoy javascript");
 oStringObject.length  // 16
 oStringObject.toUpperCase();  // "ENJOY JAVASCRIPT"
+
+// 再看
+1.toSting();
+// 报错 SyntaxError: Invalid or unexpected token
+// 解析器把 1 后面的 . 当初小数点了
+
+// 正确姿势
+(1).toString()
+// "1"
 ```
+
+这里提到 toString 方法，就多说两句。该方法属于 Object 对象，用于**将当前对象以字符串形式返回**。由于所有的对象都“继承”了 Object 对象，因此所有的实例对象都可以使用该方法。但是，Array、Boolean、Function、Number 以及其他内置对象都重写了该函数，以满足其自身需要。
+
+下面分别看看各类型数据的 toString 方法返回怎样的值（chrome 控制台执行以下代码）：
+
+```
+// 对象 Object
+var o = {site : "Enjoy javascript"};
+o.toString();
+// "[object Object]"
+
+// 数组 Array
+var arr = ['I','love','zx',1314];
+arr.toString()
+// "I,love,zx,1314"
+
+// 数字 Number
+var num = 0.37208511093539554;
+num.toString();
+// "0.37208511093539554"
+
+// 布尔值 Boolean
+var bool = true;
+bool.toString();
+// "true"
+
+// 日期 Date
+var now = new Date();
+now.toString();
+// "Thu Apr 13 2017 11:06:32 GMT+0800 (中国标准时间)"
+
+// DOM 节点
+var eles = document.getElementsByTagName("body");
+eles.toString()
+// "[object HTMLCollection]"
+eles[0].toString()
+// "[object HTMLBodyElement]"
+```
+
+这里着重说一下 Number.prototype.toString 方法。该方法将数字包装对象转换为字符串，其接收 1 个参数，表示输出字符串的进制，取值范围为整数 2-36，不在这个范围的参数会报错。如果省略参数，则默认取 10 进制。
+
+```
+// 默认 10 进制
+(30).toString();
+// "30"
+
+// 36 进制（0-9,a-z 共 36 个字符）
+(30).toString(36);
+// "u"
+```
+
+于是，可以利用 Math.random 和 Number.prototype.toString 方法来生成随机字符串。
+
+```
+function generateRandomAlphaNum(len) {
+    var s = "";
+    for (;s.length < len;){
+        s += Math.random().toString(36).substr(2);
+    }
+    return s.substr(0,len);   
+}
+
+generateRandomAlphaNum(6);
+// "uhfjlr"
+```
+
+好了，言归正传。JavaScript 各个类型数据的定义就不多说了。JavaScript 是一门动态类型语言，也就是说变量声明后，可以被赋予各种类型的值。以下主要探讨如何确定一个变量最终是什么类型的值。
 
 **JavaScript 有 3 种方法，可以确定一个值到底什么类型：**
 
@@ -258,3 +334,5 @@ null == false  // false，为什么?
 参考：
 [1] http://javascript.ruanyifeng.com/grammar/types.html
 [2] http://www.cnblogs.com/sharpxiajun/p/4133462.html
+[3] http://www.cnblogs.com/think_fish/p/3800241.html
+[4] http://www.cnblogs.com/fybsp58/p/5683206.html
