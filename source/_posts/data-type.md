@@ -334,5 +334,5 @@ null == false  // false，为什么?
 参考：
 [1] http://javascript.ruanyifeng.com/grammar/types.html
 [2] http://www.cnblogs.com/sharpxiajun/p/4133462.html
-[3] http://www.cnblogs.com/think_fish/p/3800241.html
+[3] http://www.cnblogs.com/Wayou/p/things_you_dont_know_about_frontend.html
 [4] http://www.cnblogs.com/fybsp58/p/5683206.html

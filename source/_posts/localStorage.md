@@ -142,10 +142,75 @@ function setCookie(c_name,value,expTime){
 
 服务器端设置 cookie的时候，如果加上了 HttpOnly 属性，则这个 cookie 无法被 JavaScript 读取。即 document.cookie 不会返回这个 cookie 的值，但是这个 cookie 会跟随 http 请求发送至服务端。
 
-先到这里，下篇继续这个话题。
+对于 chrome 等浏览器，或者说是正常人使用的浏览器，我们通过浏览器自带的开发者工具的控制台（Console）、网络（Network）等面板可以很方便地打印或者直接查看 cookie 信息；而对于 ie6 等浏览器，我们怎么快速地查看 cookie 信息呢？
+
+> **浏览器地址栏运行 JavaScript 代码**
+
+```
+javascript:alert(document.cookie)
+```
+
+打开一个网页，在浏览器地址栏输入以上代码，回车。我们会看到一个弹窗，内容为当前页面下的 cookie 内容。
+
+当然了，你也可以运行其他 JavaScript 代码，格式为：
+
+```
+javascript:your_code_here
+```
+
+需要注意的是：不是所有浏览器都支持地址栏运行代码，例如，Firefox 就不支持。另外，如果通过复制以上语句然后粘贴到地址栏，某些浏览器也不一定会执行，所以，尽量手动输入以上代码吧。
+
+这里提到了 alert，顺便总结一下 alert 和 console.log 方法的不同的。
+
+> **alert**
+
+【1】有阻塞作用，不点击弹窗“确定”按钮，后续代码不能继续执行；
+【2】只能输出字符串（string），不是字符串的参数，自动调用其 toString 方法；
+【3】只能接收一个参数，即每次输出一个字符串。
+
+> **console.log**
+
+【1】用于在浏览器开发者工具 console 窗口输出信息，不阻塞后续代码；
+【2】可以打印任何类型数据，可以接受多个参数（包括格式化字符串）；
+【3】支持以下占位符
+
+```
+%s 字符串
+%d 整数
+%i 整数
+%f 浮点数
+%o 对象的链接
+%c CSS格式字符串
+```
+
+例如：
+
+```
+var num = 1316;
+var suffix = 'days';
+
+console.log('We know each other for %d %s',num,suffix);
+// We know each other for 1316 days
+```
+
+使用 %c 占位符，还可以对输出内容添加样式：
+
+```
+console.log(
+  '%c这段文字是红色的，背景黄色',
+  'color: red; background: yellow; font-size: 24px;'
+)
+```
+
+执行以上代码，将会以第二个参数指定的样式输出第一个参数内容。
+
+扯远了，下篇继续本地存储这个话题。
 
 
 参考：
 [1] http://www.w3school.com.cn/js/js_cookies.asp
 [2] http://javascript.ruanyifeng.com/bom/cookie.html
 [3] http://jerryzou.com/posts/cookie-and-web-storage/
+[4] http://www.jb51.net/article/71547.htm
+[5] http://javascript.ruanyifeng.com/stdlib/console.html
+[6] http://www.cnblogs.com/iyangyuan/p/4493322.html
