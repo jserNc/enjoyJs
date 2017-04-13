@@ -115,12 +115,12 @@ tags: css
 
 ```
 .div { 
-    border-radius : 30px;
-    border : 30px solid;
-    border-color : transparent transparent blue transparent;
-    height : 0;
-    width : 0;
-    background : #f5f5f5;
+  border-radius : 30px;
+  border : 30px solid;
+  border-color:transparent transparent blue transparent;
+  height : 0;
+  width : 0;
+  background : #f5f5f5;
 }
 ```
 
@@ -130,15 +130,31 @@ tags: css
 
 ```
 .div { 
-    border-radius : 30px;
-    border : 30px solid;
-    border-color : transparent transparent blue transparent;
-    height : 0;
-    width : 0;
-    background : transparent;
+  border-radius : 30px;
+  border : 30px solid;
+  border-color:transparent transparent blue transparent;
+  height : 0;
+  width : 0;
+  background : transparent;
 }
 ```
 
 <div style="border-radius:30px;border:30px solid;border-color:transparent transparent blue transparent;height :0;width:0;background:transparent;"><div>
 
+** 实时编辑 css**
 
+为了方便调试 css 代码，实时可视化编辑 css 代码是个不错的选择。给 style 标签加上 contentEditable 属性，并将 display 属性设为 block，可以让 style 标签处于可视可编辑状态，修改 css 代码内容，样式会实时地在页面呈现出来。
+
+```
+<!DOCTYPE html>
+<html>
+    <body>
+        <style style="display:block" contentEditable>
+        	body { color: blue }
+        </style>
+    </body>
+</html>
+```
+
+参考：
+[1] http://www.cnblogs.com/Wayou/p/things_you_dont_know_about_frontend.html
