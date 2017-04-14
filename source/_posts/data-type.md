@@ -37,7 +37,7 @@ oStringObject.toUpperCase();  // "ENJOY JAVASCRIPT"
 // "1"
 ```
 
-这里提到 toString 方法，就多说两句。该方法属于 Object 对象，用于**将当前对象以字符串形式返回**。由于所有的对象都“继承”了 Object 对象，因此所有的实例对象都可以使用该方法。但是，Array、Boolean、Function、Number 以及其他内置对象都重写了该函数，以满足其自身需要。
+这里提到 toString 方法，就多说两句。该方法属于 Object 对象，用于**将当前对象以字符串形式返回**。由于所有的对象都“继承”了 Object 对象，因此所有的实例对象都可以使用该方法。但是，Array、Boolean、Function、Number 以及其他本地对象都重写了该函数，以满足其自身需要。
 
 下面分别看看各类型数据的 toString 方法返回怎样的值（chrome 控制台执行以下代码）：
 
