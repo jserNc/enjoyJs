@@ -128,7 +128,7 @@ function setCookie(c_name,value,expTime){
 
 **(3) 清除 cookie**
 
-设置 cookie 的过期时间 expires 为 0，或者等于一个过去的日期，使之失效。
+设置 cookie 的过期时间 expires 为 0，或者等于一个过去的日期，使之失效。浏览器是根据本地时间来决定 cookie 是否过期，而本地时间是可以随意改动的，所以没办法保证 cookie 一定会在开发者指定的时间过期。
 
 **(4) cookie 个数限制**
 
