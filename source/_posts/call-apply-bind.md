@@ -90,7 +90,7 @@ slice.call([1,2,3],0,1);
 [1,2,3].slice(0,1);
 ```
 
-以上四种写法中，前提是将全局的 call、slice 方法都分别指向 Function.prototype.call、Array.prototype.slice 方法。当然了，我这么写是为了偷懒，完全没必要特地去新增加这两个全局变量的。
+以上代码，将全局的 call、slice 方法都分别指向 Function.prototype.call、Array.prototype.slice 方法。当然了，我这么写是为了偷懒，完全没必要特地去新增加这两个全局变量的。
 
 
 
