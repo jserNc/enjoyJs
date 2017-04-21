@@ -1,7 +1,7 @@
 ---
 title: 理解 call + bind
 date: 2017-04-21 10:45:37
-tags:
+tags: grammar
 ---
 
 JavaScript 提供了 call、apply、bind 等三个方法，来切换/固定函数内部 this 的指向。它们的第一个参数都是函数内 this 所要指向的对象，如果设为 null 或 undefined，则指向全局对象（浏览器环境下，指 window）。它们的基本用法在 [理解 JavaScript 中 this](http://nanchao.win/2016/11/02/this/) 一文已经做了介绍，这里不再赘述。本文更深入地讨论一下 call 和 bind方法。
