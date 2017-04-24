@@ -30,6 +30,8 @@ function f1() {
   var n = 999;
 }
 
+f1();
+
 console.log(n)
 // Uncaught ReferenceError: n is not defined(…)
 ```
