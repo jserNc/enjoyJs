@@ -115,7 +115,7 @@ f.bind === Function.prototype.bind;
 f.bind(o)();
 ```
 
-这句代码本质是：将函数 Function.prototype.bind 内部 this 指向 f，然后传入实参对象 o，执行该方法，返回一个新的匿名方法，最后执行该匿名方法。
+这句代码本质是：将函数 Function.prototype.bind 内部 this 指向 f（f 是激活 bind 执行上下文的执行者），然后传入实参对象 o，执行该 bind 方法，返回一个新的匿名方法，最后执行该匿名方法。
 
 换种写法：
 
