@@ -4,14 +4,13 @@ date: 2017-04-21 10:45:37
 tags: grammar
 ---
 
-JavaScript 提供了 call、apply、bind 等三个方法，来切换/固定函数内部 this 的指向。它们的第一个参数都是函数内 this 所要指向的对象，如果设为 null 或 undefined，则指向全局对象（浏览器环境下，指 window）。它们的基本用法在 [理解 JavaScript 中 this](http://nanchao.win/2016/11/02/this/) 一文已经做了介绍，这里不再赘述。本文更深入地讨论一下 call 和 bind方法。
+JavaScript 提供了 call、apply、bind 等三个方法，来切换/固定函数调用时其内部 this 的指向。它们的第一个参数都是函数内 this 所要指向的对象，如果该参数设为 null 或 undefined，则指向全局对象（浏览器环境下，指 window）。这三个方法的基本用法在 [理解 JavaScript 中 this](http://nanchao.win/2016/11/02/this/) 一文已经做了介绍，这里就不再赘述。下面更深入地讨论一下 call 和 bind 方法。
 
 <!-- more -->
 
-我们的需求是：从原数组 [1,2,3] 中索引为 0 的位置开始，分隔出长度为 1 的新数组。
+假定我们的需求是：从原数组 [1,2,3] 中索引为 0 的位置开始，分隔出长度为 1 的新数组。首先，我们会想到这么写：
 
 ```
-// 首先会想到这么写：
 [1,2,3].slice(0,1)
 // [1]
 
@@ -23,7 +22,7 @@ Array.prototype.slice.call([1,2,3],0,1)
 // [1]
 ```
 
-我们看到 call 方法的调用主体是 slice 方法，并且这时的 call 方法还是以前的样子。
+我们看到 call 方法的调用主体是 slice 方法。并且这时的 call 方法还是以前的样子。
 
 ```
 Array.prototype.slice.call === Function.prototype.call
@@ -44,7 +43,7 @@ newCall([1,2,3],0,1);
 [1,2,3].slice(0,1);
 ```
 
-为了加深理解，我们再换个角度看以上写法：
+为了加深理解，我们再换个角度看：
 
 ```
 var newCall = call.bind(slice);
@@ -90,7 +89,7 @@ slice.call([1,2,3],0,1);
 [1,2,3].slice(0,1);
 ```
 
-以上代码，将全局的 call、slice 方法都分别指向 Function.prototype.call、Array.prototype.slice 方法。当然了，我这么写是为了偷懒，完全没必要特地去新增加这两个全局变量的。
+以上代码，将全局的 call、slice 变量都分别指向 Function.prototype.call、Array.prototype.slice 方法。当然了，我这么写是为了偷懒，其实完全没必要新增加这两个全局变量的。
 
 
 
