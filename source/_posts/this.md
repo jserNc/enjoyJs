@@ -196,7 +196,7 @@ para.addEventListener("click",hello,false);
 para.onclick = hello;
 ```
 
-如果我们把监听函数部署在节点元素的 on- 属性上，监听函数内的 this 就不会再指向该节点元素了。
+如果我们把回调函数部署在节点元素的 on- 属性上，回调函数内的 this 就不会再指向该节点元素了。
 
 ```
 <p id='para' onclick='hello()'>Hello</p>

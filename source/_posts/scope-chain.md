@@ -81,6 +81,99 @@ f2();
 
 我们看到，这里会报错，f1 根本不能取到 f2 内部定义的变量 a。
 
+再看：
+
+```
+// html
+<p id="p1">段落 1</p>
+
+//js
+var f = function(){
+    console.log('f 函数的激活者：',this);
+},
+p1 = document.getElementById("p1"),
+p2 = '<p id="p2" onclick="console.log(this)">段落2</p>',
+p3 = '<p id="p3" onclick="f()">段落3</p>';
+
+p1.addEventListener("click",f,false);
+document.write(p2);		
+document.write(p3);
+```
+
+点击段落 1、2、3，打印信息分别如下：
+
+段落 1：
+```
+f 函数的激活者： <p id=​"p1">​段落1​</p>​
+```
+
+段落 2：
+```
+<p id="p2" onclick="console.log(this)">段落2</p>
+```
+
+段落 3：
+```
+f 函数的激活者：Window {stop: function, open: function,…}
+```
+
+下面把上面的 js 代码用自执行函数包围起来：
+
+```
+(function(){
+  var f = function(){
+      console.log('f 函数的激活者：',this);
+  },
+  p1 = document.getElementById("p1"),
+  p2 = '<p id="p2" onclick="console.log(this)">段落2</p>',
+  p3 = '<p id="p3" onclick="f()">段落3</p>';
+
+  p1.addEventListener("click",f,false);
+  document.write(p2);		
+  document.write(p3);
+})();
+```
+
+这时再点击段落1、2 打印的信息和以上一样，但是点击段落3 时报错了：
+
+```
+Uncaught ReferenceError: f is not defined
+```
+
+把 f 函数定义在全局环境下：
+
+```
+var f = function(){
+      console.log('f 函数的激活者：',this);
+};
+(function(){
+  var p1 = document.getElementById("p1"),
+  p2 = '<p id="p2" onclick="console.log(this)">段落2</p>',
+  p3 = '<p id="p3" onclick="f()">段落3</p>';
+
+  p1.addEventListener("click",f,false);
+  document.write(p2);		
+  document.write(p3);
+})();
+```
+
+这时点击段落3 的打印信息又和之前一样了：
+
+```
+f 函数的激活者：Window {stop: function, open: function,…}
+```
+
+其实，如果我们把回调函数部署在节点元素的 on- 属性上，回调函数内的 this 就不会再指向该节点元素了，而是指向全局对象 window，回调函数由 window 对象触发。这里 p3 正是这种方式绑定点击回调函数：
+
+```
+onclick="f()"
+```
+
+这里的 f 函数是由 window 对象触发的，若 f 是定义在自定义函数内部的函数，全局环境 window 找不到它那是必然的，所以才有了以上的报错。
+
+
+
+
 
 
 参考：
