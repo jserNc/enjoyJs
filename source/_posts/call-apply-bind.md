@@ -8,6 +8,35 @@ JavaScript 提供了 call、apply、bind 等三个方法，来切换/固定函�
 
 <!-- more -->
 
+举例说明 call 方法的用法：
+
+```
+function changeStyle(attr,value){
+    this.style[attr] = value;
+}
+
+var box = document.getElementById("box");
+changeStyle.call(box,"height","200px");
+```
+
+将全局定义的 changeStyle 内部绑定到 box 对象上执行。
+
+我们还可以利用 call 方法实现继承（对象冒充）。
+
+```
+function ClassA(sColor){
+	this.color = sColor;
+	this.sayColor = function(){
+	    alert(this.color);
+	}
+}
+
+// ClassB 继承 ClassA
+function ClassB(sColor){
+	ClassA.call(this,sColor);
+}
+```
+
 **强调一下，call 方法是某函数 f 执行过程中调用的，而 bind 方法是声明函数的时候调用的。即，调用 call 方法时会先绑定函数 f 内部的 this，然后执行函数 f 并返回执行结果；调用 bind 方法会绑定函数 f 内部的 this，然后返回一个新的函数 newF。**
 
 假定我们的需求是：从原数组 [1,2,3] 中索引为 0 的位置开始，分隔出长度为 1 的新数组。首先，我们会想到这么写（以下代码均在 chrome 控制台执行）：
