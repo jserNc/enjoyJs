@@ -152,36 +152,36 @@ executionContextObj = {
 
 ```
 (function(){
-    console.log('① ',typeof f);
+    console.log('1. ',typeof f);
     function f(){
         console.log("I'm function f")
     }
 
     var f = 666;
 
-    console.log('② ',typeof f);
+    console.log('2. ',typeof f);
 })();
 
-// ① function
-// ② number
+// 1. function
+// 2. number
 ```
 
 我们将函数声明和变量声明换个位置，不出意外，执行结果应该不变。
 
 ```
 (function(){
-    console.log('① ',typeof f);
+    console.log('1. ',typeof f);
 
     var f = 666;
     function f(){
         console.log("I'm function f")
     }
 
-    console.log('② ',typeof f);
+    console.log('2. ',typeof f);
 })();
 
-// ① function
-// ② number
+// 1. function
+// 2. number
 ```
 
 用 function 关键词声明的函数，在上下文建立阶段就确定了其属性值就是指向该函数在内存中的地址的一个引用，虽然在建立阶段该函数变量不会被普通变量覆盖，但是在代码执行阶段该变量属性值是可以被覆盖的。所以，以上代码段执行结束后，最后变量 f 都是数字 666。
