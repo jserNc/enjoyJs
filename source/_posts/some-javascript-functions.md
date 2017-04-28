@@ -43,11 +43,25 @@ Math
 
 > **宿主对象**
 
-由 ECMAScript 实现的宿主环境提供的对象。对于浏览器环境，宿主对象就是浏览器提供的对象，例如 document 对象。
+由 ECMAScript 实现的宿主环境提供的对象。对于浏览器环境，宿主对象就是浏览器提供的对象，所有 DOM 和 BOM 对象都是宿主对象。
+
+```
+// 文档对象
+document
+
+// 窗口
+window
+```
+
+BOM 的核心是 window，而 window 对象又具有双重角色，它既是通过 js 访问浏览器窗口的一个接口，又是一个 Global（全局）对象。这意味着在网页中定义的任何对象，变量和函数，都以 window 作为其 Global 对象。
 
 > **自定义对象**
 
 开发者自行定义的对象。
+
+```
+var o = {};
+```
 
 下面，我们讨论一下 sort、replace、match 等 3 个方法。
 
@@ -311,3 +325,4 @@ nums
 [2] http://www.w3school.com.cn/jsref/
 [3] https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/
 [4] http://mao.li/javascript/javascript-sort/
+[5] https://segmentfault.com/a/1190000000654274
