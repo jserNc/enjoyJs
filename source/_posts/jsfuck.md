@@ -109,9 +109,9 @@ Number({
 
 说到这里，** 我们需要记住 valueOf 和 toString 方法的区别：**
 
-> 数值运算中优先调用 valueOf()，如 Number() 函数优先调用对象的 valueOf()；
-> 字符串运算中优先调用 toString()，如 String() 函数优先调用对象的 toString()；
-> valueOf() 返回对象的原始值；toString() 返回对象的原始字符串表示。
+> ① 数值运算中优先调用 valueOf()，如 Number() 函数优先调用对象的 valueOf()；
+> ② 字符串运算中优先调用 toString()，如 String() 函数优先调用对象的 toString()；
+> ③ valueOf() 返回对象的原始值；toString() 返回对象的原始字符串表示。
 
 有了以上的理论基础，下面看4个特殊的表达式，小试牛刀。
 

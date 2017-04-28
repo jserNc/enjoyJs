@@ -4,13 +4,14 @@ date: 2017-04-07 09:25:30
 tags: js
 ---
 
-JavaScript 数据类型共有 6 种：数值（number）、字符串（string）、布尔值（boolean）、null、undefined、对象（object）。对象又可以分为 3 个子类型：狭义的对象（object）、数组（array）、函数（function）。
+JavaScript 数据类型共有 6 种（es6 又新增第 7 种 symbol）：数值（number）、字符串（string）、布尔值（boolean）、null、undefined、对象（object）。对象又可以分为 3 个子类型：狭义的对象（object）、数组（array）、函数（function）。
 
 <!-- more -->
 
 按照数据存储方式，JavaScript 数据可以分为两大类：
->（1）**基本类型：** number、string、boolean、null、undefined
+>（1）**基本类型：** number、string、boolean
 >（2）**引用类型：** object、array、function
+>（2）**特殊类型：** null、undefined
 
 js 标识符是严格区分大小写的，所以必须注意 null、undefined 等关键词全为小写字母构成。
 
