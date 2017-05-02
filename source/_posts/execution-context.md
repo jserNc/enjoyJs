@@ -333,6 +333,34 @@ f();
 
 以上代码执行结果就不写了，对于新版的 chrome，以上两种写法都会报错。但是，在 ie 和其他较旧的浏览器下，代码段 1 中的函数 f 是可以正常执行的。这是因为，JavaScript 是不存在块级作用域，这种 if 语句包含的变量（var）和函数声明（function）也是会提升到代码头部的。
 
+最后，注意一下变量声明语句的方式：
+
+```
+// 片段 1
+var result = function(){
+    return 2 + 2;
+}
+
+// 片段 2
+var result = function(){
+    return 2 + 2;
+}();
+
+// 片段 3
+var result = (function(){
+    return 2 + 2;
+})();
+
+// 片段 4
+var result = (function(){
+    return 2 + 2;
+}());
+```
+
+其中片段 1 变量 result 是一个函数，片段 2/3/4 变量 result 是一个数值变量。这些细微差别得注意。
+
+
+
 参考：
 [1] http://dmitrysoshnikov.com/ecmascript/javascript-the-core/
 [2] http://blogread.cn/it/article/6178
