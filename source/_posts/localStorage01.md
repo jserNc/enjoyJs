@@ -18,7 +18,7 @@ tags: method
 
 **localStorage 与 sessionStorage 区别是：**
 
-sessionStorage 方法针对一个 session 进行数据存储。当用户关闭浏览器窗口后，数据会被删除。
+sessionStorage 针对一个 session 进行数据本地存储。当用户关闭当前浏览器窗口后，本地数据会被删除。sessionStorage 仅在当前浏览器窗口有效（允许刷新），关闭当前浏览器窗口或者浏览器后失效。另外，sessionStorage 不在不同的浏览器窗口中共享，即使是同一个页面也不行，而 localStorage 和 cookie 在所有同源窗口中都是共享的。
 
 **localStorage 使用方法：**
 
