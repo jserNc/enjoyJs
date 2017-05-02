@@ -6,9 +6,9 @@ tags: grammar
 
 toString 作为全局方法时，挂载于window全局对象。原型链最顶层的原型对象 Object.prototype 有 Object.prototype.toString 方法（其实，这个方法就是和全局的toString 是同一方法），另外，一些内置构造函数Array、String、Boolean、Function、Date等也都分别部署了自己的toString方法。
 
-为了方便下文的理解，在这里再强调一下原型链的作用：**读取对象的某个属性时，JavaScript引擎先寻找该对象本身的属性，如果找不到，就到它的原型去找，如果还是找不到，就到原型的原型去找，直到顶层原型对象 Object.prototype。如果一层层回溯到最顶层还是找不到，则返回undefined。**
-
 <!-- more -->
+
+为了方便下文的理解，在这里再强调一下原型链的作用：**读取对象的某个属性时，JavaScript引擎先寻找该对象本身的属性，如果找不到，就到它的原型去找，如果还是找不到，就到原型的原型去找，直到顶层原型对象 Object.prototype。如果一层层回溯到最顶层还是找不到，则返回undefined。**
 
 所有全局方法均挂载于window对象，所有对象都继承自Object对象（即，Object.prototype 存在于所有对象的原型链上，并且处于原型链的最末端）。
 
