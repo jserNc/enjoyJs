@@ -400,7 +400,7 @@ var o1 = new Singleton();
 （3） 声明一个局部变量 instance，初始值为 undefined；
 （4）将 Singleton 变量指向新的函数，新函数返回值为刚才的局部变量 instance；
 （5）将新的 Singleton 函数的 prototype 指向 this，即对象 o；
-（6）实例化新的构造函数 Singleton，这一步细化为：创建一个新的对象 oNew，oNew 对象的原型对象为对象 o，因为此时的返回值 instance 值为 undefined，不是对象，所以，返回值为对象 oNew；
+（6）实例化新的构造函数 Singleton，即：创建一个新的对象 oNew，oNew 对象的原型对象为对象 o，因为此时的返回值 instance 值为 undefined，不是对象，所以，返回值为对象 oNew；
 （7）将 instance 指向对象 oNew；
 （8）为 instance 对象添加各种属性；
 （9）返回对象 instance，即变量 o1 指向对象 instance。
@@ -412,7 +412,7 @@ var o2 = new Singleton();
 ```
 
 这两句代码的执行过程是：
-（1）上面提到新的 Singleton 的 prototype 指向对象 o，这里修改 Singleton.prototype 即是修改对象 o；对象 o 的所有属性都会被其实例对象继承，包括之前创建的实例对象 oNew，亦 instance；
+（1）上面提到新的 Singleton 的 prototype 指向对象 o，这里修改 Singleton.prototype 即是修改对象 o，对象 o 的所有属性都会被其实例对象继承，包括之前创建的实例对象 oNew，亦 instance；
 （2）实例化新的构造函数 Singleton，这次返回值 instance 不再是 undefined 了，而是一个对象，所以，返回 instance，即变量 o2 指向对象 instance。
 
 
