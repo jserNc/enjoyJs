@@ -305,6 +305,117 @@ F.call(f);
 f.foo   //"bar"
 ```
 
+举个例子巩固一下：
+
+```
+function Singleton(){
+    var instance = this;
+
+    this.name = 'enjoyJs';
+    this.age = 18;
+
+    Singleton = function(){
+        return instance;
+    }
+}
+
+Singleton.prototype.attr1 = 'attr1';
+var o1 = new Singleton();
+
+Singleton.prototype.attr2 = 'attr2';
+var o2 = new Singleton();
+
+o1.attr1
+// attr1
+o2.attr1
+// attr1
+
+o1.attr2
+// undefined
+o2.attr2
+// undefined
+```
+
+第一次用 new 运算符执行该构造函数之前，加到 Singleton.prototype 对象上的属性是会被实例对象继承的。这时候，Singleton 被重写，指向了新的函数，新的函数会返回第一次执行时返回的那个实例对象。所以，第二次往 Singleton.prototype 上添加属性是不会被实例对象继承的。
+
+```
+o1.constructor === Singleton
+// false
+```
+
+o1.constructor 指向的是重定义之前的 Singleton 函数，所以这里结果为 false。
+
+下面对以上的函数稍作修改：
+
+```
+function Singleton(){
+    var instance;
+
+    Singleton = function(){
+        return instance;
+    }
+
+    Singleton.prototype = this;
+
+    instance = new Singleton();
+
+    instance.constructor = Singleton;
+
+    instance.name = 'enjoyJs';
+    instance.age = 18;
+
+    return instance;
+}
+
+Singleton.prototype.attr1 = 'attr1';
+var o1 = new Singleton();
+
+Singleton.prototype.attr2 = 'attr2';
+var o2 = new Singleton();
+
+o1.attr1
+// "attr1"
+o2.attr1
+// "attr1"
+
+o2.attr2
+// "attr2"
+o1.attr2
+// "attr2"
+
+o1.constructor === Singleton
+// true
+```
+
+得到了和上面截然不同的结果。仔细分析一下：
+
+```
+Singleton.prototype.attr1 = 'attr1';
+var o1 = new Singleton();
+```
+
+这两句代码的执行过程是：
+（1）创建一个新的空对象 o, o 对象的原型对象（\_\_proto\_\_）为 Singleton.prototype （包括这里的属性 attr1），然后将 Singleton 函数内的 this 指向对象 o；
+（2）接着执行构造函数 Singleton；
+（3） 声明一个局部变量 instance，初始值为 undefined；
+（4）将 Singleton 变量指向新的函数，新函数返回值为刚才的局部变量 instance；
+（5）将新的 Singleton 函数的 prototype 指向 this，即对象 o；
+（6）实例化新的构造函数 Singleton，这一步细化为：创建一个新的对象 oNew，oNew 对象的原型对象为对象 o，因为此时的返回值 instance 值为 undefined，不是对象，所以，返回值为对象 oNew；
+（7）将 instance 指向对象 oNew；
+（8）为 instance 对象添加各种属性；
+（9）返回对象 instance，即变量 o1 指向对象 instance。
+
+
+```
+Singleton.prototype.attr2 = 'attr2';
+var o2 = new Singleton();
+```
+
+这两句代码的执行过程是：
+（1）上面提到新的 Singleton 的 prototype 指向对象 o，这里修改 Singleton.prototype 即是修改对象 o；对象 o 的所有属性都会被其实例对象继承，包括之前创建的实例对象 oNew，亦 instance；
+（2）实例化新的构造函数 Singleton，这次返回值 instance 不再是 undefined 了，而是一个对象，所以，返回 instance，即变量 o2 指向对象 instance。
+
+
 
 参考：
 [1] http://javascript.ruanyifeng.com/oop/prototype.html

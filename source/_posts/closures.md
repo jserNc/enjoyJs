@@ -279,6 +279,28 @@ Uncaught ReferenceError: x is not defined(…)
 
 可以看到，内层函数的作用域确实是和其外层函数息息相关！
 
+最后，看看闭包实现单体模式：
+
+```
+function Singleton(){
+    var instance = this;
+
+    this.name = 'enjoyJs';
+    this.age = 18;
+
+    Singleton = function(){
+        return instance;
+    }
+}
+
+var o1 = new Singleton();
+var o2 = new Singleton();
+o1 === o2
+// true
+```
+
+这里的构造函数是一个自定义函数（函数执行一遍后，会改变函数的定义）。第一次 new 运算符执行该构造函数时，它像普通的构造函数一样返回 this 对象。以后就执行重写过的构造函数（该闭包函数可以访问原函数的私有变量 instance），直接返回 instance 对象。
+
 
 参考：
 [1] http://dmitrysoshnikov.com/ecmascript/javascript-the-core/
