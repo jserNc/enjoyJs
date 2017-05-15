@@ -147,17 +147,51 @@ console.log(arr2);
 ② 对象深拷贝：
 
 ```
-var deepCopy= function(source) { 
-    var result={};
-    for (var key in source) {
-        if (typeof source[key] === 'object'){
-            result[key] = deepCoyp(source[key]);
-        } else {
-            result[key] = source[key];
+function deepCopy(parent,child){
+    var i,
+        toStr = Object.prototype.toString,
+        astr = "[object Array]";
+
+    child = child || {};
+    
+    for (i in parent){
+        if (parent.hasOwnProperty(i)){
+            if (typeof parent[i] === "object"){
+                child[i] = (toStr.call(parent[i]) === astr) ? [] : {},
+                deepCopy(parent[i],child[i]);
+            } else {
+                child[i] = parent[i];
+            }
         }
-    } 
-    return result; 
+    }
+
+    return child;
 }
+
+// eg:
+var dad = {
+    counts : [1,2,3],
+    reads : {paper : true}
+};
+
+var kid = deepCopy(dad);
+kid.counts.push(4);
+
+kid.counts.toString();
+// '1,2,3,4'
+dad.counts.toString();
+// '1,2,3'
+
+// 因为 typeof 运算符对 null 运算返回也是 "object"
+typeof null   // "object"
+
+// 所以，当父对象包含属性 null 时会有偏差
+
+var o1 = {prop : null};
+var o2 = deepCopy(o1);
+
+o1.prop  // null
+o2.prop  // Object {}
 ```
 
 **JavaScript 函数传参**
