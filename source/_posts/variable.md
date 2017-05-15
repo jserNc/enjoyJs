@@ -157,7 +157,11 @@ function deepCopy(parent,child){
     for (i in parent){
         if (parent.hasOwnProperty(i)){
             if (typeof parent[i] === "object"){
-                child[i] = (toStr.call(parent[i]) === astr) ? [] : {},
+                if (toStr.call(parent[i]) === astr){
+                    child[i] = [];
+                } else {
+                    child[i] = {};
+                }
                 deepCopy(parent[i],child[i]);
             } else {
                 child[i] = parent[i];
