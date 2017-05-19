@@ -167,6 +167,29 @@ o.f1()  // true
 ```
 还是上面那句话，如果没有通过 new（包括对象字面量定义）、call、apply 和 bind 等改变函数的 this 对象，那么函数内的 this 都是指向 window。
 
+再看：
+
+```
+var one = {
+    prop : "object",
+    say : function(greet){
+        return greet + ", " + this.prop;
+    }
+};
+
+var two = {
+    prop : 'another object',
+    method : function(callback){
+        return callback('hi');
+    }
+};
+
+two.method(one.say);
+// "hi, undefined"
+```
+
+这里代码执行过程中，one.say 方法内的 this 指向了全局对象。
+
 **（3）回调函数中的 this**
 
 ```
