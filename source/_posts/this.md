@@ -341,16 +341,20 @@ print()
 对于不支持 bind 方法的 ie8 以下浏览器，自行定义 bind 方法：
 
 ```
-if(!('bind' in Function.prototype)){
-  Function.prototype.bind = function(){
-    var fn = this;
-    var context = arguments[0];
-    var args = Array.prototype.slice.call(arguments,1);
-    return function(){
-      return fn.apply(context,args);
+if (typeof Function.prototype.bind === 'undefined'){
+    Function.portotype.bind = function(thisArg){
+        var Fn = this,
+            slice = Array.prototype.slice(),
+            args = slice.call(arguments,1);
+
+        return function(){
+            var argArr = args.concat(slice.call.arguments);
+            Fn.apply(thisArg,argArr);
+        };
     }
-  }
 }
+
+bind 方法可以规定新方法的默认参数，新方法在调用的时候还可以在默认参数后面继续添加其他参数。
 ```
 
 
