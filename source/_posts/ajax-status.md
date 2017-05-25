@@ -8,19 +8,19 @@ tags: problem
 
 <!-- more -->
 
-> 0 (UNSENT)：初始化，XMLHttpRequest 对象还没有完成初始化
-> 1 (OPENED)：载入，XMLHttpRequest 对象开始发送请求
-> 2 (HEADERS_RECEIVED)：载入完成，XMLHttpRequest 对象的请求发送完成
-> 3 (LOADING)：解析，XMLHttpRequest 对象开始读取服务器的响应
-> 4 (DONE)：数据传输已完成或传输过程中出现问题（例如无限重定向、跨域等）。
+> **0** (UNSENT)：初始化，XMLHttpRequest 对象还没有完成初始化
+> **1** (OPENED)：载入，XMLHttpRequest 对象开始发送请求
+> **2** (HEADERS_RECEIVED)：载入完成，XMLHttpRequest 对象的请求发送完成
+> **3** (LOADING)：解析，XMLHttpRequest 对象开始读取服务器的响应
+> **4** (DONE)：数据传输已完成或传输过程中出现问题（例如无限重定向、跨域等）。
 
 status 表示响应的 HTTP 状态码。在 HTTP1.1 协议下，HTTP 状态码总共可分为 5 大类:
 
-> 1xx：信息响应类，表示接收到请求并且继续处理
-> 2xx：处理成功响应类，表示动作被成功接收、理解和接受
-> 3xx：重定向响应类，为了完成指定的动作，必须接受进一步处理
-> 4xx：客户端错误，客户请求包含语法错误或者是不能正确执行
-> 5xx：服务端错误，服务器不能正确执行一个正确的请求
+> **1xx**：信息响应类，表示接收到请求并且继续处理
+> **2xx**：处理成功响应类，表示动作被成功接收、理解和接受
+> **3xx**：重定向响应类，为了完成指定的动作，必须接受进一步处理
+> **4xx**：客户端错误，客户请求包含语法错误或者是不能正确执行
+> **5xx**：服务端错误，服务器不能正确执行一个正确的请求
 
 一般情况下，对于一个异步的 ajax 请求，如需响应成功后执行某操作，我们会这样写：
 
@@ -43,9 +43,9 @@ function getResource(url){
 }
 ```
 
-即满足 xhr.readyState == 4 && xhr.status == 200，才能表示请求成功！
+即满足 **xhr.readyState == 4 && xhr.status == 200**，才能表示请求成功！
 
-我们把以上代码稍微改写一下,打印每次 ajax 请求返回的状态码：
+我们把以上代码稍微改写一下，打印每次 ajax 请求返回的状态码：
 
 ```
 function getStatus(url){
