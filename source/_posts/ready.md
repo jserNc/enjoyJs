@@ -25,7 +25,7 @@ tags: method
 
    // 全局方法
    ready = function(fn) {
-      if (isReady ){
+      if (isReady){
           // 函数队列已销毁，直接执行新的函数
           fn.call(document);
       } else {
@@ -39,7 +39,7 @@ tags: method
    }
    var onDOMReady = function(){
         // 依次执行队列中函数
-        for(var i=0;i<readyList.length;i++){
+        for(var i=0; i<readyList.length; i++){
             readyList[i].apply(document);
         }
         // 销毁函数队列
@@ -92,7 +92,7 @@ tags: method
       if(window == window.top){
           timer = setInterval(function(){
               try{
-                  //判断 dom 是否加载完毕，没完成会报错
+                  //判断 dom 是否加载完毕，没加载完会报错
                   isReady || html.doScroll('left');
               }catch(e){
                   // 报错就在这里返回
