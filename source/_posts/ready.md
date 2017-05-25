@@ -8,7 +8,7 @@ tags: method
 
 <!-- more -->
 
-为了判断 dom 是否加载完成，对于一般主流浏览器我们可以利用 DOMContentLoaded 事件。而对于部分不支持 DOMContentLoaded 事件的 ie 浏览器，我们可以通过 document.readyState 的状态值来判断（看其是否为 loaded|complete）。如果页面包含 iframe 的话，ie6~8 等浏览器还会等 iframe 资源加载完才会更新状态值，可能会导致等待时间比较长，这不是我们想要的。
+为了判断 dom 是否加载完成，对于一般主流浏览器我们可以利用 DOMContentLoaded 事件。而对于部分不支持 DOMContentLoaded 事件的 ie 浏览器，我们可以通过 document.readyState 的状态值来判断（看其是否为 loaded | complete）。如果页面还包含 iframe，ie6~8 等浏览器还会等 iframe 资源加载完才会更新状态值，可能会导致等待时间比较长，这不是我们想要的。
 
 不过，办法还是有的。ie 下页面元素会有个 doScroll 方法，如果 dom 没有加载完成调用该方法会报错，也就是说，我们可以循环调用该方法，只要它不报错了就表示 dom 已加载完成。
 
