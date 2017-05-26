@@ -19,8 +19,8 @@ tags: js
 下面是一个 jsonp 获取资源文件的方法实例：
 ```
 getScript = function (url, config) {
-    var s = doc.createElement('script'),
-        head = doc.getElementsByTagName('head')[0],
+    var s = document.createElement('script'),
+        head = document.getElementsByTagName('head')[0],
         config= config || {};
 
     if (config.charset) {
