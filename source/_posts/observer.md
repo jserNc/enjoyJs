@@ -174,7 +174,7 @@ Player.prototype.subscribe("play","handlePlay",game);
 game.subscribe("update",scoreboard.update,scoreboard);
 
 // 对 window 对象，当其发送键盘按压事件时，
-// 会触发 scoreboard.update() 方法
+// 会触发 game.handleKeypress() 方法
 window.onkeypress = game.handleKeypress;
 ```
 
