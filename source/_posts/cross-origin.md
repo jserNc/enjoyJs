@@ -18,9 +18,11 @@ window 对象有个 name 属性，用于设置当前浏览器窗口的名字。�
 
 也就是说：即在一个窗口（window）的生命周期内，在该窗口载入的所有的页面都是共享同一个 window.name，并且这些页面对 window.name 都有读写的权限。window.name 是持久存在一个窗口载入过的所有页面中的，并不会因新页面的载入而被重置。
 
-该属性只能保持字符串，并且当前窗口关闭以后这个值就会消失，但是与 iframe 结合使用还是挺有用的。
+window.name 属性只能保存字符串，并且当前窗口关闭后这个值就会消失，实际应用中一般将其与 iframe 结合使用。
 
-例如，A 域下有一个页面 a.htm，想要获取 B 域下的 b.htm 中的数据。
+例如，A 域下有一个页面 a.htm 想要获取 B 域下的 b.htm 中的数据。
+
+我们可以在 a.htm 中设置一个 iframe，iframe 地址指向 b.htm，等到 b.htm 加载完毕，再将 iframe 地址替换成 A 域下的 a1.htm，然后就可以通过该 iframe 的 contentWindow.name 属性获取到想要的数据。
 
 子页面 B.com/b.htm 代码：
 
@@ -29,8 +31,6 @@ window 对象有个 name 属性，用于设置当前浏览器窗口的名字。�
  window.name = 'a.htm想要获取的数据';
 </script>
 ```
-
-我们可以在 a.htm 页面中设置一个隐藏的 iframe，iframe 地址指向 b.htm，等到 b.htm 加载完毕，再将 iframe 地址替换成 A 域下的 a1.htm，然后就可以通过该 iframe 的 contentWindow.name 属性获取到想要的数据。
 
 父页面 A.com/a.htm 代码：
 
@@ -51,21 +51,23 @@ window 对象有个 name 属性，用于设置当前浏览器窗口的名字。�
 </script>
 ```
 
+首先，iframe 地址为 b.htm，等到 b.htm 加载完毕，会触发 onload 事件，这时 flag 为 0。于是，将 flag 值置为 1，iframe 地址改为 a1.htm，重新加载该 iframe。等到 iframe 再次加载完毕，这时 flag 为 1，因为 a1.htm 和 a.htm 同域，所以，这时候父页面可以取子页面的 window.name 属性了。
+
 ### ③ 修改 document.domain 跨子域
 
-该方法只适用于不同子域的框架间的交互
+该方法只适用于顶级域名相同，子域不同的框架间的交互。
 
-不同的框架之间（父子或同辈），是能够获取到彼此的 window 对象的，但是你却不能使用获取到的 window 对象的属性和方法（html5 中的 postMessage 方法是一个例外，还有些浏览器比如 ie6 也可以使用 top、parent 等少数几个属性），总之，你可以当做是只能获取到一个几乎无用的 window 对象。
+不同的框架之间，是能够获取到彼此的 window 对象的，但是你却不能使用获取到的 window 对象的属性和方法（html5 中的 postMessage 方法是一个例外，还有些浏览器比如 ie6 也可以使用 top、parent 等少数几个属性），总之，你可以当做是只能获取到一个几乎无用的 window 对象。
 
-如有一个页面，它的地址是 www.example.com/a.html  ， 在这个页面里面有一个 iframe，它的 src 是 example.com/b.html, 很显然，这个页面与它里面的 iframe 框架是不同域的
+如有一个页面，它的地址是 www.example.com/a.html  ， 在这个页面里面有一个 iframe，它的 src 是 example.com/b.html, 很显然，这个页面与它里面的 iframe 框架是不同域的。
 
-我们将 a.html 和 b.html 都设置成：
+我们只需要将 a.html 和 b.html 都设置成：
 
 ```
 document.domain = 'example.com'
 ```
 
-这样我们就可以通过 js 来访问 iframe 中各种属性和对象了
+这样父页面和子页面就可以通过 js 来访问彼此的属性和对象了。
 
 ### ④ 使用 h5 中的 window.postMessage 方法
 
