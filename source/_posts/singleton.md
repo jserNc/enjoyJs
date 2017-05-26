@@ -112,7 +112,7 @@ o2.attr2
 
 为什么这里的 attr2 不被实例对象继承呢？
 
-第一次用 new 运算符执行该构造函数之前，加到 Singleton.prototype 对象上的属性是会被实例对象继承的，这理所当然。这次执行会导致 Singleton 被重写，指向了新的函数。所以，第二次向 Singleton.prototype 上添加属性是不会被实例对象继承的，因为新的 Singleton 函数会返回第一次执行时返回的那个实例对象。
+第一次用 new 运算符执行该构造函数之前，加到 Singleton.prototype 对象上的属性是会被实例对象继承的，这理所当然。但这次执行 new 运算会导致 Singleton 被重写，指向了新的函数。所以，第二次向 Singleton.prototype 上添加属性是不会被旧的 Singleton 构造函数的实例对象继承的。因为新的 Singleton 函数返回时一个对象，所以对该函数进行 new 运算返回的就是这个对象，也就是第一次执行 new 运算时返回的那个实例对象。
 
 ```
 o1.constructor === Singleton
