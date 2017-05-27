@@ -19,7 +19,7 @@ var box = document.getElementById("box");
 changeStyle.call(box,"height","200px");
 ```
 
-将全局定义的 changeStyle 内部绑定到 box 对象上执行。
+将全局定义的 changeStyle 函数内部 this 绑定到 box 对象上执行。
 
 我们还可以利用 call 方法实现继承（对象冒充）。
 
@@ -37,9 +37,9 @@ function ClassB(sColor){
 }
 ```
 
-**强调一下，call 方法是某函数 f 执行过程中调用的，而 bind 方法是声明函数的时候调用的。即，调用 call 方法时会先绑定函数 f 内部的 this，然后执行函数 f 并返回执行结果；调用 bind 方法会绑定函数 f 内部的 this，然后返回一个新的函数 newF。**
+**强调一下，call 方法是某函数 f 执行过程中调用的，而 bind 方法是声明函数的时候调用的。即，调用 call 方法时会先绑定函数 f 内部的 this，然后执行函数 f 并返回执行结果；调用 bind 方法会绑定函数 f 内部的 this，然后返回一个新的函数 newF，并不执行函数。**
 
-假定我们的需求是：从原数组 [1,2,3] 中索引为 0 的位置开始，分隔出长度为 1 的新数组。首先，我们会想到这么写（以下代码均在 chrome 控制台执行）：
+假定我们的需求是：从原数组 [1,2,3] 中索引为 0 的位置开始，截取出长度为 1 的新数组。首先，我们会想到这么写（以下代码均在 chrome 控制台执行）：
 
 ```
 [1,2,3].slice(0,1)
@@ -144,7 +144,9 @@ f.bind === Function.prototype.bind;
 f.bind(o)();
 ```
 
-这句代码本质是：将函数 Function.prototype.bind 内部 this 指向 f（f 是激活 bind 执行上下文的执行者），然后传入实参对象 o，执行该 bind 方法，返回一个新的匿名方法，最后执行该匿名方法。
+这句代码可以这么理解：将函数 f 内部的 this 绑定在对象 o 上，返回一个新的函数 newF。
+
+也可以这么理解：将函数 Function.prototype.bind 内部 this 指向 f（f 是激活 bind 执行上下文的执行者），然后传入实参对象 o，执行该 bind 方法，返回一个新的匿名方法，最后执行该匿名方法。
 
 换种写法：
 
