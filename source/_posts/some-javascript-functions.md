@@ -12,7 +12,7 @@ JavaScript 对象细分一下，包括本地对象（native object）、内置�
 
 > **本地对象（native object）**
 
-独立于宿主环境的 ECMAScript 实现提供的对象。这里提到的 ECMAScript 实现，JavaScript 就是其中一种。ECMAScript 本地对象有：
+本地对象是指独立于宿主环境的 ECMAScript 实现提供的对象。JavaScript 就是一种 ECMAScript 实现。ECMAScript 本地对象有：
 
 ```
 Object   // 对象
@@ -31,7 +31,7 @@ SyntaxError TypeError URIError
 
 > **内置对象（built-in object）**
 
-由 ECMAScript 实现提供的、独立于宿主环境的所有对象，在 ECMAScript 程序开始执行时出现。按照定义，内置对象也属于本地对象。ECMAScript 内置对象有两个：
+内置对象是指由 ECMAScript 实现提供的、独立于宿主环境的所有对象，在 ECMAScript 程序开始执行时出现。按照定义，内置对象也属于本地对象。ECMAScript 内置对象有两个：
 
 ```
 // 全局对象
@@ -63,7 +63,7 @@ BOM 的核心是 window，而 window 对象又具有双重角色，它既是通�
 var o = {};
 ```
 
-下面，我们讨论一下 sort、replace、match 等 3 个方法。
+### 下面回到主题，讨论一下 sort、replace、match 等 3 个方法。
 
 **(1) Array.prototype.sort**
 
@@ -81,7 +81,7 @@ arr
 
 以上数组排序后，元素并没有按照升序排列，对这个结果是否感到意外呢？
 
-实际上，调用该方法时，如果没有传入参数，默认根据字符串 Unicode 码点排序顺序。简单地说是按照「字典顺序」对数组元素进行排序。所谓字典顺序，即从字符串的第一个字母开始比较，第一个字母不同立即得出顺序，相同则继续比较下一个字母，以此类推。所以 10 排在 6 前面。
+实际上，调用该方法时，如果没有传入参数，默认根据字符串 Unicode 码点排序顺序。简单地说是按照「字典顺序」对数组元素进行排序。所谓字典顺序，即从字符串的第一个字母开始比较，如果第一个字母不同，以第一个字母的码点顺序为准；如果第一个字母相同则继续比较下一个字母，以此类推，直到比出结果。所以 10 排在 6 前面（因为 10 的第一个字符 1 在 6 前面）。
 
 ```
 var fruit = ['cherries', 'apples', 'bananas'];
@@ -144,9 +144,14 @@ var arr = [1, 10, 21, 2];
 arr.sort(function(a,b){
     a - b;
 });
-// [1, 10, 21, 2] 为什么会这样？？？
+
+arr
+// [1, 10, 21, 2] 
+//为什么会这样？？？
+
+
 // 这是我敲这段代码的时候犯的一个错误
-// 比较函数少些了 return 关键字
+// 比较函数少写了 return 关键字
 
 // 稍微晦涩一点的写法实现同样的功能：
 var arr = [1, 10, 21, 2]; 
