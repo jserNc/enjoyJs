@@ -33,18 +33,18 @@ split 以上字符串，得到 cookie 数组，然后 split 该数组各个元�
 ```
 function getCookie(_name){
     var h = document.cookie.split('; '),
-      g = h.length,
-      e = [];
+        g = h.length,
+        e = [];
 
     for (var j = 0; j < g; j++) {
-      e = h[j].split('=');
-      if (_name === e[0] && e[1]) {
-          try{
-            return decodeURIComponent(e[1]);
-          }catch(e){
-            return unescape(e[1]);
-          }
-      }
+        e = h[j].split('=');
+        if (_name === e[0] && e[1]) {
+            try {
+                return decodeURIComponent(e[1]);
+            } catch(e) {
+                return unescape(e[1]);
+            }
+        }
     }
     return null;
 }
