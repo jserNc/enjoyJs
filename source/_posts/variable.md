@@ -4,11 +4,11 @@ date: 2017-04-07 16:17:17
 tags: js
 ---
 
-JavaScript 变量分为两种：基本类型和引用类型。6 种数据类型里，除了对象是引用类型变量，其他的都是基本类型变量。引用类型的变量由多个值构成。当然了，每种基本类型（null 和 undefined 除外）都有与其对应的引用类型，在必要时候，基本类型变量也会自动转换成对应引用类型变量，然后再继续运算。
+JavaScript 变量分为两种：【基本类型】和【引用类型】。6 种数据类型里，除了对象是引用类型变量，其他的都是基本类型变量。引用类型的变量由多个值构成。当然了，每种基本类型（null 和 undefined 除外）都有与其对应的引用类型，在必要时候，基本类型变量也会自动转换成对应引用类型变量，然后再继续运算。
 
 <!-- more -->
 
-**基本类型数据不能为之添加属性，引用类型则可以。**
+**基本类型数据不能为之添加属性，引用类型是可以的。**
 
 ```
 // 基本类型属性不能添加属性，即便添加了也无效
@@ -31,7 +31,7 @@ console.log(f.author);
 // nanc
 ```
 
-如果非要给原始类型变量添加属性也是可以的，只不过不是直接给某个变量添加，而是给其构造函数的 prototype 对象添加。由于这样做会影响到同类的其他变量，所以，慎之。
+如果非要给原始类型变量添加属性也是可以的，只不过不是直接给某个变量添加，而是给其构造函数的 prototype 对象添加。由于这样做会影响到同类型的其他变量，所以，慎之。
 
 ```
 var site = 'Enjoy JavaScript';
@@ -159,6 +159,8 @@ function deepCopy(parent,child){
             if (typeof parent[i] === "object"){
                 if (toStr.call(parent[i]) === astr){
                     child[i] = [];
+                } else if(parent[i] === null){
+                    child[i] = null;
                 } else {
                     child[i] = {};
                 }
@@ -186,16 +188,14 @@ kid.counts.toString();
 dad.counts.toString();
 // '1,2,3'
 
-// 因为 typeof 运算符对 null 运算返回也是 "object"
+// typeof 运算符对 null 运算返回也是 "object"
 typeof null   // "object"
-
-// 所以，当父对象包含属性 null 时会有偏差
 
 var o1 = {prop : null};
 var o2 = deepCopy(o1);
 
 o1.prop  // null
-o2.prop  // Object {}
+o2.prop  // null
 ```
 
 **JavaScript 函数传参**
