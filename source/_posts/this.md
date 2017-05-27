@@ -97,7 +97,7 @@ var obj = {
 aa = "AAAAA";
 
 obj.aa  // "objAAA"
-obj.obj.pointer === window  // true
+obj.pointer === window  // true
 obj.f() === obj  // true
 
 obj.oo.a    // undefined，这里和上面不一样
