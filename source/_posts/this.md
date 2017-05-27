@@ -208,7 +208,9 @@ two.method(one.say);
 // "hi, undefined"
 ```
 
-这里代码执行过程中，one.say 方法内的 this 指向了全局对象。
+这里代码执行过程中，one.say 方法内的 this 指向了全局对象。callback 方法执行过程中，它不是对象 one 驱动的，也不是对象 two 驱动的，它作为一个独立的方法（类似于全局方法的调用方式）执行，它内部 this 就是指向 window。
+
+总结一个简单的判断方法（该判断方法也许是不对的，不过我目前所接触的场景都是可行的，如果以后发现这种说法过于武断，再做修改）：**如果一个函数是类似于全局函数的方式调用，即函数执行时函数名前没有任何对象 f()，或者函数名前是 window 对象，window.f()，那么我们就认为这个函数内部 this 指向全局对象 window。**
 
 **（3）回调函数中的 this**
 
@@ -288,7 +290,7 @@ element.setAttribute('onclick','doSomething()')
 
 函数中 this 指向的多变，在某些场景下可能使问题复杂化，不过，这种灵活语法不正是 JavaScript 的趣味性所在吗？
 
-有时候我们想明确地知名函数执行时其内部 this 的指向。为此，JavaScript 提供了 call、apply、bind 等 3 个方法来切换/固定 this 的指向。这 3 个方法均是 Function 构造函数的原型方法，即定义于 Function.prototype 对象上。
+有时候我们想明确地指定函数执行时其内部 this 的指向。为此，JavaScript 提供了 call、apply、bind 等 3 个方法来切换/固定 this 的指向。这 3 个方法均是 Function 构造函数的原型方法，即定义在 Function.prototype 对象上。
 
 **(1) Function.prototype.call**
 
@@ -309,7 +311,7 @@ f.call(o,1,2) === o;
 // true
 ```
 
-函数 f 内部的 this 指向 call 方法第一个实参 o，其余参数（ 1 , 2 ）分别作为函数 f 执行时的实参。
+函数 f 内部的 this 指向 call 方法第一个实参 o，其余参数（1 , 2）分别作为函数 f 执行时的实参。
 
 **(2) Function.prototype.apply**
 
@@ -362,19 +364,20 @@ print()
 
 ```
 if (typeof Function.prototype.bind === 'undefined'){
-    Function.portotype.bind = function(thisArg){
-        var Fn = this,
-            slice = Array.prototype.slice(),
-            args = slice.call(arguments,1);
+  Function.portotype.bind = function(thisArg){
+     var Fn = this,
+         slice = Array.prototype.slice(),
+         args = slice.call(arguments,1);
 
-        return function(){
-            var argArr = args.concat(slice.call.arguments);
-            Fn.apply(thisArg,argArr);
-        };
-    }
+     return function(){
+         var argArr = args.concat(slice.call(arguments));
+         Fn.apply(thisArg,argArr);
+     };
+  }
 }
 
-bind 方法可以规定新方法的默认参数，新方法在调用的时候还可以在默认参数后面继续添加其他参数。
+// bind 方法可以规定新方法的默认参数，
+// 新方法在调用的时候还可以在默认参数后面继续添加其他参数。
 ```
 
 
