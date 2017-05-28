@@ -32,13 +32,13 @@ rd /s/q middleFile
 
 其中，:: 为 cmd 文件注释，echo 命令中 <、> 等符号均需用 ^ 转义；
 
-以上除了 sed 命令，均为基本的 cmd 命令。** sed 全名叫 stream editor，流编辑器，用程序的方式来编辑文本。sed 基本上就是玩正则模式匹配，所以，玩 sed，对正则表达式要求比较高 **。
+以上除了 sed 命令，均为基本的 cmd 命令。** sed 全名叫 stream editor，流编辑器，用程序的方式来编辑文本。sed 基本上就是正则模式匹配，所以，使用 sed，对正则表达式要求比较高 **。
 
 要在 cmd 中使用 sed 命令，我们需要先进行一个简单的配置操作：
-> 1. 下载 [sed for Windows](http://gnuwin32.sourceforge.net/packages/sed.htm) ,进入网站后，下载 Binaries zip 文件，解压后在 bin 目录找到 sed.exe 文件;
-> 2. 下载 [libintl3.dll](http://gnuwin32.sourceforge.net/packages/libintl.htm) 、 [libiconv2.dll](http://gnuwin32.sourceforge.net/packages/libiconv.htm) 、[regex2.dll](http://gnuwin32.sourceforge.net/packages/regex.htm) ，操作同上；
-> 3. 将 sed.exe 复制到 C:\Windows\System32；
-> 4. 将 libintl3.dll、libiconv2.dll 以及 regex2.dll 等 3 个 dll 文件复制到C:\Windows\SysWOW64。
+> ① 下载 [sed for Windows](http://gnuwin32.sourceforge.net/packages/sed.htm) 。下载 Binaries zip 文件，解压后在 bin 目录找到 sed.exe 文件;
+> ② 下载 [libintl3.dll](http://gnuwin32.sourceforge.net/packages/libintl.htm) 、 [libiconv2.dll](http://gnuwin32.sourceforge.net/packages/libiconv.htm) 、[regex2.dll](http://gnuwin32.sourceforge.net/packages/regex.htm) ，操作同上；
+> ③ 将 sed.exe 复制到 C:\Windows\System32；
+> ④ 将 libintl3.dll、libiconv2.dll、regex2.dll 等 3 个 dll 文件复制到 C:\Windows\SysWOW64。
 
 sed 有很多有用的命令，以上我们只用到 s 命令进行字符串替换。
 
