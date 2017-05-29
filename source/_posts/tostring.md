@@ -4,20 +4,25 @@ date: 2016-10-14 17:20:13
 tags: grammar
 ---
 
-toString 作为全局方法时，挂载于window全局对象。原型链最顶层的原型对象 Object.prototype 有 Object.prototype.toString 方法（其实，这个方法就是和全局的toString 是同一方法），另外，一些内置构造函数Array、String、Boolean、Function、Date等也都分别部署了自己的toString方法。
+toString 作为全局方法时，挂载于 window 全局对象。原型链最顶层的原型对象 Object.prototype 有 Object.prototype.toString 方法（其实，这个方法就是和全局的 toString 是同一方法），另外，一些内置构造函数 Array、String、Boolean、Function、Date 等也都分别部署了自己的 toString 方法。
 
 <!-- more -->
 
-为了方便下文的理解，在这里再强调一下原型链的作用：**读取对象的某个属性时，JavaScript引擎先寻找该对象本身的属性，如果找不到，就到它的原型去找，如果还是找不到，就到原型的原型去找，直到顶层原型对象 Object.prototype。如果一层层回溯到最顶层还是找不到，则返回undefined。**
+```
+Object.prototype.toString === toString
+// true
+```
 
-所有全局方法均挂载于window对象，所有对象都继承自Object对象（即，Object.prototype 存在于所有对象的原型链上，并且处于原型链的最末端）。
+为了更好地理解下文，在这里再强调一下原型链的作用：**读取对象的某个属性时，JavaScript 引擎先寻找该对象本身的属性，如果找不到，就到它的原型去找，如果还是找不到，就到原型的原型去找，层层上溯，直到顶层原型对象 Object.prototype。如果回溯到最顶层还是找不到，则返回 undefined。**
+
+所有全局方法均挂载于 window 对象，所有对象都继承自 Object 对象（即，Object.prototype 存在于所有对象的原型链上，并且处于原型链的最末端）。
 
 ```
 toString === window.toString  //true
 window instanceof Object      //true
 ```
 
-window是个对象，不是构造函数，其构造函数是Window
+window 是个对象，不是构造函数，其构造函数是 Window
 ```
 window.prototype              //undefined
 ```
@@ -36,7 +41,7 @@ Object.prototype.toString === Object.toString //false
 ({}).toString === Object.prototype.toString   //true
 ```
 
-Object的原型部署了toString方法，在其原型对象上调用该方法，始终返回"[object Object]"。换句话讲，Object.prototype.toString方法本不需要传参，传参也被忽视。字符串[object Object]本身没有太大的用处，并且其继承对象可以自定义该方法。
+Object 的原型部署了 toString 方法，在其原型对象上调用该方法，始终返回 "[object Object]"。换句话讲，Object.prototype.toString 方法本不需要传参，传参也被忽视。字符串 "[object Object]" 本身没有太大的用处，继承对象可以自定义该方法。
 
 ```
 Object.toString()                
@@ -49,7 +54,7 @@ Object.prototype.toString([])    //"[object Object]"
 Object.prototype.toString(true)  //"[object Object]"
 ```
 
-window.toString()也不需要传参，传参会被忽视
+window.toString() 也不需要传参，传参会被忽视
 ```
 window.toString(1)      //"[object Window]"
 toString(1)             //"[object Undefined]"
@@ -75,7 +80,7 @@ Array.prototype.toString.call([1,2,3])         //"1,2,3"
 Array.prototype.toString([1,2,3])              //""
 ```
 
-** 同一个方法在不同的方式下（执行上下文，this等不一样）调用，产生的结果可能不一样**。和toString类似，直接给Array.prototype.toString传参返回值都是""
+** 同一个方法在不同的方式下（执行上下文，this 等不一样）调用，产生的结果可能不一样**。和 toString 类似，直接给 Array.prototype.toString 传参返回值都是""
 ```
 Array.prototype.toString()    //""
 Array.prototype.toString.call(Array.prototype)  //""
@@ -90,18 +95,18 @@ Array.prototype.toString.call(Array.prototype,[])  //""
 [1,2,3].toString.call(Array.prototype,[])  //""
 ```
 
-通过call调用，就完全不一样了，数组参数会格式化为字符串：
+通过 call 调用，就完全不一样了，数组参数会格式化为字符串：
 ```
 Array.prototype.toString.call([1,2,3])  //"1,2,3"
 ```
 
-非数组参数返回结果同window.toString.call()
+非数组参数返回结果同 window.toString.call()
 ```
 Array.prototype.toString.call(1)    //"[object Number]"
 Array.prototype.toString.call({})   //"[object Object]"
 ```
 
-再看布尔型构造函数原型方法Boolean.prototype.toString
+再看布尔型构造函数原型方法 Boolean.prototype.toString
 ```
 true.toString === Boolean.prototype.toString   //true
 true.toString()                                //"true"
@@ -110,7 +115,7 @@ Boolean.prototype.toString(true)               //"false"
 Boolean.prototype.toString(false)              //"false"
 ```
 
-同样，直接给Boolean.prototype.toString传参返回值都是"false"
+同样，直接给 Boolean.prototype.toString 传参返回值都是 "false"
 ```
 Boolean.prototype.toString([])   
 //"false"
@@ -136,7 +141,7 @@ true.toString.call(Boolean.prototype,{})
 //"false"
 ```
 
-通过call调用,布尔型参数会格式化为字符串
+通过 call 调用,布尔型参数会格式化为字符串
 ```
 Boolean.prototype.toString.call(true)   //"true"
 Boolean.prototype.toString.call(false)  //"false"
@@ -162,7 +167,7 @@ Array.prototype                  //[]
 // 实际上，实例对象之间都是不相等的
 ```
 
-Array的原型属性不等于其原型对象!
+Array 的原型属性不等于其原型对象!
 ```
 Array.prototype === Array.__proto__    //false
 Array.__proto__ === Function.prototype //true
@@ -182,7 +187,7 @@ Function.prototype === Function.constructor.prototype
 ```
 
 
-Function构造函数的原型是Object的实例,但是其原型的原型的构造函数就是Object!但是，Function的原型的原型却不是Object的实例！！
+Function 构造函数的原型是 Object 的实例，其原型的原型的构造函数就是 Object! 但是，Function 的原型的原型却不是 Object 的实例！！
 ```
 Function.__proto__
 //function Empty() {}
@@ -245,7 +250,7 @@ function Person(name) {
 }
 ```
 
-下面我们重写Person对象的原型：
+下面我们重写 Person 对象的原型：
 ```
 Person.prototype = {
     getName: function() {}
@@ -255,13 +260,13 @@ p.__proto__ === Person.prototype         //true
 p.__proto__ === p.constructor.prototype  //false 为什么？？
 ```
 
-其实也很好理解,p.constructor不再指向Person了
+其实也很好理解，p.constructor 不再指向 Person 了
 ```
 p.constructor === Person                        //false
 p.constructor === Person.prototype.constructor  //true
 ```
 
-目前JS内置的构造函数有12个，全局环境下可以访问的有8个。所有构造函数都继承了Function.prototype的属性及方法，当然了，也包括Function自己和Object。
+目前JS内置的构造函数有 12 个，全局环境下可以访问的有8个。所有构造函数都继承了 Function.prototype 的属性及方法，当然了，也包括 Function 自己和 Object。
 
 ```
 Number.__proto__ === Function.prototype  // true
@@ -277,7 +282,7 @@ Empty
 //ReferenceError: Empty is not defined
 ```
 
-以上Empty不是全局构造方法，但是，Number、Function、Array等是全局构造方法
+以上 Empty 不是全局构造方法，但是，Number、Function、Array 等是全局构造方法
 ```
 Number === window.Number   //true  
 ```
@@ -303,9 +308,9 @@ Function.constructor.prototype === Function.__proto__
 ```
 Function.prototype.__proto__ === Object.prototype
 ```
-说明了所有的构造器也是一个普通的对象，继承了Object.prototype所有的方法
+说明了所有的构造器也是一个普通的对象，继承了 Object.prototype 所有的方法
 
-可以先new一个对象，然后修改该对象的prototype属性,例如:
+可以先 new 一个对象，然后修改该对象的 prototype 属性,例如:
 ```
 var MyArray = function () {};
 MyArray.prototype                        
@@ -318,7 +323,7 @@ MyArray.prototype = new Array();
 MyArray.prototype.constructor = MyArray;
 ```
 
-instanceof运算符的实质，检查右边构造函数的prototype属性是否在左边的实例对象的原型链上。只要有一个符合就返回true，否则返回false。
+instanceof 运算符的实质，检查右边构造函数的 prototype 属性是否在左边的实例对象的原型链上。只要有一个符合就返回 true，否则返回 false。
 
 ```
 var mine = new MyArray();
@@ -329,9 +334,9 @@ var mine = new MyArray();
 mine instanceof Array                //true
 ```
 
-再回到toString(),以下都很好理解了
+再回到 toString(),以下都很好理解了
 ```
-toString([])             //"[object Window]"
+toString([])             //"[object Undefined]"
 toString.call(window,[]) //"[object Window]"
 window.toString([])      //"[object Window]"
 window.toString()        //"[object Window]"
@@ -357,14 +362,12 @@ toString.call(1) //"[object Number]"
 (1).toString()   //"1"
 ```
 ```
-toString.call(null)//"[object Window]"
+toString.call(null) //"[object Null]"
 null.toString()
 //TypeError: Cannot read property 'toString' of null
 ```
 ```
-toString.call(undefined) //"[object Window]"
+toString.call(undefined) //"[object Undefined]"
 undefined.toString()     
 //TypeError: Cannot read property 'toString' of undefined
 ```
-
-call方法的第一个参数，应该是一个对象。如果参数为空、null和undefined，则默认传入全局对象window。

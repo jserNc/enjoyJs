@@ -6,7 +6,7 @@ tags: problem
 
 原文： http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html
 
-我们知道，js 同步脚本加载会阻塞浏览器对 dom 的解析，体验比较差。如果可以，我们会尽可能地采取异步方式调取 js 脚本。鉴于 js 代码中有可能包含输出 document 内容、修改 dom、重定向等行为，所以默认同步执行脚本才是安全的。
+我们知道，js 同步脚本会阻塞浏览器对 dom 的解析，体验比较差。如果可以，我们会尽可能地采取异步方式调取 js 脚本。鉴于 js 代码中有可能包含输出文档内容、修改 dom 结构、重定向等行为，所以默认同步执行脚本才是安全的。
 
 <!-- more -->
 
@@ -17,7 +17,7 @@ tags: problem
 
 **&lt;script&gt;**
 
-不带任何特殊属性的 &lt;script&gt; 标签。当 html 页面解析到该标签时会停止，然后浏览器立即发出请求去下载该脚本（如果该脚本是外部脚本的话），等到脚本下载完成，马上解析执行该脚本。脚本执行完毕再接着解析 html 文档。
+不带特殊属性的 &lt;script&gt; 标签。当 html 页面解析到该标签时会停止解析，然后浏览器发出请求去下载该脚本（如果该脚本是外部脚本的话），等到脚本下载完成，立即解析执行该脚本。等到脚本执行完毕再接着解析 html 文档。
 
 <img src="/css/images/script/script.svg" width="700" alt="script"/>
 
@@ -33,9 +33,9 @@ tags: problem
 
 <img src="/css/images/script/script-defer.svg" width="700" alt="script-defer"/>
 
-那么，我们该如何选择呢？
+那么，实际应用中，我们该如何选择呢？
 
-一般说来，首选 async,其次是 defer,最后是不带属性。具体规则如下：
+一般说来，首选 async，其次是 defer，最后是不带属性。具体规则如下：
 
 * 如果是模块化的脚本，并且不依赖于其他脚本，用 async 属性。
 
