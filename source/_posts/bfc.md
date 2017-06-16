@@ -20,7 +20,7 @@ css2.1 中除了 BFC（Block Formatting Contexts）还有 IFC（Inline formattin
 
 盒子常分为【块级盒子】和【行内盒子】。display 属性为 block，list-item，table 的元素会生成块级盒子（block-level box）；display 属性为 inline，inline-block，inline-table 的元素会生成行内盒子（inline-level box）。
 
-**BFC 是一个独立容器，其里面元素不会影响到外面元素，也不会被外面元素影响。计算 BFC 高度时，浮动元素也参与计算。BFC的区域不会与 float box 重叠。**举个例子：一个浮动元素 a 和另一个常规文档流元素 b 是重叠的，若给元素 b 设置一个 overflow: hidden 来创建一个 BFC，那么 a 和 b 便不再重合了。
+**BFC 是一个独立容器，其里面元素不会影响到外面元素，也不会被外面元素影响。计算 BFC 高度时，浮动元素也参与计算。BFC的区域不会与 float box 重叠。**举个例子：一个浮动元素 a 和另一个常规文档流元素 b 是重叠的，若给元素 b 设置一个 overflow: hidden 来创建一个 BFC，那么 a 和 b 便不再重合了，哪怕给 b 设置负的外边距也不会重合了。
 
 **以下条件会出现 BFC：**
 
@@ -29,6 +29,8 @@ css2.1 中除了 BFC（Block Formatting Contexts）还有 IFC（Inline formattin
 ③ overflow 值不是 visible 的时候（hidden | auto | scroll 等）；
 ④ display 值为 inline-block | table-cell | table-caption | flex | inline-flex；
 ⑤ 根元素、fieldset 元素。
+
+需要注意的是，display:table 本身并不会创建 BFC，但是它会产生匿名框(anonymous boxes)，而匿名框中的 display:table-cell 可以创建新的 BFC，换句话说，触发块级格式化上下文的是匿名框，而不是 display:table。所以通过 display:table 和 display:table-cell 创建的 BFC 效果是不一样的。
 
 **以下场景我们可以应用 BFC：**
 
@@ -124,4 +126,5 @@ w3c 规定：【清除浮动元素】在 margin-top 上所产生的间距（clea
 [1] http://www.html-js.com/article/1866
 [2] https://segmentfault.com/a/1190000009078619
 [3] http://www.jianshu.com/p/fc1d61dace7b
-[4] https://www.w3cplus.com/css/understanding-bfc-and-margin-collapse.html
+[4] http://www.iyunlu.com/view/css-xhtml/55.html
+[5] https://www.w3cplus.com/css/understanding-bfc-and-margin-collapse.html
