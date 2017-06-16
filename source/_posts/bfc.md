@@ -55,7 +55,7 @@ css2.1 中除了 BFC（Block Formatting Contexts）还有 IFC（Inline formattin
 
 **既然以上提到多种条件可以触发 BFC，为什么上面几个例子中都选择用 overflow:hidden 来触发呢？**
 
-我们可以为 container 容器附加属性,如 overflow:scroll，overflow:hidden，display: flex，float:left, 或 display:table 等等。尽管这些条件都能形成一个 BFC，但是它们各自却有着不一样的表现。如 overflow:scroll 可能会出现不想要的滚动条；float:left 会使得其他元素对其围绕；display:table 在响应式布局中会有问题。所以，比较简单的方式就是 overflow:hidden。
+我们可以为 container 容器附加属性，如 overflow:scroll，overflow:hidden，display: flex，float:left, 或 display:table 等等。尽管这些条件都能形成一个 BFC，但是它们各自却有着不一样的表现。如 overflow:scroll 可能会出现不想要的滚动条；float:left 会使得其他元素对其围绕；display:table 在响应式布局中会有问题。所以，比较简单的方式就是 overflow:hidden。
 
 **再回过头来详细说说外边距合并：**
 
