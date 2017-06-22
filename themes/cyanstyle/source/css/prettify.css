@@ -34,7 +34,7 @@ li.L6,
 li.L7,
 li.L8,
 li.L9 {
-  padding-left: 1em;
+  /*padding-left: 1em;*/
   background-color: #292c36;
   list-style-type: decimal;
   font-size: 1.1em;
