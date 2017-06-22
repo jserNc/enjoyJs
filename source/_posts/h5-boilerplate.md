@@ -145,7 +145,7 @@ Modernizr 是一个浏览器特性检测的 js 工具库，它可以根据特性
 
 **② 常用 class**
 
-.ir（图像背景）、.hidden（隐藏元素，用户不可见）、.visuallyhidden（隐藏文本，用户可见）、.invisible（元素隐藏，但保留 dom）、.clearfix（闭合浮动） 等。
+.ir（图像背景）、.hidden（隐藏元素，屏幕阅读器不可见）、.visuallyhidden（隐藏文本，屏幕阅读器可见）、.invisible（元素隐藏，但保留 dom）、.clearfix（闭合浮动） 等。
 
 **③ 媒体查询、打印样式，分页样式**
 
