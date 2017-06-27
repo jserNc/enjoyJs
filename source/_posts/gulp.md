@@ -10,7 +10,7 @@ tags: tools
 
 讲 gulp 之前先说一下 node。node 是 JavaScript 语言的服务器运行环境，与之相对的是浏览器环境。也就是说，除了浏览器，JavaScript 也可以在 node 环境里运行，node 提供了大量的库供 JavaScript 调用。node 和 chrome 浏览器的 JavaScript 解释器一样，都是 google 公司的 V8 引擎。
 
-gulp 是基于 node 的一个工具。**gulp 借鉴了 Unix 操作系统的管道（pipe）思想（前一级的输出即是后一级的输入，以下实例中的 pipe()方法会体现这种思想），其处理过程比较清晰高效。**
+gulp 是基于 node 的一个工具。**gulp 借鉴了 Unix 操作系统的管道（pipe）思想（前一级的输出即是后一级的输入，以下实例中的 pipe() 方法会体现这种思想），其处理过程比较清晰高效。**
 
 gulp 的使用流程比较简单：首先需要具备 node 环境；其次我们需要安装 gulp（以及 gulp 所需的插件）；然后编写 gulp 配置文件 gulpfile.js，定义 gulp 任务；最后通过 OS X 系统的终端（Terminal）或者 windows 系统的命令提示符（Command Prompt）即可运行gulp任务。
 
@@ -30,12 +30,18 @@ npm install -g gulp
 ### 3. 项目本地安装 gulp 及 gulp 插件；
 
 ```
+# 进入项目目录
+# 确定已经有 package.json，没有就通过 npm init 创建
+# 安装 gulp 依赖
 npm install --save-dev gulp
 ```
+
 如果 gulpfile.js 文件还调用了其他 gulp 插件，那我们需要安装每个插件。例如，如果需要对代码进行压缩，就安装 gulp-uglify 插件，执行命令：
+
 ```
 npm install --save-dev gulp-uglify
 ```
+
 值得注意的是：虽然前面已经全局安装了 gulp，这里在项目本地也是需要局部安装 gulp 的。
 
 ### 4. 编写 gulpfile.js 文件；
@@ -119,7 +125,7 @@ gulp.dest('build', {
 
 > ### gulp.watch(glob [, opts], tasks) 或 gulp.watch(glob [, opts, cb])
 
-监视特定文件，当文件发生改动，就执行指定任务或方法。当 glob 内容发生改变时，执行 tasks
+监视特定文件，当文件发生改动，就执行指定任务或方法。当 glob 内容发生改变时，执行 tasks：
 
 ```
 gulp.task('watch', function () {

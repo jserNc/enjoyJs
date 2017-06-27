@@ -4,7 +4,7 @@ date: 2016-11-21 11:57:27
 tags: tools 
 ---
 
-Webpack 是一个模块打包器。它将根据模块的依赖关系进行静态分析，然后将这些模块按照指定的规则生成对应的静态资源。这里说的模块不仅仅指 JavaScript 模块，还有 CSS、图片、字体等也需要模块化。
+Webpack 是一个模块打包器。它将根据模块的依赖关系进行静态分析，然后将这些模块按照指定的规则生成对应的静态资源。这里说的模块不仅仅指 JavaScript 模块，CSS、图片、字体等也是模块化。
 
 <!-- more -->
 
@@ -20,9 +20,9 @@ Webpack 是一个模块打包器。它将根据模块的依赖关系进行静态
 
 前端模块需要增量加载到用户浏览器中执行。关于这个过程，我们设想两种极端的方式：一种是每个模块都单独请求；另一种是把所有文件打包成一个文件，然后请求一次。很明显，这两种简单粗暴的方式都不够好，第一种方式请求数太多，网页响应速度太慢；第二种会导致流量浪费、初始化过程慢。
 
-### 分块传输，按需进行懒加载，即在真正用到某些模块的时候再增量更新，才是较为合理的模块加载方案。
+### 分块传输，按需懒加载（在真正用到某些模块的时候再增量更新），才是比较合理的模块加载方案。
 
-要实现模块的按需加载，就需要一个对整个代码库中的模块进行静态分析、编译打包的过程。这就是 webpack 要做的工作。
+要实现模块的按需加载，就得有一个对整个代码库中的模块进行静态分析、编译打包的过程。这就是 webpack 要做的工作。
 
 下面，就以一个简单实例介绍 webpack 的使用流程。
 
@@ -91,18 +91,18 @@ document.write(require('./module.js'))
 webpack entry.js bundle.js
 ```
 
-刷新 index.html,页面显示为：It works.It works from module.js.
+刷新 index.html，页面显示为：It works.It works from module.js.
 
 
 ### 3.loader
 
-以上我们打包的模块都是 js 文件，实际上，webpack 本身也只能处理 JavaScript 模块。如果要处理 css、图片等非 js 文件，就需要使用 loader 进行转换。在这里，loader 充当一个模块和资源之间的转换器。我们用 npm 来安装 loader：
+以上我们打包的模块都是 js 文件，而实际上，webpack 本身也确实只能处理 JavaScript 模块。如果要处理 css、图片等非 js 文件，就需要使用 loader 进行转换。在这里 loader 充当一个模块和资源之间的转换器。下面我们用 npm 来安装 loader：
 
 ```
 npm install css-loader style-loader
 ```
 
-我们需要两种 loader 来转换 css 文件。css-loader 用来读取 css 文件，style-loader 用来将 style 标签插入html页面。
+我们需要两种 loader 来转换 css 文件。css-loader 用来读取 css 文件，style-loader 用来将 style 标签插入 html 页面。
 
 新建一个 style.css 文件：
 
@@ -141,13 +141,13 @@ webpack entry.js bundle.js --module-bind 'css=style-loader!css-loader'
 
 ### 4.配置文件
 
-如果我们向通过一个简单的
+如果我们想通过一个简单的 webpack 命令来实现编译，打包过程：
 
 ```
 webpack
 ```
 
-命令来实现编译，打包过程。我们只需要事先准备好一个配置文件 webpack.config.js。
+我们只需要事先准备好一个配置文件 webpack.config.js。
 
 首先，我们更改 package.json，添加 webpack 所需的依赖：
 
