@@ -1726,11 +1726,14 @@ img#wpstats {
 	}
 	.main-navigation ul.nav-menu,
 	.main-navigation div.nav-menu > ul {
-	    /* Border Line for Main */
-		/*border-bottom: 1px solid rgba(0, 0, 0, 0.24);
-		border-top: 1px solid rgba(0, 0, 0, 0.24);*/
-		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	    /* Border Line for Main 
 		border-top: 1px solid rgba(0, 0, 0, 0.1);
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	   */
+		border-top: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+
+		
 		display: inline-block !important;
 		text-align: left;
 		width: 100%;
