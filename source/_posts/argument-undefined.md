@@ -59,7 +59,7 @@ console.log(undefined);
 // chrome 下结果为：undefined
 ```
 
-如果在运行 jQuery 代码之前，我们修改了全局的 undefined 变量，并且我们不像 jQuery 源码那样显示地传入 undefined 形参，在 ie7 下会怎样？
+如果在运行 jQuery 代码之前，我们修改了全局的 undefined 变量，并且我们不像 jQuery 源码那样显式地传入 undefined 形参，在 ie7 下会怎样？
 
 ```
 undefined = 'newUndefined';
@@ -73,9 +73,21 @@ undefined = 'newUndefined';
 // string 
 ```
 
-果然，函数里打印出来的值是 newUndefined。
+果然，函数里打印出来的值是 newUndefined。其实，这样和显式地传入 undefined 实参得到同样的效果：
 
-那我们和 jQuery 源码一样显示地传入 undefined 形参，在 ie7 下又会怎样？
+```
+undefined = 'newUndefined';
+(function (window) {
+    window.num = 1;
+    console.log(undefined);
+    console.log(typeof undefined);
+})(window,undefined)
+
+// newUndefined
+// string 
+```
+
+那我们和 jQuery 源码一样显式地传入 undefined 形参，在 ie7 下又会怎样？
 
 ```
 undefined = 'newUndefined';
@@ -91,7 +103,7 @@ undefined = 'newUndefined';
 
 确实不一样了，函数内部的 undefined 恢复成了它本来的样子。
 
-**所以，显示地传入 undefined 参数确实可以兼容低版本浏览器，使得函数内部代码运行的时候 undefined 就是 undefined，而不会是其他的值，毕竟函数内还有很多需要用到 undefined 的地方，如果它有新的含义，麻烦会不小。**
+**所以，显式地传入 undefined 参数确实可以兼容低版本浏览器，使得函数内部代码运行的时候 undefined 就是 undefined，而不会是其他的值，毕竟函数内还有很多需要用到 undefined 的地方，如果它有新的含义，麻烦会不小。**
 
 说到这里，我们看到的这个现象该怎么来解释呢？下面按照 ECMAScript3 中规定来理解一下上面两段代码：
 
@@ -104,7 +116,7 @@ undefined = 'newUndefined';
 })(window)
 ```
 
-这里，没有显示传入 undefined 参数。那么根据 JavaScript 中有关作用域的理论，函数内的变量如果在函数内找不到定义，会到父函数找，父函数还找不到，就会到全局环境中找，所以，函数里的 undefined 值为 newUndefined 也就没什么奇怪的了。
+这里，没有显式传入 undefined 参数。那么根据 JavaScript 中有关作用域的理论，函数内的变量如果在函数内找不到定义，会到父函数找，父函数还找不到，就会到全局环境中找，所以，函数里的 undefined 值为 newUndefined 也就没什么奇怪的了。
 
 ```
 undefined = 'newUndefined';
@@ -115,7 +127,7 @@ undefined = 'newUndefined';
 })(window)
 ```
 
-这里，显示地传入了 undefined 参数。undefined 作为函数的形参，内部 undefined 当然会优先取这个形参 undefined，而不是全局的 undefined。上面我们说到，**当形参个数大于实参个数时，被省略的参数值为 undefined（货真价实的 undefined）**。函数调用时，实参会复制给形参，所以，函数内部的 undefined 就会是最原始的 undefined 了。
+这里，显式地传入了 undefined 参数。undefined 作为函数的形参，内部 undefined 当然会优先取这个形参 undefined，而不是全局的 undefined。上面我们说到，**当形参个数大于实参个数时，被省略的参数值为 undefined（货真价实的 undefined）**。函数调用时，实参会复制给形参，所以，函数内部的 undefined 就会是最原始的 undefined 了。
 
 如果还有疑虑，我们再看：
 
