@@ -30,6 +30,8 @@ console.log(n);     // 5
 函数返回自身还有个特殊的地方：
 
 ```
+(new f) instanceof f  // false
+
 new f === f     //true
 new f() === f   //true
 ```
