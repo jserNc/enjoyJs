@@ -112,7 +112,7 @@ layout 是 IE 的专有概念，那些拥有 layout（hasLayout）的元素负�
 }
 .clearfix {
     /** ie6-7 **/
-    zoom: 1;
+    *zoom: 1;
 }
 
 <div class="wrap clearfix">
@@ -123,6 +123,8 @@ layout 是 IE 的专有概念，那些拥有 layout（hasLayout）的元素负�
 ```
 
 其中，display:block 使生成的元素以块级元素显示，占满剩余空间；height:0 避免生成内容破坏原有布局的高度；visibility:hidden 使生成的内容不可见；通过 content:"."生成内容作为最后一个元素，至于 content 里面是 "." 还是其他都是可以的。
+
+注意：css 属性名前加 \* 表示该属性对 ie6-7 有效，其他浏览器不识别，如这里的 \*zoom；而 \_ 开的属性只有 ie6 才能识别。
 
 ** b) 浮动末尾添加空标签，对该空标签添加 clear 属性；**
 
