@@ -127,8 +127,41 @@ function myHandler(e){
 
 以上代码中取消了事件的传播，这个处理不是必须的，可以省略。但是如果不这样，会导致事件传播到最顶层元素，甚至是 window 对象。
 
+### 事件绑定：
 
+除了以上把回调函数赋值给元素的 onclick 属性来监听点击事件以外，我们还可以用以下方式给元素添加各种类型事件绑定。
+
+```
+var addEvent = function (el, type, fn ){
+    if (el.attachEvent) {
+        // ie
+        el.attachEvent( 'on' + type, fn );
+    } else {
+        // w3c
+        el.addEventListener( type, fn, false );
+    }
+};
+```
+
+这里需要注意的是 addEventListener 函数的第三个参数 useCapture。这个参数布尔值，指定事件是在捕获还是冒泡阶段执行。如果指定为 true，那么事件就在捕获阶段执行；如果是 false，事件在冒泡阶段执行。一般情况下，我们都会选择 false。
+
+举例说明：
+
+```
+<div>
+    <p>点击这里</p>
+</div>
+```
+
+对于以上 dom 结构，我们在 div 和 p 标签上都绑定了 click 事件。如果我们点击 p 标签，不止会触发 p 标签的 click 事件，还会触发它的父元素 div 的 click 事件。而 useCapture 这个参数可以控制这两个事件发生的先后顺序。
+
+如果 useCapture 为 true，那就是【事件捕获】，先触发 div 的 click 事件，再触发 p 的 click 事件；如果 useCapture 为 false，那就是【事件冒泡】，先触发 p 的 click 事件，再触发 div 的 click 事件。
+
+如果我们给所有的元素监听事件时，都设定 useCapture 为 false，那就所有的事件都在冒泡的阶段触发。而所有子元素的事件都会冒泡到祖先元素，所以，我们可以通过祖先元素来代理（委托）子元素的事件了。
+
+如果给不同的元素设置不一样的 useCapture 值，有的设为 true，有的设为 false。那就就先从最外层向【目标节点】方向寻找 useCapture 设为 true 的捕获事件，然后到达【目标节点】执行目标元素事件后，再往外层方向寻找 useCapture 设为 false 的冒泡事件。
 
 参考：
 [1] http://javascript.ruanyifeng.com/dom/event.html
 [2] http://www.diguage.com/archives/71.html
+[3] https://blog.othree.net/log/2007/02/06/third-argument-of-addeventlistener/
