@@ -1,5 +1,5 @@
 ---
-title: vue 2.x 全局 api 详解
+title: Vue 2.x 全局 api 详解
 date: 2017-12-19 09:34:36
 tags: vue
 ---

@@ -1,5 +1,5 @@
 ---
-title: jquery 基础
+title: jQuery 基础
 date: 2017-11-09 16:18:54
 tags: jquery
 ---
