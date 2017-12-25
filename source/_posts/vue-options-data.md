@@ -29,7 +29,7 @@ var app = new Vue({
 
 ``` 
 function Vue$3 (options) {
-  // 若直接调用 Vue，打印警告，Vue 是构造函数，必须用 new 关键词调用
+  /* 若直接调用 Vue 打印警告，Vue 是构造函数，必须用 new 来调用 */
 
   // 根据 options 完成一系列初始化操作
   this._init(options);
@@ -132,6 +132,7 @@ Vue.prototype._init = function (options) {
 
   // 调用 beforeCreate 钩子回调函数
   callHook(vm, 'beforeCreate');
+
   // 初始化 inject（在初始化 data/props 之前）
   initInjections(vm);
 
@@ -139,7 +140,7 @@ Vue.prototype._init = function (options) {
   initState(vm);
 
   // 初始化 provide（在初始化 data/props 之前）
-  initProvide(vm); // resolve provide after data/props
+  initProvide(vm);
 
   // 调用 created 钩子回调函数
   callHook(vm, 'created');
@@ -174,7 +175,7 @@ Vue$3.prototype.$mount = function (el,hydrating) {
   el = el && query(el);
 
   if (el===document.body || el===document.documentElement){
-    // 警告：不能将挂载到 <html> 或 <body>，只能挂载到普通元素上
+    /* 警告：不能将挂载到 <html> 或 <body>，只能挂载到普通元素上 */
     return this
   }
 
@@ -199,7 +200,7 @@ Vue$3.prototype.$mount = function (el,hydrating) {
         template = template.innerHTML;
       // ③ 其他都是无效的 template 选项
       } else {
-        // 警告：无用 template
+        /* 警告：无用 template */
         return this
       }
     // (2) template 不存在，el 也可当做 template
@@ -209,7 +210,7 @@ Vue$3.prototype.$mount = function (el,hydrating) {
 
     // 根据模板 template 生成渲染函数
     if (template) {
-      // 标记编译开始
+      /* 标记编译开始 */
     
       /*
        compileToFunctions (template, options, vm) 生成渲染函数
@@ -232,7 +233,7 @@ Vue$3.prototype.$mount = function (el,hydrating) {
       options.render = render;
       options.staticRenderFns = staticRenderFns;
 
-      // 标记编译结束
+      /* 标记编译结束 */
     }
   }
   // 修正完 this.$options 的渲染函数，开始挂载
@@ -264,7 +265,7 @@ function mountComponent (vm, el, hydrating) {
          */
       // ② 直接发出警告，模板或渲染函数不存在
       } else {
-          // 警告，组件安装失败：未定义模板或者渲染函数
+          /* 警告，组件安装失败：未定义模板或者渲染函数 */
       }
     }
   }

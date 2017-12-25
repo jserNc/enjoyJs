@@ -52,7 +52,7 @@ Vue.extend = function (extendOptions) {
     // 组件名
     var name = extendOptions.name || Super.options.name;
     { 
-      // 提示：有效的组件名之内包含字母数字和连字符，并且要以字母开头
+      /* 提示：有效的组件名只包含字母数字和连字符，并且要以字母开头 */
     }
 
     // 子类
@@ -282,12 +282,12 @@ var pending = false;
 var timerFunc;
 
 function nextTickHandler () {
-    // 依次执行 callbacks 队列中的函数，并清空该队列，解锁。
+    /* 依次执行 callbacks 队列中的函数，并清空该队列，解锁 */
 }
 
 
 timerFunc = function () {
-    // 异步执行 nextTickHandler()
+    /* 异步执行 nextTickHandler() */
 };
 
 var nextTick = function queueNextTick (cb, ctx) {
@@ -377,7 +377,7 @@ function set (target, key, val) {
 
   // target 对象是 Vue 实例，或者 Vue 实例的根数据对象
   if (target._isVue || (ob && ob.vmCount)) {
-    // 非生产环境，发出不能设置的警告，并返回
+    /* 非生产环境，发出不能设置的警告，并返回 */
     return val;
   }
 
@@ -418,7 +418,7 @@ function del (target, key) {
 
   // target 对象是 Vue 实例，或者 Vue 实例的根数据对象
   if (target._isVue || (ob && ob.vmCount)) {
-    // 非生产环境，发出不能删除的警告，并返回
+    /* 非生产环境，发出不能删除的警告，并返回 */
     return
   }
 
@@ -466,7 +466,7 @@ ASSET_TYPES.forEach(function (type) {
 
       // 特殊处理一：Vue.component 的参数 id
       if(type === 'component' && config.isReservedTag(id)){
-        // 警告：id 不能是保留标签名
+        /* 警告：id 不能是保留标签名 */
       }
 
       // 特殊处理二：Vue.component 的参数 definition
@@ -514,17 +514,17 @@ ASSET_TYPES.forEach(function (type) {
 
 ```
 Vue.component('my-component', {
-  // 选项列表
+  /* 选项列表 */
 })
 
 // 相当于：
 Vue.component('my-component', Vue.extend({
-  // 选项列表
+  /* 选项列表 */
 })
 
 // 还相当于：
 this.options['components']['my-component'] = Vue.extend({
-  // 选项列表
+  /* 选项列表 */
 }
 
 // 于是，自定义元素 <my-component></my-component> 
@@ -569,7 +569,7 @@ Vue.use = function (plugin) {
 我们可以用在插件中添加全局方法或属性、添加全局资源、注册组件、添加实例方法等等。具体用法一般分为以下几步：
 
 ```
-(1) 开发插件
+// (1) 开发插件
 MyPlugin.install = function (Vue, options) {
   // 添加一个全局方法
   Vue.myFunc = function () {
@@ -577,11 +577,11 @@ MyPlugin.install = function (Vue, options) {
   }
 }
 
-(2) 安装插件
+// (2) 安装插件
 Vue.use(MyPlugin)
 
 
-(3) 使用插件
+// (3) 使用插件
 Vue.myFunc()
 ```
 
@@ -737,11 +737,14 @@ LIFECYCLE_HOOKS.forEach(function (hook) {
 
 function mergeHook (parentVal,childVal) {...}
 
-// 后面还有其他属性也是这样添加的，这里就不一一列举了
-// 可以看到，每一个 strats[key] 函数形式都很类似
-// 第一个参数是 parentVal，第二个参数是 childVal ...
-// 每个 strats[key] 函数的作用就是定义该 key 属性的合并策略
-// 不同的属性，采取不同的策略，自由度比较大，方便扩展
+
+/*
+ 后面还有其他属性也是这样添加的，这里就不一一列举了
+ 可以看到，每一个 strats[key] 函数形式都很类似
+ 第一个参数是 parentVal，第二个参数是 childVal ...
+ 每个 strats[key] 函数的作用就是定义该 key 属性的合并策略
+ 不同的属性，采取不同的策略，自由度比较大，方便扩展
+ */
 
 // (3) 在 mergeField 函数中调用 strats[key] 函数来合并单个选项
 function mergeField (key) {
@@ -819,7 +822,7 @@ function compileToFunctions (template, options, vm) {
   options = options || {};
 
   {
-    // CSP（Content Security Policy）检测，一旦报错，发出警告
+    /* CSP（Content Security Policy）检测，一旦报错，发出警告 */
   }
 
   // 由于同一个 template 可以搭配不同的 delimiters
@@ -849,10 +852,10 @@ function compileToFunctions (template, options, vm) {
   // check compilation errors/tips
   {
     if (compiled.errors && compiled.errors.length) {
-      // 打印出错信息：即 compiled.errors 数组的内容
+      /* 打印出错信息：即 compiled.errors 数组的内容 */
     }
     if (compiled.tips && compiled.tips.length) {
-      // 打印提示信息：即 compiled.tips 数组的内容
+      /* 打印提示信息：即 compiled.tips 数组的内容 */
     }
   }
 
@@ -882,7 +885,7 @@ function compileToFunctions (template, options, vm) {
   {
     if ((!compiled.errors || !compiled.errors.length) 
          && fnGenErrors.length) {
-      // 打印文本 -> 函数转化过程中的错误，即数组 fnGenErrors 的内容
+      /* 打印文本 -> 函数过程中的错误，即数组 fnGenErrors 的内容 */
     }
   }
 
