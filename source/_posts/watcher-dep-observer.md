@@ -299,6 +299,9 @@ value !== (oldValue = this.value)
 this.cb.call(this.vm, value, oldValue);
 ```
 
+最后，用一张图做个总结：
+
+![foo对象结构](/css/images/observer-dep-watcher/observer-dep-watcher.png)
 
 
 
