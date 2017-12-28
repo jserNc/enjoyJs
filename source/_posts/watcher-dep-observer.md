@@ -312,3 +312,4 @@ this.cb.call(this.vm, value, oldValue);
 [1] https://github.com/bison1994
 [2] https://www.cnblogs.com/kidney/p/6052935.html
 [3] https://www.cnblogs.com/libin-1/p/6893712.html
+[4] https://segmentfault.com/a/1190000006599500
