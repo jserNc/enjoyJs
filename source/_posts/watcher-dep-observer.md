@@ -8,6 +8,11 @@ Vue 的特点之一就是双向绑定，即“数据（data）“和”视图（
 
 <!-- more -->
 
+为了方便理解，画了一幅图来描述一下 Observer-Dep-Watcher 三者之间的关系：
+
+![foo对象结构](/css/images/observer-dep-watcher/observer-dep-watcher.png)
+
+
 ## 发布者工厂方法 Observer
 
 下面通过一句代码来理解 Observer：
@@ -299,9 +304,7 @@ value !== (oldValue = this.value)
 this.cb.call(this.vm, value, oldValue);
 ```
 
-最后，用一张图做个总结：
-
-![foo对象结构](/css/images/observer-dep-watcher/observer-dep-watcher.png)
+以上基本说清楚了“数据变化时怎样驱动视图更新”，反过来，“视图变化驱动数据更新”就容易多了，例如监听 input 元素的 input/change 事件，当元素内容变化时就可以更新数据了，这里就不详细的说了，后续会继续对 Vue 的其他部分展开分析。
 
 
 
