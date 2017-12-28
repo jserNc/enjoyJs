@@ -502,6 +502,15 @@ img.wp-smiley,
 	line-height: 2;
 	overflow: hidden;
 }
+
+
+/*
+gitcomment 评论框
+ */
+.site-content nav.gitment-editor-tabs{
+	clear: none;
+}
+
 #nav-above {
 	padding: 24px 0;
 	padding: 1.714285714rem 0;
