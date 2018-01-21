@@ -315,7 +315,7 @@ f.call(o,1,2) === o;
 
 **(2) Function.prototype.apply**
 
-apply 方法和 call 方法作用和用法几乎一样，都是改变函数内部的 this 指向，然后执行该函数。唯一的区别就是接收的参数格式不一样。
+apply 方法和 call 方法作用和用法几乎一样，都是改变函数内部的 this 指向，然后执行该函数。唯一的区别就是它接收一个数组作为函数执行时的参数。
 
 ```
 f.call(thisValue,arg1,arg2,arg3...);
@@ -337,6 +337,42 @@ Math.max.apply(null,a);
 ```
 
 如果 call / apply 方法的第一个参数为空、null 或者 undefined，则将函数内部 this 指向全局对象 window。
+
+实际上，apply 方法的第二个参数也可以是类数组对象，例如 {length: 3}，这个对象指定长度为 3，每个元素值都为 undefined。
+
+```
+Array.apply(null, { length: 3 })
+-> [undefined, undefined, undefined]
+
+// 相当于
+Array.apply(null, [undefined, undefined, undefined])
+-> [undefined, undefined, undefined]
+
+// 对比一下这种写法：
+Array(3)
+-> [empty × 3] // 也就是 [,,,]
+
+// 注意 
+[,,,].length -> 3
+```
+
+[,,,] 和 [undefined, undefined, undefined] 大多是时候可以认为相同的，不过也是有区别的。这里涉及到一个”数组空位“的概念，也就是数组的某个位置是空元素（两个逗号之间没有任何值）。空位对数组的 length 属性没影响，该位置的返回值也是 undefined。不过使用数组的 forEach/map 方法、for...in 结构、以及 Object.keys 方法进行遍历，空位都会被跳过。
+
+```
+// 显式 undefined
+[undefined, undefined, undefined].map(function(){
+    return 1;
+})
+-> [1,1,1]
+
+// 空位
+[,,,].map(function(){
+    return 1;
+})
+-> [,,,]
+```
+
+简单理解就是：空位就是这个位置没有元素，所以不会被遍历到，而每个位置值为 undefined 则表示有这个元素，值是 undefined ，所以不会跳过。
 
 **(3) Function.prototype.bind**
 
