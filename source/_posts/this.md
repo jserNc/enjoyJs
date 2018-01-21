@@ -341,6 +341,15 @@ Math.max.apply(null,a);
 实际上，apply 方法的第二个参数也可以是类数组对象，例如 {length: 3}，这个对象指定长度为 3，每个元素值都为 undefined。
 
 ```
+var data = {
+    length: 5,
+    "0": 1,
+    "1": 2,
+    "2": 3,
+};
+Array.apply(null, data)
+-> [1, 2, 3, undefined, undefined]
+
 Array.apply(null, { length: 3 })
 -> [undefined, undefined, undefined]
 
