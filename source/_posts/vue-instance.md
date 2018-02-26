@@ -17,7 +17,7 @@ tags: vue
 </div>
 
 // 创建 Vue 实例
-var app = new Vue({
+var vm = new Vue({
   el: '#app',
   data: {
     message: 'Hello Vue!'
