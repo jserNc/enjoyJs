@@ -45,7 +45,7 @@ function getResource(url){
 
 即满足 **xhr.readyState == 4 && xhr.status == 200**，才能表示请求成功！
 
-我们把以上代码稍微改写一下，打印每次 ajax 请求返回的状态码：
+我们把以上代码稍微改写一下，打印出每次 ajax 请求返回的状态码：
 
 ```
 function getStatus(url){
@@ -80,20 +80,23 @@ status 值会由以下几个步骤确定：
 
 也就是说，如果 readyState 是 UNSENT（0）或 OPENED（1）状态，status 返回值为 0；如果出现某种网络错误或者请求终止，error flag 就会由 unset 变为 set，status 返回值也为 0；否则，返回 http 状态码。
 
-例如，我们调取跨域资源或本地文件都会报跨域错误，同时 status 返回 0：
+下面举例说明：
+
+调取跨域资源，status 会返回 0：
 
 ```
 getStatus('https://www.baidu.com');
 ```
 控制台会打印：status: 0，同时报出错误：XMLHttpRequest cannot load https://www.baidu.com/. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://www.nc.com' is therefore not allowed access.
 
-调取本地文件，同样会返回 0：
+调取本地文件，status 同样会返回 0：
 
 ```
 getStatus('file:///E:/www/www.nc.com/index.html');
 ```
 
 控制台会打印：status: 0，同时报出错误：XMLHttpRequest cannot load file:///D:/www/www.nc.com/index.html. Cross origin requests are only supported for protocol schemes: http, data, chrome, chrome-extension, https, chrome-extension-resource.
+
 
 参考：
 [1] https://www.w3.org/TR/2014/WD-XMLHttpRequest-20140130/

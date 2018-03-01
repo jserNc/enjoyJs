@@ -6,7 +6,7 @@ tags: js
 
 原文： http://davidshariff.com/blog/what-is-the-execution-context-in-javascript/
 
-执行上下文是 JavaScript 中一个最基础也是最重要的概念。理解了执行上下文才会对变量提升，this 对象，函数作用域等概念有更深入的认识。在介绍执行上下文之前，我们先来看个变量提升的例子：
+执行上下文是 JavaScript 中最重要的概念之一。理解了执行上下文才会对变量提升，this 对象，函数作用域等概念有更深入的认识。在介绍执行上下文之前，我们先来看个变量提升的例子：
 
 <!-- more -->
 
@@ -17,7 +17,7 @@ var v = 1;
     var v = 2;
 })();
 
-//v: undefined
+// v: undefined
 ```
 
 变量 v 明明在调用之前就已经在全局环境中定义过，可打印结果还是 undefined，为什么？
@@ -104,10 +104,10 @@ fn();   // 进入 fn 函数上下文
 ```
 executionContextObj = {
     variableObject : { 
-    /*函数的arguments对象, 参数, 内部的变量以及函数声明*/ 
+    /* 函数的 arguments 对象, 参数, 内部的变量以及函数声明 */ 
     },
     scopeChain : { 
-    /*variableObject以及所有父执行上下文中的variableObject*/ 
+    /* variableObject 以及所有父执行上下文中的 variableObject */ 
     },
     this : {}
 }
@@ -279,7 +279,7 @@ fooExecutionContext = {
 
 ** 1.为什么 foo 类型是 function，而不是 string 或者 undefined？**
 
-因为在上下文的建立阶段，**先是处理 arguments, 参数，接着是函数的声明，最后是变量的声明**。那么，发现 foo 函数的声明后，就会在 variableObject 下面建立一个 foo 属性，其值是一个指向函数的引用。当处理变量声明的时候，发现有 var foo 的声明，但是 variableObject 已经具有了 foo 属性，所以直接跳过。当进入代码执行阶段的时候，就可以通过访问到 foo 属性了，因为它已经就存在，并且是一个函数引用。
+因为在上下文的建立阶段，**先是处理 arguments, 参数，接着是函数的声明，最后是变量的声明**。当发现 foo 函数的声明后，就会在 variableObject 下面建立一个 foo 属性，其值是一个指向函数的引用。当处理变量声明的时候，发现有 var foo 的声明，但是 variableObject 已经具有了 foo 属性，所以直接跳过。
 
 ** 2.为什么 bar 类型是 undefined？**
 

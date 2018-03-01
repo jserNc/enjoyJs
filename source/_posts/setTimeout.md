@@ -30,7 +30,7 @@ var timer = setTimeout(function(){
 }, 3000);
 ```
 
-在定时任务定义后，实际执行之前，我们可以用 clearTimeout() 来取消该定时器：
+在定时任务实际执行之前，我们可以用 clearTimeout() 来取消该定时器：
 
 ```
 var timer = setTimeout(function(){
@@ -42,7 +42,7 @@ clearTimeout(timer);
 
 这样 3 秒之后就不会再输出 1 了。
 
-setTimeout 基本用法就是这样，下面我们再来看看它的其他作用。
+setTimeout 基本用法就是以上这样，下面我们再来看看它的其他作用。
 
 ```
 var startTime = new Date();
@@ -155,7 +155,7 @@ timer = setTimeout(func, 0);
 
 上面代码有两种写法，都是改变一个网页元素的背景色。写法一会造成浏览器“堵塞”，因为 DOM 操作消耗较大，这种连续的 DOM 操作会造成大量 DOM 操作“堆积”，浏览器卡顿。而写法二将任务分散在空余时间执行，就不会造成“堵塞”，这就是 setTimeout(f, 0) 的好处。
 
-setTimeout 和 setInterval 的运行机制是：将指定的代码移除本次执行队列，等到下一轮 Event Loop 时，再检查是否到了指定的延迟时间。如果到了，就执行指定的代码；否则在下一轮 Event Loop 时重新判断。
+setTimeout 和 setInterval 的运行机制是：将指定的代码移除本次执行队列，等到下一轮 Event Loop 时，再检查是否到了指定的延迟时间。若延迟时间到了就执行指定的代码，否则在下一轮 Event Loop 时再重新判断。
 
 每一轮 Event Loop，都会将“任务队列”中需要执行的代码一次执行完。setTimeout 和 setInterval 都是把任务添加到“任务队列”的尾部。因此它们要等到当前脚本的所有同步任务执行完，然后再等到本次 Event Loop 中的“任务队列”中的所有任务执行完，才开始执行。而前面的任务到底要多久才能执行完是不确定的，所以，不能保证 setTimeout 和 setInterval 指定的任务一定会按照预定时间执行。
 

@@ -14,7 +14,7 @@ Webpack 是一个模块打包器。它将根据模块的依赖关系进行静态
 
 ### 为什么要模块化加载？
 
-目前，越来越多的网站已经从网页模式进化到了 webapp 模式，页面需要的 JavaScript、css、图片等等各种资源也越来越多，特别是大量的 js 代码会给前端开发流程和资源组织带来巨大挑战。
+目前，越来越多的网站已经从网页模式进化到了 web app 模式，页面需要的 JavaScript、css、图片等等各种资源也越来越多，特别是大量的 js 代码会给前端开发流程和资源组织带来巨大挑战。
 
 ** 前端资源是通过增量加载的方式在浏览器端运行，如何组织好前端代码和资源，使它们能够快速、优雅地加载和更新，是一个模块化系统需要解决的问题。**
 
@@ -153,23 +153,23 @@ webpack
 
 ```
 {
-    "name": "webpack-example",
-    "version": "1.0.0",
-    "description": "A simple webpack example.",
-    "main": "bundle.js",
-    "scripts": {
+  "name": "webpack-example",
+  "version": "1.0.0",
+  "description": "A simple webpack example.",
+  "main": "bundle.js",
+  "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [
+  },
+  "keywords": [
     "webpack"
-    ],
-    "author": "yourself",
-    "license": "MIT",
-    "devDependencies": {
+  ],
+  "author": "yourself",
+  "license": "MIT",
+  "devDependencies": {
     "css-loader": "^0.21.0",
     "style-loader": "^0.13.0",
     "webpack": "^2.2.1"
-    }
+  }
 }
 ```
 

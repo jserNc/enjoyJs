@@ -29,12 +29,12 @@ chrome 扩展本质上就是 web 应用，它可以使用浏览器提供的所�
     "description": "Shows a Image for the current page",
     "version": "1.0",
     "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html"
+      "default_icon": "icon.png",
+      "default_popup": "popup.html"
     },
     "permissions": [
-    "activeTab",
-    "https://ajax.googleapis.com/"
+      "activeTab",
+      "https://ajax.googleapis.com/"
     ]
 }
 ```
@@ -155,7 +155,7 @@ getCurrentTabUrl 方法获取当前 tab 标签的 url，获取到 url 后触发 
 
 安装该插件。以上步骤操作完毕后，文件夹 getPic 内应该有 manifest.json、icon.png、popup.html、popup.js 等4个文件。下面我们需要把文件夹 getPic 打包成 .crx 文件。打开 chrome，更多工具->扩展程序(或者输入地址：chrome://extensions/)打开 chrome 扩展页面。勾选页面上方的“开发者模式”。点击“打包扩展程序…”按钮，在弹窗里选中文件夹 getPic，点击“打包扩展程序”。打包完毕后，我们可以在 getPic 的父级文件夹里找到打包好的 crx 文件。然后把这个 crx 文件拖拽到刚才打开的 chrome 扩展页面即可安装。如果不能安装该 crx 文件，可以点击“加载已解压的扩展程序...”直接选择文件夹 getPic。
 
-注：以上谷歌接口可能已经废弃，所以我们看不到谷歌返回的图片。但是以上开发流程是值得参考的。以后，还会有更详细的实例介绍。
+注：以上谷歌接口可能已经废弃，所以我们看不到谷歌返回的图片。但是以上开发流程是值得参考的。
 
 
 

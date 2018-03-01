@@ -139,10 +139,10 @@ gulp.task('watch', function () {
 
 ```
 var gulp = require('gulp');
-var jshint = require('gulp-jshint');//语法检查
-var concat = require('gulp-concat');//合并文件
-var uglify = require('gulp-uglify');//压缩代码
-var rename = require('gulp-rename');//重命名
+var jshint = require('gulp-jshint'); // 语法检查
+var concat = require('gulp-concat'); // 合并文件
+var uglify = require('gulp-uglify'); // 压缩代码
+var rename = require('gulp-rename'); // 重命名
 
 // 语法检查
 gulp.task('jshint', function () {

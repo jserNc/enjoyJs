@@ -15,8 +15,8 @@ tags: js
 全局环境中的 this 就是 window 对象
 
 ```
-this === window;    //true
-//这里特指浏览器,只有浏览器中全局对象是window
+this === window;    // true
+// 这里特指浏览器，浏览器中全局对象是 window
 
 var x = 10;
 console.log(
@@ -128,7 +128,7 @@ o2.att2     // "aaa"
 
 果然如此。**定义字面量变量的时候，其静态属性就已确定了。**这么规定是有道理的，如果字面量对象的属性还是一个变量，那就失去字面量的“本义”了。
 
-上面说 “修改 o1 的属性 att1，o2 的 att2 属性不会跟着变”，真的就是这样吗？答应是否定的，这样说法是武断的。因为，[JavaScript 变量](http://nanchao.win/2017/04/07/variable/) 分为【基本类型】和【引用类型】两种，如果属性是引用类型变量，那就另当别论了。
+上面说 “修改 o1 的属性 att1，o2 的 att2 属性不会跟着变”，真的就是这样吗？答应当然是否定的，因为这个说法太武断了。毕竟，[JavaScript 变量](http://nanchao.win/2017/04/07/variable/) 分为【基本类型】和【引用类型】两种，如果属性是引用类型变量，那就另当别论了。
 
 ```
 var o1 = {
@@ -162,16 +162,16 @@ var car = {
 
 var getCarBrand = car.getBrand;
 
-getCarBrand();      //undefined
+getCarBrand();      // undefined
 
-window.getCarBrand();    //undefined
+window.getCarBrand();    // undefined
 
-car.getBrand();     //bmw
+car.getBrand();     // bmw
 ```
 
 我们看到，如果从对象中拆取出某个函数，那么这个方法就会变成一个普通的函数，它和原来对象之间的联系就不存在了。换句话说，一个拆取出来的函数就不再绑定到原来对象了。
 
-**（2）函数内定义的函数中的 this**
+**（2）函数中函数内的 this**
 
 ```
 var o = {
@@ -210,7 +210,7 @@ two.method(one.say);
 
 这里代码执行过程中，one.say 方法内的 this 指向了全局对象。callback 方法执行过程中，它不是对象 one 驱动的，也不是对象 two 驱动的，它作为一个独立的方法（类似于全局方法的调用方式）执行，它内部 this 就是指向 window。
 
-总结一个简单的判断方法（该判断方法也许是不对的，不过我目前所接触的场景都是可行的，如果以后发现这种说法过于武断，再做修改）：**如果一个函数是类似于全局函数的方式调用，即函数执行时函数名前没有任何对象 f()，或者函数名前是 window 对象，window.f()，那么我们就认为这个函数内部 this 指向全局对象 window。**
+总结一个简单的判断方法（该判断方法也许是不对的，不过我目前所接触的场景都是可行的，若以后发现这种说法过于武断，再做修改）：**如果一个函数是类似于全局函数的方式调用，即函数执行时函数名前没有任何对象，比如 f()，或者函数名前是 window 对象，比如 window.f()，那么我们就认为这个函数内部 this 指向全局对象 window。**
 
 **（3）回调函数中的 this**
 
@@ -232,7 +232,7 @@ var id = "doc";
 var para = document.getElementById("para");
 
 para.addEventListener("click",hello,false);
-//点击para之后，输出para
+// 点击节点 para 之后，输出 'para'
 ```
 
 如此，hello 方法内的 this 指向了绑定的 para 对象。以上绑定方式类似于：
@@ -245,7 +245,7 @@ para.onclick = hello;
 
 ```
 <p id='para' onclick='hello()'>Hello</p>
-//点击p节点，输出doc
+// 点击 p 节点，输出 'doc'
 ```
 
 这种绑定方式相当于：
@@ -260,7 +260,7 @@ para.onclick = function(){
 
 ```
 <p id="para" onclick="console.log(this.id)">Hello</p>
-//点击p节点，输出para
+// 点击 p 节点，输出 'para'
 ```
 
 这种方式，this 又指向 para 节点了。相当于：
@@ -274,23 +274,23 @@ para.onclick = function(){
 总结一下，以下几种写法中 doSomething 中 this 均指向 window。
 
 ```
-//写法一
+// 写法一
 element.onclick = function(){
     doSomething();    
 }
 
-//写法二
+// 写法二
 element.setAttribute('onclick','doSomething()')
 
-//写法三
+// 写法三
 <element onclick="doSomething()">
 ```
 
 ** 固定 this 指向： **
 
-函数中 this 指向的多变，在某些场景下可能使问题复杂化，不过，这种灵活语法不正是 JavaScript 的趣味性所在吗？
+函数中 this 指向的多变，在某些场景下可能使问题复杂化，不过，这种灵活的语法不正是 JavaScript 有趣的地方吗？
 
-有时候我们想明确地指定函数执行时其内部 this 的指向。为此，JavaScript 提供了 call、apply、bind 等 3 个方法来切换/固定 this 的指向。这 3 个方法均是 Function 构造函数的原型方法，即定义在 Function.prototype 对象上。
+有时候我们需要明确地指定函数执行时其内部 this 的指向。为此，JavaScript 为每个函数提供了 call、apply、bind 等 3 个方法来切换/固定 this 的指向。这 3 个方法均是 Function 构造函数的原型方法，即定义在 Function.prototype 对象上的方法。
 
 **(1) Function.prototype.call**
 
@@ -299,7 +299,7 @@ element.setAttribute('onclick','doSomething()')
 ```
 var o = {};
 var f = function(a,b){
-    console.log('a:',a,'b:',b);
+    console.log('a:', a, 'b:', b);
     return this;
 }
 f() === window   
@@ -318,10 +318,11 @@ f.call(o,1,2) === o;
 apply 方法和 call 方法作用和用法几乎一样，都是改变函数内部的 this 指向，然后执行该函数。唯一的区别就是它接收一个数组作为函数执行时的参数。
 
 ```
+// call 方法各个参数以逗号 , 分隔
 f.call(thisValue,arg1,arg2,arg3...);
-// 各个参数以逗号 , 分隔
+
+// apply 方法第二个参数为数组，包含函数执行时的参数
 f.apply(thisValue,[arg1,arg2,arg3...]);
-// 第二个参数为数组，包含函数执行时的参数。
 ```
 
 JavaScript 没有提供获取数组中最大值的原生 api，我们可以利用 apply 方法来获取数组的最大值。
@@ -336,7 +337,7 @@ Math.max.apply(null,a);
 // 66
 ```
 
-如果 call / apply 方法的第一个参数为空、null 或者 undefined，则将函数内部 this 指向全局对象 window。
+若 call/apply 方法的第一个参数为空/null/undefined，则相当于将函数内部 this 指向全局对象 window。
 
 实际上，apply 方法的第二个参数也可以是类数组对象，例如 {length: 3}，这个对象指定长度为 3，每个元素值都为 undefined。
 
@@ -348,6 +349,9 @@ var data = {
     "2": 3,
 };
 Array.apply(null, data)
+-> [1, 2, 3, undefined, undefined]
+
+Array(1,2,3,undefined,undefined)
 -> [1, 2, 3, undefined, undefined]
 
 Array.apply(null, { length: 3 })
