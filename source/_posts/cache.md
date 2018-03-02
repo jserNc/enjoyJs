@@ -8,9 +8,9 @@ tags: problem
 
 <!-- more -->
 
-** 那么问题来了，一旦服务器文件更新了，浏览器怎么判断是该使用缓存文件，还是去服务器请求新的文件呢？**
+** 那么问题来了，一旦服务器上文件更新了，浏览器怎么知道不能再继续使用缓存的本地文件，而是要去重新请求服务器上的文件呢？**
 
-为了解决这个问题，这里有一个**缓存协商**的概念：浏览器在请求某个文件的时候，服务器在返回文件时会在返回头加一些额外的信息，比如这个文件在多长时间内可以使用、文件的最后修改时间是什么等等。这样浏览器在下次再请求这个文件的时候就会根据之前服务器在头部加入的额外信息来对应的进行一些处理。
+为了解决这个问题，这里有一个**缓存协商**的概念：浏览器在请求某个文件的时候，服务器在返回文件时会在返回头加一些额外的信息，比如这个文件在多长时间内可以使用、文件的最后修改时间是什么等等。这样浏览器在下次再请求这个文件的时候就会根据之前服务器在头部加入的额外信息来进行一些判断。
 
 ## 下面看几个典型的头信息：
 
@@ -51,7 +51,7 @@ Expires 的缺点：返回的到期时间是服务器时间，那么，如果客
 
 ② ** Last-modified 和 E-tag **
 
-Last-Modified 标注的最后修改只能精确到秒级，如果某些文件在 1 秒钟以内被修改多次的话，它将不能准确标注文件的修改时间。如果某些文件会被定期生成，有时文件内容并没有任何变化，但 Last-Modified 却改变了，可能导致文件没法使用缓存。
+Last-Modified 的不足之处在于：Last-Modified 标注的最后修改只能精确到秒级，如果某些文件在 1 秒钟以内被修改多次的话，它将不能准确标注文件的修改时间。如果某些文件会被定期生成，有时文件内容并没有任何变化，但 Last-Modified 却改变了，可能导致文件没法使用缓存。
 
 该两项参数将存储在客户端的浏览器 cache 中，Last-Modified 值存储为 If-Modified-Since，ETag 值存储为 If-None-Match。
 
@@ -62,13 +62,13 @@ Last-Modified 标注的最后修改只能精确到秒级，如果某些文件在
 ```
 # 设置缓存
 <IfModule mod_expires.c> 
-ExpiresActive on 
-ExpiresDefault "access plus 1 days" 
-ExpiresByType text/html "access plus 1 days" 
-ExpiresByType text/css "access plus 2 days" 
-ExpiresByType image/jpg "access plus 6 days" 
-ExpiresByType image/png "access plus 7 days" 
-ExpiresByType video/x-flv "access plus 10 days"
+  ExpiresActive on 
+  ExpiresDefault "access plus 1 days" 
+  ExpiresByType text/html "access plus 1 days" 
+  ExpiresByType text/css "access plus 2 days" 
+  ExpiresByType image/jpg "access plus 6 days" 
+  ExpiresByType image/png "access plus 7 days" 
+  ExpiresByType video/x-flv "access plus 10 days"
 </IfModule>
 ```
 
@@ -115,7 +115,7 @@ ExpiresByType video/x-flv "access plus 10 days"
 
 浏览器发起的资源请求，如果使用了缓存基本上是两种情况: **status code: 200 ok ( from cache )** 和 **status code 304 Not Modified**。
 
-前者是不向浏览器发送请求，直接使用本地缓存文件。后者，浏览器虽然发现了本地有该资源的缓存，但是不确定是否是最新的，于是想服务器询问，若服务器认为浏览器的缓存版本还可用，那么便会返回 304。即客户端有缓存的文档并发出了一个条件性的请求（一般是提供 If-Modified-Since 头表示客户只想比指定日期更新的文档）。服务器告诉客户，原来缓存的文档还可以继续使用。
+前者是不向浏览器发送请求，直接使用本地缓存文件。后者，浏览器虽然发现了本地有该资源的缓存，但是不确定是否是最新的，于是想服务器询问，若服务器认为浏览器的缓存版本还可用，那么便会返回 304。即客户端有缓存的文档并发出了一个条件性的请求（一般是提供 If-Modified-Since 头表示客户只想要比指定日期更新的文档）。服务器告诉客户，原来缓存的文档还可以继续使用。
 
 ## 总结：
 
