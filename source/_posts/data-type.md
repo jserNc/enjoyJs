@@ -9,9 +9,9 @@ JavaScript 数据类型共有 6 种（es6 又新增第 7 种 symbol）：数值�
 <!-- more -->
 
 按照数据存储方式，JavaScript 数据可以分为三大类：
->（1）**基本类型：** number、string、boolean
->（2）**引用类型：** object、array、function
->（3）**特殊类型：** null、undefined
+> (1) **基本类型：** number、string、boolean
+> (2) **引用类型：** object、array、function
+> (3) **特殊类型：** null、undefined
 
 js 标识符是严格区分大小写的，所以必须注意 null、undefined 等关键词全为小写字母构成。
 
@@ -152,7 +152,7 @@ v
 
 // 用 typeof 运算符不报错
 typeof v
-// undefined
+// "undefined"
 ```
 
 没有用 var 声明也没有被赋值的变量，直接使用会报错！但是，用 typeof 对变量进行运算，如果返回值为 undefined，就知道其未定义。
@@ -184,11 +184,11 @@ instanceof 运算的实质是：检查运算符右边的构造函数的 prototyp
 
 ```
 var arr = [];
-arr instanceof Array;		//true
-arr instanceof Object;		//true
+arr instanceof Array;		// true
+arr instanceof Object;		// true
 
-arr.__proto__ === Array.prototype  //true
-Array.prototype.__proto__ === Object.prototype //true
+arr.__proto__ === Array.prototype  // true
+Array.prototype.__proto__ === Object.prototype // true
 ```
 所有对象（除了null）的原型链的顶层对象就是 Object.prototype，所以，任何对象对 Object 进行 instanceof 运算都会返回 true。
 
@@ -324,7 +324,7 @@ Number(false);
 null == false  // false，为什么?
 ```
 
-其实，以上关于相等运算符 == 的比较规则在比较其他值的时候都适用，唯独不适用于 null。那我们把 null 和 undefined 单独分出来，记住一个事实，**null 和 undefined 之间相等，它们与其他值比较都不相等。**
+其实，以上关于相等运算符 == 的比较规则在比较其他值的时候适用，唯独不适用于 null。那我们把 null 和 undefined 单独分出来，记住一个事实，**null 和 undefined 之间相等，它们与其他值比较都不相等。**
 
 
 

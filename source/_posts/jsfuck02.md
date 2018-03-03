@@ -19,7 +19,7 @@ undefined === [][[]]
 
 +[![]]
 -> NaN
-//NaN不等于其自身，所以，不能像上面那样用 === 表示
+// NaN不等于其自身，所以，不能像上面那样用 === 表示
 
 Infinity === +(+!+[]+(!+[]+[])[!+[]+!+[]+!+[]]+
              [+!+[]]+[+[]]+[+[]]+[+[]])
@@ -89,7 +89,7 @@ RegExp === Function("return/"+false+"/")().constructor
 -> (101).toString(21)[1]
 -> "4h"[1]
 -> "h"
-//其中，toString()可以传递一个参数，表示待转换的数值的基数
+// 其中，toString() 可以接受一个参数，表示待转换的数值的基数
 
 "i" === ([false]+undefined)[10]
 -> "falseundefined"[10]
@@ -184,10 +184,10 @@ RegExp === Function("return/"+false+"/")().constructor
 -> escape("<i></i>")[2]
 -> "%3Ci%3E%3C/i%3E"[2]
 -> "C"
-//italics()方法会在字符串，外层加上<i>标签，如：
+// italics() 方法会在字符串外层加上 <i> 标签，如：
 "字符变斜体".italics()
 -> "<i>字符变斜体</i>"
-//escape() 函数可对字符串进行编码,如：
+// escape() 函数可对字符串进行编码,如：
 escape("<")
 -> "%3C"
 
@@ -245,7 +245,7 @@ escape("<")
 -> (NaN + "[object Undefined]")[11]
 -> "NaN[object Undefined]"[11]
 -> "U"
-//注意({}).toString.call()的用法
+// 注意 ({}).toString.call() 的用法
 ({}).toString.call(window)
 -> "[object Window]"
 ({}).toString.call(null)
@@ -256,7 +256,7 @@ escape("<")
 -> "[object Number]"
 ```
 
-由于篇幅太长，不便查看，就先写到这里。下篇我们接着这里讨论。
+由于篇幅太长，不便查看，就先写到这里。下篇我们接着讨论。
 
 
 参考：
