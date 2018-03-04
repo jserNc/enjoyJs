@@ -4,7 +4,7 @@ date: 2017-04-05 09:36:38
 tags: method
 ---
 
-上篇讨论了 cookie 本地存储方式，这里继续讨论 localStorage。鉴于 cookie 会随着每个服务器请求来回传递，所以会影响请求速度，而且 cookie 的个数和容量都很有限。html5 提供了 localStorage 和 sessionStorage 等两种客户端存储数据的新方法。
+上篇讨论了 cookie 本地存储方式，这里继续讨论 localStorage。鉴于 cookie 会随着每个服务器请求来回传递，所以会影响请求加载速度，而且 cookie 的个数和容量都很有限。html5 提供了 localStorage 和 sessionStorage 等两种客户端存储数据的新方法。
 
 <!-- more -->
 
@@ -18,7 +18,7 @@ tags: method
 
 **localStorage 与 sessionStorage 区别是：**
 
-sessionStorage 针对一个 session 进行数据本地存储。当用户关闭当前浏览器窗口后，本地数据会被删除。sessionStorage 仅在当前浏览器窗口有效（允许刷新），关闭当前浏览器窗口或者浏览器后失效。另外，sessionStorage 不在不同的浏览器窗口中共享，即使是同一个页面也不行，而 localStorage 和 cookie 在所有同源窗口中都是共享的。
+sessionStorage 针对一个 session 进行数据本地存储。当用户关闭当前浏览器窗口后，本地数据会被删除。sessionStorage 仅在当前浏览器窗口有效（允许刷新），关闭当前浏览器窗口或者关闭浏览器后立即失效。另外，sessionStorage 不能被不同的浏览器窗口所共享，即便是不同窗口装载同一个页面也不行，而 localStorage 和 cookie 在所有同源窗口中都是共享的。
 
 **localStorage 使用方法：**
 
@@ -116,7 +116,7 @@ html.addBehavior("#default#userdata");
 <input style="BEHAVIOR:url(#default#userData)"/>
 ```
 
-以上 html 元素（或 input 元素）加上了 behavior 属性后，该元素就具备了一下属性和方法：
+以上 html 元素（或 input 元素）加上了 behavior 属性后，该元素就具备了以下属性和方法：
 
 ```
 // 属性：

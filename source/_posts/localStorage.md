@@ -25,7 +25,7 @@ document.cookie
 // "lc=58362; uUiD=88888; game_played=1; mail_index=2;"
 ```
 
-**如需读取特定名称的 cookie，比如取出名为 game_played 的 cookie 的值，这里给出两种参考方法（其中的解码函数需要和设置 cookie 是用的编码函数对应）：**
+**如需读取特定名称的 cookie，比如取出名为 game_played 的 cookie 的值，这里给出两种参考方法（其中的解码函数需要和设置 cookie 时用的编码函数对应）：**
 
 **方法一：**
 split 以上字符串，得到 cookie 数组，然后 split 该数组各个元素，循环匹配出对应的 value。
@@ -51,12 +51,12 @@ function getCookie(_name){
 ```
 
 **方法二：**
-检查 document.cookie 对象中是否存有 cookie。如果存在，那么继续检查我们指定的 cookie 是否已储存。如果找到了我们要的 cookie，就返回值，否则返回空字符串。
+检查 document.cookie 对象中是否存有 cookie。如果存在，那么继续检查我们指定的 cookie 是否已储存。如果找到了我们要的 cookie，就返回 cookie 值，否则返回空字符串。
 
 ```
 function getCookie(c_name){
     var cookies = document.cookie;
-    if (cookies.length>0){
+    if (cookies.length > 0){
         idx = cookies.indexOf(c_name + "=")
         if (idx != -1){ 
             idx = idx + c_name.length+1; 
@@ -136,13 +136,13 @@ function setCookie(c_name,value,expTime){
 
 **(5) 同源政策**
 
-同源政策规定，两个网址只要域名和端口相同就可以共享 cookie，也即是说，它不要求协议相同，同域下 http 和 https 共享 cookie。即 http://a.com 下设置的 cookie，可以被 https://a.com 读取。
+同源政策规定，两个网址只要域名和端口相同就可以共享 cookie，也就是说，它不要求协议相同，同域下 http 和 https 共享 cookie。即 http://a.com 下设置的 cookie，可以被 https://a.com 读取。
 
 **(5) 无法被 JavaScript  读取的 cookie**
 
-服务器端设置 cookie的时候，如果加上了 HttpOnly 属性，则这个 cookie 无法被 JavaScript 读取。即 document.cookie 不会返回这个 cookie 的值，但是这个 cookie 会跟随 http 请求发送至服务端。
+服务器端设置 cookie 的时候，一旦加上了 HttpOnly 属性，那这个 cookie 就无法被 JavaScript 读取。即 document.cookie 不会返回这个 cookie 的值，但是这个 cookie 会跟随 http 请求发送至服务端。
 
-对于 chrome 等浏览器，或者说是正常人使用的浏览器，我们通过浏览器自带的开发者工具的控制台（Console）、网络（Network）等面板可以很方便地打印或者直接查看 cookie 信息；而对于 ie6 等浏览器，我们怎么快速地查看 cookie 信息呢？
+对于 chrome 等浏览器，我们通过浏览器自带的开发者工具的控制台（Console）、网络（Network）等面板可以很方便地打印或者直接查看 cookie 信息；而对于 ie6 等浏览器，我们怎么快速地查看 cookie 信息呢？
 
 > **浏览器地址栏运行 JavaScript 代码**
 
@@ -186,11 +186,11 @@ javascript:your_code_here
 例如：
 
 ```
-var num = 1316;
+var num = 1314;
 var suffix = 'days';
 
 console.log('We know each other for %d %s',num,suffix);
-// We know each other for 1316 days
+// We know each other for 1314 days
 ```
 
 使用 %c 占位符，还可以对输出内容添加样式：
