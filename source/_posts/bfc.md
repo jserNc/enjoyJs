@@ -8,13 +8,13 @@ BFC（Block Formatting Contexts）即“块级格式化上下文”。BFC 是一
 
 <!-- more -->
 
-css2.1 中除了 BFC（Block Formatting Contexts）还有 IFC（Inline formatting context）。其中 FC（Formatting Contexts）“格式化上下文”是指：页面中的一款渲染区域，该区域有自己的一套渲染规则，这个规则决定了这个区域元素如何摆放以及和其他元素的关系和作用。
+css2.1 中除了 BFC（Block Formatting Contexts）还有 IFC（Inline formatting context）。其中 FC（Formatting Contexts）“格式化上下文”是指：页面中的一块渲染区域，该区域有自己的一套渲染规则，这个规则决定了这个区域元素如何摆放以及和其他元素的关系和作用。
 
 **w3c 中 BFC 定义：**
 
 > 浮动元素、绝对定位元素、非块级盒子的块级容器（inline-blocks, table-cells, 以及 table-captions 等）、以及 overflow 值不是 visible 的块级盒子，都会为它们的内容创建新的 BFC；
 
-> 在 BFC 中，盒子从包含块顶部垂直地一个接一个排列，两个盒子之间的垂直间隙由它们的 margin 值决定。相邻盒子直接的垂直外边距会折叠。
+> 在 BFC 中，盒子从包含块顶部垂直地一个接一个排列，两个盒子之间的垂直间隙由它们的 margin 值决定。相邻盒子之间的垂直外边距会折叠。
 
 > 在 BFC 中，每一个盒子的左外边缘（margin-left）触碰容器的左边缘（border-left）,即使存在浮动也这样，除非这个盒子又创建了一个新的 BFC。（如果是从右到左的格式，则每一个盒子的右外边缘触碰容器的右边缘。）
 
@@ -42,7 +42,7 @@ css2.1 中除了 BFC（Block Formatting Contexts）还有 IFC（Inline formattin
 > 两个相邻的外边距都是负数时，折叠结果是两者绝对值的较大值。
 > 两个外边距一正一负时，折叠结果是两者相加的和。
 
-**注意，只有当元素在同一个BFC中时，垂直方向上的 margin 才会 clollpase。如果它们属于不同的 BFC，则不会有 margin collapse。**
+**注意，只有当元素在同一个 BFC 中时，垂直方向上的 margin 才会 clollpase。如果它们属于不同的 BFC，则不会有 margin collapse。**
 
 如果 div1 和相邻的 div2 的外边距都是 50px，正常情况下他们的外边距会叠加，叠加后外边距高度还是 50px。要使得他们之间外边距高度变成 100px，可以在两个 div 外层分别加一个父级 div，给父级 div 加上属性 overflow:hidden，即可触发 BFC，外边距不会合并，高度变为 100px。
 
@@ -52,7 +52,7 @@ css2.1 中除了 BFC（Block Formatting Contexts）还有 IFC（Inline formattin
 
 **c. 清除浮动**
 
-如果一个容器里都是浮动元素，那么这个元素的高度就是 0。为了是这个容器有高度，一般，我们会用一个伪元素 claer 属性去清除浮动。由于**计算 BFC 高度时，浮动元素也参与计算**，所以我们可以给容器加上属性 overflow:hidden，触发 BFC，使得容器具有高度。
+如果一个容器里都是浮动元素，那么这个元素的高度就是 0。为了使这个容器有高度，一般，我们会用一个伪元素 claer 属性去清除浮动。由于**计算 BFC 高度时，浮动元素也参与计算**，所以我们可以给容器加上属性 overflow:hidden，触发 BFC，使得容器具有高度。
 
 
 **既然以上提到多种条件可以触发 BFC，为什么上面几个例子中都选择用 overflow:hidden 来触发呢？**

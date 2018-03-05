@@ -4,11 +4,11 @@ date: 2017-05-12 09:26:19
 tags: method
 ---
 
-观察者（observer）模式又叫订阅/发布（subscriber/publisher）模式。浏览器的事件监听就是这种模式的实例。订阅者 A 订阅发布者 B 的特定动作，当发布者 B 的特定动作发生后，订阅者 A 便会收到通知，然后订阅者 A 就可以进行相应的处理。
+观察者（observer）模式又叫订阅/发布（subscriber/publisher）模式。浏览器的事件监听就是这种模式的应用实例。原理就是：“订阅者 A 订阅发布者 B 的特定动作，当发布者 B 的特定动作发生后，订阅者 A 便会收到通知，然后订阅者 A 就可以进行相应的处理。”
 
 <!-- more -->
 
-下面以该模式实现一个小游戏，游戏规则为：若干名游戏者分别敲击键盘某个按键，看谁在 30 秒内敲击键盘次数最多。游戏过程中的比分会实时显示在记分牌上。
+下面用该模式实现一个小游戏，游戏规则为：若干名游戏者分别敲击键盘某个按键，看谁在 30 秒内敲击键盘次数最多。游戏过程中的比分会实时显示在记分牌上。
 
 首先，定义一个通用的发布者对象：
 
@@ -53,8 +53,10 @@ var publisher = {
             fn = subscribers[i].fn;
             context = subscribers[i].context;
             
+            // 发布消息
             if (action === 'publish'){
                 fn.call(context,arg);
+            // 删除订阅者
             } else {
                 fn === arg && 
                 context === context &&
@@ -70,11 +72,13 @@ var publisher = {
 ```
 function makePublisher(o){
     var i;
+    // 复制函数
     for (i in publisher){
         publisher.hasOwnProperty(i) && 
         typeof publisher[i] === "function" &&
         (o[i] = publisher[i])
     }
+    // 复制属性
     o.subscribers = {any : []};
 }
 ```
@@ -131,7 +135,7 @@ var game = {
             game.keys[e.which].play();
         }
     },
-    handlePlay : function(player){
+    handlePlay : function(){
         var i,
             players = this.keys,
             name = '',
@@ -207,7 +211,7 @@ setTimeout(function(){
 ```
 
 程序执行流程如下：
-(1) 动态创建多个 player 对象。用户在对话框输入用户名和对应的按键，并确认后，调用 new Player() 方法新建游戏者。重复执行此操作和依次创建多个游戏者。当用户取消输入用户名时，终止创建游戏者，进入游戏。
+(1) 创建多个 player 对象。用户在对话框输入用户名和对应的按键，确认后，调用 new Player() 方法新建游戏者。重复执行此操作和依次创建多个游戏者。当取消输入用户名时，终止创建游戏者，进入游戏。
 (2) new Player() 方法执行时，会发布 【**newplayer**】 类型消息。
 (3) 消息 【**newplayer**】 会触发 game.addPlayer() 方法。也就是说，当用户依次输入用户名后，game 对象便会在其 keys 属性中保存各个用户名及对应按键信息。
 (4) 游戏过程中，用户 player01 按下游戏前设置的按键，就会触发 game.handleKeypress() 方法。

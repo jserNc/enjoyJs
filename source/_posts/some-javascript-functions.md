@@ -4,7 +4,7 @@ date: 2017-04-14 09:33:53
 tags: grammar
 ---
 
-ECMAScript 中，没有独立存在的函数，所有的函数都是依附于某个对象。isNaN()、parseInt() 等看起来独立的函数，实际上它们都属于全局对象。客户端 JavaScript 中，全局对象就是 window 对象。讲函数之前，先来说说 JavaScript 对象。
+ECMAScript 中，没有独立存在的函数，所有的函数都是依附于某个对象。isNaN()、parseInt() 等看起来独立的函数，实际上它们都属于全局对象。客户端 JavaScript 中，全局对象就是 window 对象。讲函数之前，先来说说 JavaScript 对象分类。
 
 <!-- more -->
 
@@ -198,9 +198,9 @@ arr.sort(function(a,b){
 
 ```
 var persons = [
-  { name: 'Edward', age: 21 },
-  { name: 'Sharpe', age: 18 },
-  { name: 'And', age: 27 },
+    { name: 'Edward', age: 21 },
+    { name: 'Sharpe', age: 18 },
+    { name: 'And', age: 27 }
 ];
 
 persons.sort(function (a, b) {

@@ -4,7 +4,7 @@ date: 2017-04-21 10:45:37
 tags: grammar
 ---
 
-JavaScript 提供了 call、apply、bind 等三个方法，来切换/固定函数调用时其内部 this 的指向。它们的第一个参数都是函数内 this 所要指向的对象，如果该参数设为 null 或 undefined，则指向全局对象（浏览器环境下，指 window）。这三个方法的基本用法在 [理解 JavaScript 中 this](http://nanchao.win/2016/11/02/this/) 一文已经做了介绍，这里就不再赘述。下面更深入地讨论一下 call 和 bind 方法。
+JavaScript 提供了 call、apply、bind 等三个方法，来切换/固定函数执行时其内部 this 的指向。它们的第一个参数都是函数内 this 所要指向的对象，如果该参数设为 null 或 undefined，则指向全局对象（浏览器环境下，就是指 window 对象）。这三个方法的基本用法在 [理解 JavaScript 中 this](http://nanchao.win/2016/11/02/this/) 一文已经做了介绍，这里就不再赘述。下面更深入地讨论一下 call 和 bind 方法。
 
 <!-- more -->
 
@@ -19,7 +19,7 @@ var box = document.getElementById("box");
 changeStyle.call(box,"height","200px");
 ```
 
-将全局定义的 changeStyle 函数内部 this 绑定到 box 对象上执行。
+执行 changeStyle 函数时，其内部 this 绑定到 box 对象。
 
 我们还可以利用 call 方法实现继承（对象冒充）。
 
@@ -37,7 +37,7 @@ function ClassB(sColor){
 }
 ```
 
-**强调一下，call 方法是某函数 f 执行过程中调用的，而 bind 方法是声明函数的时候调用的。即，调用 call 方法时会先绑定函数 f 内部的 this，然后执行函数 f 并返回执行结果；调用 bind 方法会绑定函数 f 内部的 this，然后返回一个新的函数 newF，并不执行函数。**
+**强调一下，call 方法是某函数 f 执行过程中调用的，而 bind 方法是声明函数的时候调用的。即，调用 call 方法时会先绑定函数 f 内部的 this，然后执行函数 f 并返回执行结果；调用 bind 方法会绑定函数 f 内部的 this，然后返回一个新的函数 newF，但不执行函数。**
 
 假定我们的需求是：从原数组 [1,2,3] 中索引为 0 的位置开始，截取出长度为 1 的新数组。首先，我们会想到这么写（以下代码均在 chrome 控制台执行）：
 
@@ -47,6 +47,8 @@ function ClassB(sColor){
 
 // call 方法的作用是将一个方法的 this 
 // 绑定到一个新的对象
+// 鉴于：
+[1,2,3].slice === Array.prototype.slice
 
 // 所以，以上写法相当于：
 Array.prototype.slice.call([1,2,3],0,1)
@@ -59,7 +61,7 @@ Array.prototype.slice.call([1,2,3],0,1)
 Array.prototype.slice.call === Function.prototype.call
 ```
 
-换个角度看，只要 call 的调用主体是 slice 方法，那么实参为 [1,2,3],0,1 这种形式，就可以完成从一个数组中切分出一个新的数组的功能。那么，我们用 bind 方法，把 call 方法的调用主体绑定为 slice 方法会怎样呢？
+换个角度看，只要函数 call 的调用主体是 slice 方法，那么实参为 [1,2,3],0,1 这种形式，就可以完成从一个数组中切分出一个新的数组的功能。那么，我们用 bind 方法，把 call 方法的调用主体绑定为 slice 方法会怎样呢？
 
 ```
 var call = Function.prototype.call;
@@ -103,7 +105,6 @@ slice.call([1,2,3],0,1);
 也就是说，以下四种写法等效：
 
 ```
-// 这里的定义会影响写法一二三：
 var call = Function.prototype.call;
 var slice = Array.prototype.slice;
 
@@ -120,9 +121,26 @@ slice.call([1,2,3],0,1);
 [1,2,3].slice(0,1);
 ```
 
-以上代码，将全局的 call、slice 变量都分别指向 Function.prototype.call、Array.prototype.slice 方法。当然了，我这么写是为了偷懒，其实完全没必要新增加这两个全局变量的。
+以上代码，将全局的 call、slice 变量都分别指向 Function.prototype.call、Array.prototype.slice 方法。（当然了，我这么写是为了偷懒，其实完全没必要新增加这两个全局变量的。）
 
-再看：
+注意以下推导过程，这是 call 方法好玩的地方之一：
+```
+call.bind(slice)([1,2,3],0,1)
+
+// 等价于
+call.call(slice,[1,2,3],0,1)
+
+// 等价于
+call.call(call,slice,[1,2,3],0,1)
+
+// 等价于：
+call.call(call,call,slice,[1,2,3],0,1)
+
+// 等价于（实参可以包含任意个 call）：
+call.call(call,call,call,call,call,call,slice,[1,2,3],0,1)
+```
+
+再看 bind 函数怎么用：
 
 ```
 function f(){
@@ -194,7 +212,7 @@ newCall(f,o)
 // 相当于：
 Function.prototype.bind.call(f,o);
 
-//所以：
+// 所以：
 newCall(f,o)();
 // 123
 
@@ -202,6 +220,25 @@ newCall(f,o)();
 Function.prototype.bind.call(f,o)();
 // 123
 ```
+
+
+注意以下推导过程，这是 bind 方法好玩的地方之一：
+```
+f.bind(o)()
+
+// 等价于
+bind.call(f,o)()
+
+// 等价于
+call.bind(bind)(f,o)()
+
+// 等价于：
+bind.bind(call)(bind)(f,o)()
+
+// 等价于（前面可以包含任意个 bind）：
+bind.bind.bind.bind.bind(call)(bind)(f,o)()
+```
+
 
 以上推理过程也许有点绕，但我相信读懂它们对于理解 call 和 bind 方法是很有帮助的。
 

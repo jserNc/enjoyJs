@@ -20,14 +20,14 @@ tags: css
 
 <div style="width:600px;overflow:hidden;zoom:1;margin-bottom:15px;"><div style="float:left;border:1px solid #aaa;margin-right:10px"><div style="float:left;background-color:#ff0;height:50px;">左浮动div1，没设宽度</div><div style="background-color:#0f0;height:70px;width:200px;">普通流div2，宽200px</div><div style="background-color:#0ff;height:70px;width:200px;">普通流div3，宽200px</div></div><div style="float:left;border:1px solid #aaa;"><div style="float:left;background-color:#ff0;height:50px;">左浮动</div><div style="background-color:#0f0;height:70px;width:200px;">普通流div2，宽200px</div><div style="background-color:#0ff;height:70px;width:200px;">普通流div3，宽200px</div></div></div>
 
-浮动 div1 没设置宽度，它的实际宽度会等于内容的宽度。也就是是它会尽可能得窄，只要能满足内容宽度即可。
+浮动 div1 没设置宽度，它的实际宽度会等于内容的宽度。也就是是它会尽可能得窄，只要能满足其内容的宽度即可。
 
 > **浮动元素会依次横向排列。如果父容器宽度不够，剩下的浮动元素就会从移动到下一行开始继续横向排列，这里的“移动到下一行”是指：往下移动尽可能少的距离，只要剩余宽度足够放下这个浮动元素就行。**
 
 
 <div style="width:620px;overflow:hidden;zoom:1;margin-bottom:15px;"><div style="float:left;height:150px;width:320px;border:1px solid #aaa;margin-right:10px"><div style="float:left;background-color:#ff0;height:70px;width:100px">左浮动div1</div><div style="float:left;background-color:#0f0;height:50px;width:100px;">左浮动div2</div><div style="float:left;background-color:#0ff;height:50px;width:100px;">左浮动div3</div></div><div style="float:left;height:150px;width:220px;border:1px solid #aaa;"><div style="float:left;background-color:#ff0;height:70px;width:100px">左浮动div1</div><div style="float:left;background-color:#0f0;height:50px;width:100px;">左浮动div2</div><div style="float:left;background-color:#0ff;height:50px;width:100px;">左浮动div3</div></div></div>
 
-上图所示，如果容器宽度足够，3 个浮动 div 依次水平排列；如果容器宽度只能容纳 2 个浮动元素，那么第 3 个元素就会被“挤”到下一行，而这里的下一行并不是指 div1 下面，因为它不需要移动到 div 下面那么远（指垂直距离）就可以被容纳下了。简单地说，标准流元素竖向排列，浮动使得元素横向排列。
+上图所示，如果容器宽度足够，3 个浮动 div 依次水平排列；如果容器宽度只能容纳 2 个浮动元素，那么第 3 个元素就会被“挤”到下一行，而这里的下一行并不是指 div1 下面，因为它不需要移动到 div 下面那么远（指垂直距离）就可以被容纳下了。简单地说，**标准流元素竖向排列，浮动使得元素横向排列**。
 
 另外，这里的浮动元素依次排序，“依次”是指，左浮动时（float:left），依次从父容器左边缘向右排列；右浮动时（float:right），依次从父元素右边缘向左排列。
 
@@ -38,14 +38,14 @@ tags: css
 上图，左边 3 个 div 都是普通文档流，从上到下排序；中间 div2 左浮动，漂浮在 div3 上面，div 3 中的文本会围绕浮动的 div2，也就是，div3 中被 div2 覆盖的部分是不会有文本的；右边 div2 依然左浮动，只是 div3 的 margin-top 属性设置为 div2 的高，所以，看上去效果和左边一样。
 
 
-> **假设某个元素 A 是浮动的，如果 A 元素上一个元素也是浮动的，那么 A 元素会跟随在上一个元素的后边（左浮动右边是后边，右浮动左边是后边。如果一行放不下这两个元素，那么 A 元素会被挤到下一行）。如果 A 元素上一个元素是普通流中的元素 B，根据这个元素 B 类型有以下规则：a) 元素 B 是块级元素，那么 A 相对于它浮动之前的位置不变，也就是说 A 的顶部总是和上一个元素的底部紧贴；b) 元素 B 是行内元素，行框被缩短，从而给浮动框留出空间，行框围绕浮动框。**
+> **假设某个元素 A 是浮动的，如果 A 元素上一个元素也是浮动的，那么 A 元素会跟随在上一个元素的后边（左浮动的后边是右边，右浮动的后边是左边。如果一行放不下这两个元素，那么 A 元素会被挤到下一行）。如果 A 元素上一个元素是普通流中的元素 B，根据这个元素 B 类型有以下规则：a) 如果元素 B 是块级元素，那么 A 相对于它浮动之前的位置不变，也就是说 A 的顶部总是和上一个元素的底部紧贴；b) 如果元素 B 是行内元素，行框被缩短，从而给浮动框留出空间，行框围绕浮动框。**
 
 <div style="overflow:hidden;zoom:1;margin-bottom:15px;"><div style="float:left;width:235px;border:1px solid #aaa;margin-right:10px"><div style="background-color:#ff0;height:50px;width:100px;">普通流div1，宽度100px</div><div style="float:left;background-color:#0f0;height:70px;width:120px;">左浮动div2，宽120px</div><div style="float:left;background-color:#0ff;height:100px;width:80px;">左浮动div3，宽200px</div><div style="background-color:#f0f;height:200px;width:100px;">普通流div4，宽100px</div></div><div style="float:left;border:1px solid #aaa;margin-right:10px"><span style="background-color:#ff0;height:50px;">普通流span</span><div style="float:left;background-color:#0f0;height:70px;width:120px;">左浮动div2，宽120px</div><div style="float:left;background-color:#0ff;height:100px;width:80px;">左浮动div3，宽200px</div><div style="background-color:#f0f;height:200px;width:100px;">普通流div4，宽100px</div></div><div style="float:left;border:1px solid #aaa;margin-right:10px"><span style="background-color:#ff0;height:50px;">普通流span</span><div style="background-color:#0f0;height:70px;width:150px;">普通流div2，宽150px</div><div style="float:left;background-color:#0ff;height:100px;width:80px;">左浮动div3，宽200px</div><div style="background-color:#f0f;height:200px;width:120px;">普通流div4，宽120px</div></div></div>
 
 
 左边 div2、div3 左浮动，div1、div4 普通流；中间和左边的区别是，div1 换成了 span 标签；右边和中间的区别是 div2 去掉了浮动，成为普通流元素。
 
-> **清除浮动 clear : none | left | right | both，这个规则只能影响使用清除的元素本身，不能影响其他元素。**
+> **清除浮动 clear : none | left | right | both，该规则只能影响使用清除的元素本身，不影响其他元素。**
 
 <div style="overflow:hidden;zoom:1;margin-bottom:15px;"><div style="float:left;height:150px;width:215px;border:1px solid #aaa;margin-right:10px"><div style="float:left;background-color:#ff0;height:70px;width:100px">左浮动div1</div><div style="float:left;background-color:#0f0;height:50px;width:100px;">左浮动div2</div></div><div style="float:left;height:150px;width:215px;border:1px solid #aaa;margin-right:10px"><div style="float:left;clear:right;background-color:#ff0;height:70px;width:100px">左浮动div1，clear : right</div><div style="float:left;background-color:#0f0;height:50px;width:100px;">左浮动div2</div></div><div style="float:left;height:150px;width:215px;border:1px solid #aaa;margin-right:10px"><div style="float:left;background-color:#ff0;height:70px;width:100px">左浮动div1，clear : right</div><div style="float:left;clear:left;background-color:#0f0;height:50px;width:100px;">左浮动div2，clear : left</div></div></div>
 
@@ -59,7 +59,7 @@ tags: css
 
 <div style="width:215px;border:1px solid #aaa;margin-right:10px"><div style="float:left;background-color:#ff0;height:70px;width:100px">左浮动div1</div><div style="float:left;background-color:#0f0;height:50px;width:100px;">左浮动div2</div></div><div style="background-color:#0ff;height:100px;margin-bottom:15px">紧跟上面父容器后的div3,宽度自适应，高度100px</div>
 
-上图看到，div1、div2均浮动后，父容器高度变为 0了，上面的灰线是父容器的上下边框折叠一起的情形。浮动元素都漂浮在后面的普通流 div 上面了，这样显然是不行的。好，那就给 div3 清浮动吧！
+上图看到，子元素 div1、div2 均浮动后，它们的父容器高度就变为 0 了（上面的灰线是父容器的上下边框折叠在一起的情形）。浮动元素都漂浮在后面的普通流 div 上面了，这样显然是不行的。那下面就给 div3 清浮动吧！
 
 <div style="width:215px;border:1px solid #aaa;margin-right:10px"><div style="float:left;background-color:#ff0;height:70px;width:100px">左浮动div1</div><div style="float:left;background-color:#0f0;height:50px;width:100px;">左浮动div2</div></div><div style="clear:left;background-color:#0ff;height:100px;margin-bottom:15px">紧跟上面父容器后的div3,宽度自适应，高度100px，clear:left</div>
 
@@ -73,7 +73,7 @@ div3 加上属性 clear:left 后，div3 移到浮动元素下面去了，这很�
 
 使用 clear 清除了浮动，但是没有使父容器高度不再坍塌，而使用 overflow:hidden 使父容器高度恢复了正常，所以有人喜欢将前者叫作【**清除浮动**】，后者叫作【**闭合浮动**】。
 
-> **闭合浮动的原理：只要触发了 hasLayout（针对 ie6-7 浏览器） 或 BFC（针对其他浏览器） 即可闭合浮动。**
+> **闭合浮动的原理：只要触发了 hasLayout（针对 ie6-7） 或 BFC（针对其他浏览器） 即可闭合浮动。**
 
 ** (1) hasLayout **
 
@@ -118,15 +118,14 @@ layout 是 IE 的专有概念，那些拥有 layout（hasLayout）的元素负�
 <div class="wrap clearfix">
     <div class="fleft">左浮动</div>
     <div class="fleft">左浮动</div>
-    <div style="clear:both;"></div>
 </div>
 ```
 
 其中，display:block 使生成的元素以块级元素显示，占满剩余空间；height:0 避免生成内容破坏原有布局的高度；visibility:hidden 使生成的内容不可见；通过 content:"."生成内容作为最后一个元素，至于 content 里面是 "." 还是其他都是可以的。
 
-注意：css 属性名前加 \* 表示该属性对 ie6-7 有效，其他浏览器不识别，如这里的 \*zoom；而 \_ 开的属性只有 ie6 才能识别。
+注意：ie6-7 不支持 after 伪元素。css 属性名前加 \* 表示该属性对 ie6-7 有效，其他浏览器不识别，如这里的 \*zoom；而 \_ 开的属性只有 ie6 才能识别。
 
-** b) 浮动末尾添加空标签，对该空标签添加 clear 属性；**
+** b) 浮动末尾添加空标签，对该空标签添加 clear 属性；（这种方式添加了无用的标签，不是很好）**
 
 ```
 <div class="wrap">
@@ -136,7 +135,7 @@ layout 是 IE 的专有概念，那些拥有 layout（hasLayout）的元素负�
 </div>
 ```
 
-** c) 使用 br标签和其自带的 clear 属性，br 有 clear : all | left | right | none 属性； **
+** c) 使用 br 标签和其自带的 clear 属性（br 有 clear : all | left | right | none 属性）； **
 
 ```
 <div class="wrap">

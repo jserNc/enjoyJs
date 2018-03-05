@@ -143,7 +143,7 @@ console.log(obj2.name)
 ① 数组深拷贝：
 
 ```
-//slice 方法或 concat 方法
+// slice 方法或 concat 方法
 var arr1 = [0,1,2];
 var arr2 = arr1.slice(0);
 // 这句相当于 var arr2 = arr1.concat();
