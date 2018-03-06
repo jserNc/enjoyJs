@@ -70,7 +70,7 @@ document.write('It works.');
 webpack entry.js bundle.js
 ```
 
-用浏览器直接打开 index.html(不需要web服务器)，我们会看到页面显示：It works.
+用浏览器直接打开 index.html（不需要 web 服务器），我们会看到页面显示：It works.
 
 这是没有文件依赖的情况。下面我们新增一个模块 module.js：
 

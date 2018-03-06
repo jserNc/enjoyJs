@@ -73,7 +73,7 @@ undefined = 'newUndefined';
 // string 
 ```
 
-果然，函数里打印出来的值是 newUndefined。其实，这样和显式地传入 undefined 实参得到同样的效果：
+果然，函数里打印出来的值是 newUndefined。其实，这和显式地传入 undefined 实参得到同样的效果：
 
 ```
 undefined = 'newUndefined';
@@ -105,7 +105,7 @@ undefined = 'newUndefined';
 
 **所以，显式地传入 undefined 参数确实可以兼容低版本浏览器，使得函数内部代码运行的时候 undefined 就是 undefined，而不会是其他的值，毕竟函数内还有很多需要用到 undefined 的地方，如果它有新的含义，麻烦会不小。**
 
-说到这里，我们看到的这个现象该怎么来解释呢？下面按照 ECMAScript3 中规定来理解一下上面两段代码：
+说到这里，上面这种现象该怎么来解释呢？下面按照 ECMAScript3 中规定来理一理上面两段代码：
 
 ```
 undefined = 'newUndefined';
@@ -145,7 +145,7 @@ undefined = 'newUndefined';
 
 果然，不管 undefined 被重置为其他什么值，被省略的函数参数值就是最原始的 undefined。
 
-**理解的关键点是：在 ie7 等低级浏览器下把 undefined 当做可读可写的变量看。在其他高级正常浏览器下，手动忽略 undefined，因为它就是一个只读的变量的而已。**
+**理解的关键点是：在 ie7 等低级浏览器下把 undefined 当做可读可写的变量看。在其他高级正常浏览器下，自动忽略 undefined，因为它就是一个只读的变量的而已。**
 
 最后，我们用 uglify 压缩一下上段代码，对比一下：
 
@@ -167,7 +167,7 @@ function(n, o) {
 } (window);
 ```
 
-看压缩后的代码就比较明显了，形参 o 没有对应的实参，所以其值就是最原始的 undefined。**这里将 window 对象作为实参传给函数，可以减少查找提高效率。因为 window 对象处于作用域的顶端，如果函数里一层层向上回溯查找 window 对象，效率比较低。另外，这样做，在压缩代码的时候，window 形参和函数里都被一个字符代替，比如上面的 n，如果不传 window 参数，函数里的 window 变量就不能压缩了。**
+看压缩后的代码就比较明显了，形参 o 没有对应的实参，所以其值就是最原始的 undefined。**这里将 window 对象作为实参传给函数，可以减少查找以提高效率，原因有二。其一，由于 window 对象处于作用域的顶端，如果函数里一层层向上回溯查找 window 对象的属性，效率会比较低。其二，在压缩代码的时候，window 形参和函数里都被一个字符代替，比如上面的 n，如果不传 window 参数，函数里的 window 变量就不能压缩了。**
 
 
 

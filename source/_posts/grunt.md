@@ -16,13 +16,13 @@ tags: tools
 
 ### 2. 安装 cli
 
-将 grunt 命令行（cli）安装到全局环境中，例如，windows 下执行命令：
+将 grunt 命令行（cli）安装到全局环境中，执行命令：
 
 ```
 npm install -g grunt-cli
 ```
 
-这样，grunt 命令就加入到系统路径中了，随后我们就可以在任何项目目录中执行 grunt 命令来构建项目了。
+这样，grunt 命令就加入到系统路径中了，随后就可以在任何项目目录中执行 grunt 命令来构建项目了。
 
 ### 3. 项目本地安装 grunt 及 grunt 插件；
 
@@ -34,7 +34,7 @@ npm install -g grunt-cli
 npm install grunt --save-dev
 ```
 
-如果配置文件 Gruntfile.js 文件中还调用了其他 grunt 插件，那我们需要依次安装每个插件。例如，我们需要对代码进行检查，就安装 jshint 插件，执行命令：
+如果配置文件 Gruntfile.js 文件中还调用了其他 grunt 插件，那我们需要依次安装每个插件。例如，若需要对代码进行检查，就安装 jshint 插件，执行命令：
 
 ```
 npm install grunt-contrib-jshint --save-dev
