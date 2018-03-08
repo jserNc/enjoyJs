@@ -132,9 +132,9 @@ jQuery.fn = jQuery.prototype = {
 
 这里给 jQuery.prototype 定义了一系列的属性和方法，同时给 jQuery.prototype 也取了个别名 jQuery.fn。所以，上面提到的 jQuery.fn.init 就是 jQuery.prototype.init。
 
-我们知道，给 jQuery.prototype 添加属性和方法，意味着 jQuery 作为构造函数时，jQuery 的实例对象都会自动拥有 jQuery.prototype 中的属性和方法。
+我们知道，给 jQuery.prototype 添加属性和方法，那么构造函数 jQuery 的所有实例对象都会自动拥有 jQuery.prototype 中的属性和方法。
 
-可是，上边说到 jQuery 只是一个普通函数而已，并没有作为一个真正的构造函数使用，那么给 jQuery 原型添加那么多属性和方法还有意义吗？答案是必须有！
+可是，上边说到 jQuery 只是一个普通函数而已，并没有作为一个真正的构造函数使用，那么给 jQuery 原型添加那么多属性和方法还有意义吗？
 
 继续往下看，还有一句：
 ```
@@ -201,11 +201,11 @@ $(document).on('ready',function(){
 ```
 虽然看起来有些差别，但这三种写法本质没什么不同，jQuery 内部实现一样。它们的作用是：等文档 dom 结构加载完毕后，再执行包裹起来的自定义代码。
 
-判断文档 dom 是否加载完毕，一般监听 DOMContentLoaded 事件。之所以不用 window.onload 事件是因为 window.onload 事件必须等页面全部资源（包括图片等）都加载完毕，才会触发，如果网速慢，资源多，就会一直等着；而 DOMContentLoaded 事件只需要等 dom 结构加载完毕就可以触发，这样会比较合理。
+判断文档 dom 是否加载完毕，一般监听 DOMContentLoaded 事件。之所以不用 window.onload 事件是因为 window.onload 事件必须等页面全部资源（包括图片等）都加载完毕才会触发，如果网速慢资源多，就会一直等着；而 DOMContentLoaded 事件只需要等 dom 结构加载完毕就可以触发，这样会比较合理。
 
 **(5) Sizzle 选择器**
     
-jQuery 几乎所有的功能都离不开 dom 元素，所以，一个重要的功能就是用 $(selector) 将所需的 dom 元素找出来。这里的 selector 我们称之为”选择器“，它可以是字符串，可以是 dom 元素，也可以是 jQuery 对象等等。
+jQuery 几乎所有的功能都离不开 dom 元素，所以，首先要做的就是用 $(selector) 将所需的 dom 元素找出来。这里的 selector 我们称之为”选择器“，它可以是字符串，可以是 dom 元素，也可以是 jQuery 对象。
 
 如果 selector 是比较简单的选择器，比如 '#myId' ，表示要找出 id 为 myId 的元素，那么直接调用 document.getElementById('myId') 就可以了。可是，如果选择器比较复杂，比如：$('div + p span > a[title="hi"]')，这就不是单纯地用 js 原生 api 可以解决了，这时候我们就需要 Sizzle 这个强大的选择器引擎，举个例子：
 

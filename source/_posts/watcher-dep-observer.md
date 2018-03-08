@@ -22,7 +22,7 @@ observe(data, true /* 作为根 data */);
 ```
 
 (1) 如果 data 不是对象就返回，只有对象才继续执行后续步骤
-(2) 如果 data 有对应的 Observer 实例 data.__ob__ 那就将它作为 observe 方法返回值
+(2) 如果 data 有对应的 Observer 实例 data.\_\_ob\_\_ 那就将它作为 observe 方法返回值
 (3) 如果 data 没有对应的 Observer 实例，那就执行 ob = new Observer(value)
 (4) new Observer(value) 的本质是执行 ob.walk(data)
 (5) 依次遍历 data 的属性 key，执行 defineReactive$$1(obj, keys[i], obj[keys[i]])
@@ -30,7 +30,7 @@ observe(data, true /* 作为根 data */);
 (7) 当获取属性 key 时除了返回属性值，还会将 Dep.target（即与属性 key 对应的 watcher）加入到 key 的订阅者数组里（dep.depend() -> Dep.target.addDep(dep)）
 (8) 当设置属性 key 时除了更新属性值外，还会由主题对象 dep 发出通知给所有的订阅者 dep.notify()
 
-总的来说就是：observe(data) -> new Observer(data) -> defineReactive$$1()
+总的流程就是：observe(data) -> new Observer(data) -> defineReactive$$1()
 
 下面着重看一下 defineReactive$$ 方法：
 
@@ -304,7 +304,7 @@ value !== (oldValue = this.value)
 this.cb.call(this.vm, value, oldValue);
 ```
 
-以上基本说清楚了“数据变化时怎样驱动视图更新”，反过来，“视图变化驱动数据更新”就容易多了，例如监听 input 元素的 input/change 事件，当元素内容变化时就可以更新数据了，这里就不详细的说了，后续会继续对 Vue 的其他部分展开分析。
+以上基本说清楚了“数据变化时怎样驱动视图更新”，反过来，“视图变化驱动数据更新”就容易多了，例如监听 input 元素的 input/change 事件，当元素内容变化时就可以更新数据了，这里就不详细的说了，后面有空会继续对 Vue 的其他部分展开分析。
 
 
 
