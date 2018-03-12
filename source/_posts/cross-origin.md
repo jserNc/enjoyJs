@@ -22,7 +22,7 @@ window.name 属性只能保存字符串，并且当前窗口关闭后这个值�
 
 例如，A 域下有一个页面 a.htm 想要获取 B 域下的 b.htm 中的数据。
 
-我们可以在 a.htm 中设置一个 iframe，地址指向 b.htm，等到 b.htm 加载完毕，再将 iframe 窗口内的地址替换成 A 域下的 a1.htm，然后就可以通过该 iframe 的 contentWindow.name 属性获取到想要的数据。
+我们可以在 a.htm 中设置一个 iframe，地址指向 b.htm，等到 b.htm 加载完毕，再将 iframe 窗口的地址替换成 A 域下的 a1.htm，这样父子窗口就同域名了，然后就可以通过该 iframe 的 contentWindow.name 属性获取到子页面里的数据了。
 
 子页面 B.com/b.htm 代码：
 
