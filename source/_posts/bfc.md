@@ -20,7 +20,7 @@ css2.1 中除了 BFC（Block Formatting Contexts）还有 IFC（Inline formattin
 
 盒子常分为【块级盒子】和【行内盒子】。display 属性为 block，list-item，table 的元素会生成块级盒子（block-level box）；display 属性为 inline，inline-block，inline-table 的元素会生成行内盒子（inline-level box）。
 
-**BFC 是一个独立容器，其里面元素不会影响到外面元素，也不会被外面元素影响。计算 BFC 高度时，浮动元素也参与计算。BFC的区域不会与 float box 重叠。**举个例子：一个浮动元素 a 和另一个常规文档流元素 b 是重叠的，若给元素 b 设置一个 overflow: hidden 来创建一个 BFC，那么 a 和 b 便不再重合了，哪怕给 b 设置负的外边距也不会重合了。
+**BFC 是一个独立容器，其里面元素不会影响到外面元素，也不会被外面元素影响。计算 BFC 高度时，浮动元素也参与计算。BFC 的区域不会与 float box 重叠。**举个例子：一个浮动元素 a 和另一个常规文档流元素 b 是重叠的，若给元素 b 设置一个 overflow: hidden 来创建一个 BFC，那么 a 和 b 便不再重合了，哪怕给 b 设置负的外边距也不会重合了。
 
 **以下条件会出现 BFC：**
 
@@ -52,7 +52,7 @@ css2.1 中除了 BFC（Block Formatting Contexts）还有 IFC（Inline formattin
 
 **c. 清除浮动**
 
-如果一个容器里都是浮动元素，那么这个元素的高度就是 0。为了使这个容器有高度，一般，我们会用一个伪元素 claer 属性去清除浮动。由于**计算 BFC 高度时，浮动元素也参与计算**，所以我们可以给容器加上属性 overflow:hidden，触发 BFC，使得容器具有高度。
+如果一个容器里都是浮动元素，那么这个元素的高度就是 0。为了使这个容器有高度，一般我们会用一个伪元素 claer 属性去清除浮动。由于**计算 BFC 高度时，浮动元素也参与计算**，所以我们还可以给容器加上属性 overflow:hidden，触发 BFC，使得容器具有高度。
 
 
 **既然以上提到多种条件可以触发 BFC，为什么上面几个例子中都选择用 overflow:hidden 来触发呢？**
