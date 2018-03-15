@@ -65,7 +65,7 @@ function defineReactive$$1(obj,key,val,customSetter,shallow){
   var setter = property && property.set;
 
   /*
-   shallow 的意思是"浅的"，也就是说没有指定"浅观察"，就是深度观察
+   shallow 意思是“浅的”，也就是说若没有指定“浅观察”，那就是“深观察”
 
    举例来说：
    obj = {
@@ -78,8 +78,7 @@ function defineReactive$$1(obj,key,val,customSetter,shallow){
    }
 
    这里的 val 就不同普通的原始类型值了，val 是 {aa : 1}，{bb : 1} 
-   这样的对象，那么就递归遍历 val 对象的属性，劫持其属性的 gett/set
-
+   这样的对象，那么就递归遍历 val 对象的属性，劫持其属性的 get/set
   */
   
   // 【重要】这句作用就是：递归遍历劫持 val 的所有子属性
@@ -92,7 +91,7 @@ function defineReactive$$1(obj,key,val,customSetter,shallow){
     prop 需被定义或修改的属性名。
     descriptor 需被定义或修改的属性的描述符
 
-    作用：直接在一个对象上定义一个新属性，或者修改一个已经存在的属性
+    作用：给对象上定义一个新属性，或者修改一个已经存在的属性
    */
   Object.defineProperty(obj, key, {
     // 可枚举
@@ -122,7 +121,7 @@ function defineReactive$$1(obj,key,val,customSetter,shallow){
       var value = getter ? getter.call(obj) : val;
 
       // 如果旧值和新值相等或者旧值和新值都是 NaN，则不进行设置操作。
-      //（NaN 是唯一不等于自身的值）
+      //（NaN 比较特殊，是 js 中唯一不等于自身的值）
       if (newVal === value || 
          (newVal !== newVal && value !== value)) {
         return
@@ -144,7 +143,7 @@ function defineReactive$$1(obj,key,val,customSetter,shallow){
       // 递归遍历 newVal 的所有子属性
       childOb = !shallow && observe(newVal);
 
-      // 发通知订阅者，分别执行 update 方法
+      // 发通知订阅者，分别执行每一个 update 方法
       dep.notify();
     }
   });
@@ -153,7 +152,7 @@ function defineReactive$$1(obj,key,val,customSetter,shallow){
 
 ## 发布者-订阅者之间的主题工厂方法 Dep
 
-Dep 的作用是创建主题。主题的作用是替发布者管理订阅者。每一个发布者可以有多个订阅者，主题可以对订阅者进行增加、删除等操作。最重要的是当发布者有新的动作是，主题还可以把消息传达给所有订阅者，订阅者就会执行特定方法（这里是 update 方法）来完成相应的操作了。
+Dep 的作用是创建主题。主题的作用是替发布者管理订阅者。每一个主题可以有多个订阅者，主题可以对订阅者进行增加、删除等操作。当主题发布者有新的动作是，主题还可以把消息传达给所有订阅者，订阅者就会执行特定方法（这里是 update 方法）来完成相应的操作了。
 
 ```
 var uid = 0;
@@ -187,7 +186,7 @@ Dep.prototype.depend = function depend () {
 
 // 触发更新
 Dep.prototype.notify = function notify () {
-  // 先复制一份订阅者数组，以免执行下面 for 循环过程中该数组变化了
+  // 先复制一份订阅者数组，以免执行下面 for 循环过程中该数组改变了
   var subs = this.subs.slice();
   for (var i = 0, l = subs.length; i < l; i++) {
     subs[i].update();
