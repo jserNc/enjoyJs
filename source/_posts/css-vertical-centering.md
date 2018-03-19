@@ -219,7 +219,7 @@ margin-top 设置为负的 div.content 高度的一半。这种方法兼容性�
 
 <div style="height:100px;background-color:#0f0;text-align:center;margin-bottom:25px;"><div style="background-color:#f0f;display:inline;">不定宽块元素</div></div>
 
-** ④ 子元素为块级元素 display:flex; align-items:center**
+** ④ 子元素为块级元素 display:flex; justify-content:center**
 
 ```
 <style>
