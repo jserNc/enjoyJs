@@ -39,7 +39,7 @@ function Vue$3 (options) {
 var vm = {};
 vm.__proto__ = Vue$3.prototype;
 vm._init({
-  del: '#app',
+  el: '#app',
   data: {
     message: 'Hello Vue!'
   }
