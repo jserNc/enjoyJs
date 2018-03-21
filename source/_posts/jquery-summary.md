@@ -222,7 +222,7 @@ $('div span') 表示选取所有的 div 下的 span 元素。$('span > a[title="
 $('input').css('width','20px').click(function(){alert(1)})
 ```
 
-这句的作用是，将所有的 input 元素字体设为 20px，然后监听所有的 input 元素的点击事件，当我们点击 input 元素时，弹出 1。
+这句的作用是，将所有的 input 元素宽度设为 20px，然后监听所有的 input 元素的点击事件，当我们点击 input 元素时，弹出 1。
 
 这样的链式写法，看起来语义清晰，写起来也挺方便的，其实它的实现原理也是很简单。
 
