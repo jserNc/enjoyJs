@@ -82,7 +82,7 @@ Vue.prototype._init = function (options) {
   vm._self = vm;
 
   /*
-    初始化声明周期，即添加下列属性：
+    初始化生命周期，即添加下列属性：
     vm.$parent = parent;     // 最近的非抽象父元素
     vm.$root = parent ? parent.$root : vm; // 根 Vue 实例
     vm.$children = [];       // 子组件
