@@ -105,6 +105,15 @@ B 网站也更新了代码：
 · 尽量不要是用 get 等明文请求；
 · 用户提交表单时加入验证码、伪随机值等。
 
+总结一下，对于CSRF攻击，我们可以做如下防范：
+
+(1) 验证码。应用程序和用户进行交互过程中，强制用户输入验证码，才能完成最终请求。
+
+(2) Referer Check。当浏览器向web服务器发送请求时，一般会带上 Referer 信息告诉服务器是从哪个页面链接过来的，服务器籍此可以获得一些信息用于处理。可以通过检查请求的来源来防御 CSRF 攻击。正常请求的 referer 具有一定规律，如在提交表单的 referer 必定是在该页面发起的请求。所以通过检查 http 包头 referer 的值是不是这个页面，来判断是不是 CSRF 攻击。
+
+(3) Anti CSRF Token。即发送请求时在 HTTP 请求中以参数的形式加入一个随机产生的 token，并在服务器建立一个拦截器来验证这个 token。服务器读取浏览器当前域 cookie 中这个 token 值，会进行校验该请求当中的 token 和 cookie 当中的 token 值是否都存在且相等，才认为这是合法的请求。否则认为这次请求是违法的，拒绝该次服务。
+
+这种方法相比 Referer 检查要安全很多，token 可以在用户登陆后产生并放于 session 或 cookie 中，然后在每次请求时服务器把 token 从 session 或 cookie 中拿出，与本次请求中的 token 进行比对。由于 token 的存在，攻击者无法再构造出一个完整的 URL 实施 CSRF 攻击。但在处理多个页面共存问题时，当某个页面消耗掉 token 后，其他页面的表单保存的还是被消耗掉的那个 token，其他页面的表单提交时会出现 token 错误。 
 
 
 
@@ -112,3 +121,4 @@ B 网站也更新了代码：
 [1] https://www.cnblogs.com/hyddd/archive/2009/04/09/1432744.html
 [2] http://netsecurity.51cto.com/art/200811/97281.htm
 [3] https://blog.tonyseek.com/post/introduce-to-xss-and-csrf/
+[4] http://wetest.qq.com/lab/view/136.html

@@ -62,9 +62,20 @@ XSS 攻击大体分为以上两类：
 
 以上编码转换能够防御一部分 XSS 攻击。实际生产过程中，具体问题还是应该具体分析。
 
+总结一下，对于 XSS 攻击，我们可以做如下防范：
+
+(1) 输入过滤。不要相信用户的输入，对用户输入的数据进行过滤。如用户输入的日期、手机号、用户名等是否格式正确，是否包含 script 等敏感关键词。
+
+(2) 输出编码。服务器端输出到浏览器的数据，可以使用系统的安全函数来进行编码或转义。如 PHP 中的 htmlentities() 和 htmlspecialchars() 函数。
+
+(3) 安全编码。开发需尽量避免在客户端进行文档重写、重定向或其他敏感操作，同时要避免使用客户端数据，这些操作需尽量在服务器端使用动态页面来实现。
+
+(4) HttpOnly Cookie。Web应用程序在设置 cookie 时，将其属性设为 HttpOnly，这样可以避免该网页的 cookie 被客户端恶意 JavaScript 窃取。
+
 
 
 参考：
 [1] https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/09.3.md
 [2] http://blog.csdn.net/ghsau/article/details/17027893
 [3] http://www.freebuf.com/articles/web/9977.html
+[4] http://wetest.qq.com/lab/view/136.html
