@@ -50,7 +50,7 @@ css2.1 中除了 BFC（Block Formatting Contexts）还有 IFC（Inline formattin
 
 如果浮动的 div1 和相邻的 div2 处于同一个父元素下，正常情况下，div1 会漂浮并遮挡住 div2。如果 div2 中文本足够多，会出现文本围绕 div1 的情景。如果给 div2 加上属性 overflow:hidden，触发 BFC，div2 就不会和浮动的 div1 重叠，也就不会再文本围绕了。
 
-**c. 清除浮动**
+**c. 闭合浮动**
 
 如果一个容器里都是浮动元素，那么这个元素的高度就是 0。由于**计算 BFC 高度时，浮动元素也参与计算**，所以我们还可以给容器加上属性 overflow:hidden，触发 BFC，可以使得容器具有高度。
 

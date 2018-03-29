@@ -202,14 +202,14 @@ margin-top 设置为负的 div.content 高度的一半。这种方法兼容性�
 
 ```
 <style>
-    .child-ul {
-        background-color:#f0f;
-        display:inline;
-    }
     .parent-ul {
         height:100px;
         background-color:#0f0;
         text-align:center;
+    }
+    .child-ul {
+        background-color:#f0f;
+        display:inline;
     }
 </style>
 <div class="parent-ul">
