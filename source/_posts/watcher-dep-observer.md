@@ -28,7 +28,7 @@ observe(data, true /* 作为根 data */);
 (5) 依次遍历 data 的属性 key，执行 defineReactive$$1(obj, keys[i], obj[keys[i]])
 (6) defineReactive$$1 会劫持属性 key 的 get/set 操作。
 (7) 当获取属性 key 时除了返回属性值，还会将 Dep.target（即与属性 key 对应的 watcher）加入到 key 的订阅者数组里（dep.depend() -> Dep.target.addDep(dep)）
-(8) 当设置属性 key 时除了更新属性值外，还会由主题对象 dep 发出通知给所有的订阅者 dep.notify()
+(8) 当设置属性 key 时，主题对象 dep 会对所有的订阅者发出通知 dep.notify()
 
 总的流程就是：observe(data) -> new Observer(data) -> defineReactive$$1()
 
@@ -143,7 +143,7 @@ function defineReactive$$1(obj,key,val,customSetter,shallow){
       // 递归遍历 newVal 的所有子属性
       childOb = !shallow && observe(newVal);
 
-      // 发通知订阅者，分别执行每一个 update 方法
+      // 通知订阅者，分别执行其 update 方法
       dep.notify();
     }
   });
@@ -152,7 +152,7 @@ function defineReactive$$1(obj,key,val,customSetter,shallow){
 
 ## 发布者-订阅者之间的主题工厂方法 Dep
 
-Dep 的作用是创建主题。主题的作用是替发布者管理订阅者。每一个主题可以有多个订阅者，主题可以对订阅者进行增加、删除等操作。当主题发布者有新的动作是，主题还可以把消息传达给所有订阅者，订阅者就会执行特定方法（这里是 update 方法）来完成相应的操作了。
+Dep 即主题（依赖）。主题的作用是替发布者管理订阅者。每一个主题可以有多个订阅者，主题可以对订阅者进行增加、删除等操作。当主题发布者有新的动作时，主题会把消息传达给所有订阅者，订阅者就会执行特定方法（这里是 update 方法）来完成相应的操作了。
 
 ```
 var uid = 0;
