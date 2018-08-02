@@ -69,5 +69,6 @@ theme: cyanstyle
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
       type: git
-      repo: git@github.com:jserNc/jserNc.github.io.git
-      branch: master
+      repo: 
+            githubnc: git@github.com:jserNc/jserNc.github.io.git,master
+            githubzx: git@github.com:myzixuan/myzixuan.github.io.git,master
