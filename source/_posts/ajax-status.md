@@ -4,7 +4,7 @@ date: 2016-12-19 09:44:25
 tags: problem
 ---
 
-一个 ajax 请求，onreadystatechange 事件会触发 5 次，对应 readyState 从 0 到 4 变化。例：值为 4 表示请求已经完成或者传输过程中出现错误。readyState 总共有 5 个状态值，分别为 0 ~ 4，每个值代表了不同的含义：
+每个 ajax 请求，onreadystatechange 事件都会触发 5 次，对应 readyState 从 0 到 4 变化。例：值为 4 表示请求已经完成或者传输过程中出现错误。readyState 总共有 5 个状态值，分别为 0 ~ 4，每个值代表了不同的含义：
 
 <!-- more -->
 
@@ -39,7 +39,7 @@ function getResource(url){
         }
     };
     xhr.open('GET', url, true);
-    xhr.send(null); 
+    xhr.send(null);
 }
 ```
 
@@ -62,7 +62,7 @@ function getStatus(url){
         }
     };
     xhr.open('GET', url, true);
-    xhr.send(null); 
+    xhr.send(null);
 }
 ```
 
