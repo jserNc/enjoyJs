@@ -23,7 +23,7 @@ tags: problem
 
 **&lt;script async&gt;**
 
-有 async 属性的 script 脚本下载过程并不会阻塞页面继续解析，但是，等到脚本下载完成后，会暂停页面解析并立即执行该脚本。脚本执行完毕再接着解析 html 文档。由于脚本下载完成时刻不可控，所以，无法确定该脚本和其他代码执行顺序。
+有 async 属性的 script 脚本在下载过程并不会阻塞页面继续解析，但是，等到脚本下载完成后，会暂停页面解析并立即执行该脚本。脚本执行完毕再接着解析 html 文档。由于脚本下载完成时刻不可控，所以，无法确定该脚本和其他代码执行顺序。
 
 <img src="/css/images/script/script-async.svg" width="700" alt="script-async"/>
 
