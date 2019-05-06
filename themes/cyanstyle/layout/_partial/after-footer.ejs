@@ -19,15 +19,15 @@ $(window).load(function(){
 
 <%- js('js/jquery.goup.min') %>
 <script>
-$(document).ready(function () {  
-    $.goup({  
-        trigger: 100,  
-        bottomOffset: 62,       //距底部偏移量   
-        locationOffset: 150,     //距右部偏移量  
-        title: '',  
-        titleAsText: true       //是否显示title  
-    });  
-}); 
+$(document).ready(function () {
+    $.goup({
+        trigger: 100,
+        bottomOffset: 62,       //距底部偏移量
+        locationOffset: 150,     //距右部偏移量
+        title: '',
+        titleAsText: true       //是否显示title
+    });
+});
 </script>
 
 
@@ -35,7 +35,7 @@ $(document).ready(function () {
 
 <div id="bg"></div>
 
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
 
 <% if (page.path === 'demo/index.html') { %>
@@ -46,5 +46,3 @@ $(document).ready(function () {
         $(document).on('pjax:end',   function() { NProgress.done();  });
     </script>
 <% } %>
-
-
