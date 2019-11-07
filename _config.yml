@@ -7,7 +7,7 @@ title: Enjoy javascript
 subtitle: 为者常成，行者常至
 description:
 author: nanc
-language: 
+language:
 timezone:
 
 # URL
@@ -69,6 +69,6 @@ theme: cyanstyle
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
       type: git
-      repo: 
+      repo:
             githubnc: git@github.com:jserNc/jserNc.github.io.git,master
-            githubzx: git@github-zx:myzixuan/myzixuan.github.io.git,master
+            #githubzx: git@github-zx:myzixuan/myzixuan.github.io.git,master

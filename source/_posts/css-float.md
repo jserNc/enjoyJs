@@ -40,7 +40,7 @@ tags: css
 
 > **假设某个元素 A 是浮动的，如果 A 元素上一个元素也是浮动的，那么 A 元素会跟随在上一个元素的后边（左浮动的后边是右边，右浮动的后边是左边。如果一行放不下这两个元素，那么 A 元素会被挤到下一行）。如果 A 元素上一个元素是普通流中的元素 B，根据这个元素 B 类型有以下规则：a) 如果元素 B 是块级元素，那么 A 相对于它浮动之前的位置不变，也就是说 A 的顶部总是和上一个元素的底部紧贴；b) 如果元素 B 是行内元素，行框被缩短，从而给浮动框留出空间，行框围绕浮动框。**
 
-<div style="overflow:hidden;zoom:1;margin-bottom:15px;"><div style="float:left;width:235px;border:1px solid #aaa;margin-right:10px"><div style="background-color:#ff0;height:50px;width:100px;">普通流div1，宽度100px</div><div style="float:left;background-color:#0f0;height:70px;width:120px;">左浮动div2，宽120px</div><div style="float:left;background-color:#0ff;height:100px;width:80px;">左浮动div3，宽200px</div><div style="background-color:#f0f;height:200px;width:100px;">普通流div4，宽100px</div></div><div style="float:left;border:1px solid #aaa;margin-right:10px"><span style="background-color:#ff0;height:50px;">普通流span</span><div style="float:left;background-color:#0f0;height:70px;width:120px;">左浮动div2，宽120px</div><div style="float:left;background-color:#0ff;height:100px;width:80px;">左浮动div3，宽200px</div><div style="background-color:#f0f;height:200px;width:100px;">普通流div4，宽100px</div></div><div style="float:left;border:1px solid #aaa;margin-right:10px"><span style="background-color:#ff0;height:50px;">普通流span</span><div style="background-color:#0f0;height:70px;width:150px;">普通流div2，宽150px</div><div style="float:left;background-color:#0ff;height:100px;width:80px;">左浮动div3，宽200px</div><div style="background-color:#f0f;height:200px;width:120px;">普通流div4，宽120px</div></div></div>
+<div style="overflow:hidden;zoom:1;margin-bottom:15px;"><div style="float:left;width:235px;border:1px solid #aaa;margin-right:10px"><div style="background-color:#ff0;height:50px;width:100px;">普通流div1，宽度100px</div><div style="float:left;background-color:#0f0;height:70px;width:120px;">左浮动div2，宽120px</div><div style="float:left;background-color:#0ff;height:100px;width:80px;">左浮动div3，宽200px</div><div style="background-color:#f0f;height:200px;width:220px;">普通流div4，宽220px</div></div><div style="float:left;border:1px solid #aaa;margin-right:10px"><span style="background-color:#ff0;height:50px;">普通流span</span><div style="float:left;background-color:#0f0;height:70px;width:120px;">左浮动div2，宽120px</div><div style="float:left;background-color:#0ff;height:100px;width:80px;">左浮动div3，宽200px</div><div style="background-color:#f0f;height:200px;width:220px;">普通流div4，宽220px</div></div><div style="float:left;border:1px solid #aaa;margin-right:10px"><span style="background-color:#ff0;height:50px;">普通流span</span><div style="background-color:#0f0;height:70px;width:150px;">普通流div2，宽150px</div><div style="float:left;background-color:#0ff;height:100px;width:80px;">左浮动div3，宽200px</div><div style="background-color:#f0f;height:200px;width:120px;">普通流div4，宽120px</div></div></div>
 
 
 左边 div2、div3 左浮动，div1、div4 普通流；中间和左边的区别是，div1 换成了 span 标签；右边和中间的区别是 div2 去掉了浮动，成为普通流元素。
@@ -84,10 +84,10 @@ layout 是 IE 的专有概念，那些拥有 layout（hasLayout）的元素负�
 **hasLayout 触发的条件：**
 
 ① position: absolute（fixed 是 absolute 的子类）
-② float: left | right 
-③ display: inline-block 
-④ width: 除 auto 外的任意值 
-⑤ height: 除 auto 外的任意值 （例如很多人闭合浮动会用到 height: 1%  ） 
+② float: left | right
+③ display: inline-block
+④ width: 除 auto 外的任意值
+⑤ height: 除 auto 外的任意值 （例如很多人闭合浮动会用到 height: 1%  ）
 ⑥ zoom: 除 normal 外的任意值 （例如：zoom:1）
 ⑦ writing-mode: tb-rl
 

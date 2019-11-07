@@ -9,15 +9,16 @@ JavaScript 中函数形参的个数和实参个数并不要求相等。函数的
 <!-- more -->
 
 ```
-function f(a,b){
+function f(a, b){
     // 形参
-    console.log('形参个数：',f.length);
-    console.log('形参个数：',arguments.callee.length);
+    console.log('形参个数：', f.length);
+    console.log('形参个数：', arguments.callee.length);
 
     //实参
-    console.log('实参个数：',arguments.length);
+    console.log('实参个数：', arguments.length);
 }
 
+f(1)
 // 形参个数： 2
 // 形参个数： 2
 // 实参个数： 1
@@ -26,8 +27,8 @@ function f(a,b){
 例如，函数定义 2 个形参，调用时可以随便传入任意个实参：
 
 ```
-function f(a,b){
-    console.log('第一个参数：',a);
+function f(a, b){
+    console.log('第一个参数：', a);
 }
 
 f()
@@ -36,7 +37,7 @@ f()
 f(1)
 // 第一个参数： 1
 
-f(1,2,3)
+f(1, 2, 3)
 // 第一个参数： 1
 ```
 
@@ -44,7 +45,7 @@ f(1,2,3)
 
 ```
 // jQuery 源码用该匿名函数包围
-(function (window,undefined) {
+(function (window, undefined) {
     // code here
 })(window);
 ```
@@ -70,7 +71,7 @@ undefined = 'newUndefined';
 })(window)
 
 // newUndefined
-// string 
+// string
 ```
 
 果然，函数里打印出来的值是 newUndefined。其实，这和显式地传入 undefined 实参得到同样的效果：
@@ -81,17 +82,17 @@ undefined = 'newUndefined';
     window.num = 1;
     console.log(undefined);
     console.log(typeof undefined);
-})(window,undefined)
+})(window, undefined)
 
 // newUndefined
-// string 
+// string
 ```
 
 那我们和 jQuery 源码一样显式地传入 undefined 形参，在 ie7 下又会怎样？
 
 ```
 undefined = 'newUndefined';
-(function (window,undefined) {
+(function (window, undefined) {
     window.num = 1;
     console.log(undefined);
     console.log(typeof undefined);
@@ -120,7 +121,7 @@ undefined = 'newUndefined';
 
 ```
 undefined = 'newUndefined';
-(function (window,undefined) {
+(function (window, undefined) {
     window.num = 1;
     console.log(undefined);
     console.log(typeof undefined);
@@ -139,7 +140,7 @@ undefined = 'newUndefined';
     console.log(arguments[1]);
 })(window)
 
-// newUndefined 
+// newUndefined
 // undefined
 ```
 
@@ -152,7 +153,7 @@ undefined = 'newUndefined';
 ```
 // 源代码：
 undefined = 'newUndefined';
-(function (window,undefined) {
+(function (window, undefined) {
     window.num = 1;
     console.log(undefined);
     console.log(arguments[1]);
