@@ -78,7 +78,7 @@ css2.1 中除了 BFC（Block Formatting Contexts）还有 IFC（Inline formattin
 
 上面提到的 clearance（间隙）指的是：当浮动元素之后的相邻元素设置 clear 属性以清除相关方向的浮动时，这个清除浮动的元素其 margin-top 以上会产生一定的空隙（clearance）。该空隙会阻止元素 margin-top 的折叠，其作为间距存在于清除浮动元素的 margin-top 的上方。
 
-<div style="margin-bottom:20px;"><div style="margin-bottom:20px;background-color:#0f0;height:100px;width:100px;box-shadow:0 20px 0 rgba(0,255,0,0.2);">常规文档流元素，下外边距 20px</div><div style="float:left;margin:20px 0;background-color:#0ff;height:100px;width:200px">左浮动，上下外边距各 20px</div><div style="clear:left;margin-top:50px;background-color:#f0f;height:100px;width:300px;box-shadow:0 -50px 0 rgba(255,0,255,0.2);">清除左浮动，上外边距 50px</div></div>
+<div style="margin-bottom:20px;"><div style="margin-bottom:20px;background-color:#0f0;height:100px;width:100px;box-shadow:0 20px 0 rgba(0,255,0,0.2);">常规文档流元素（下外边距 20px）</div><div style="float:left;margin:20px 0;background-color:#0ff;height:100px;width:200px">左浮动（上下外边距各 20px）</div><div style="clear:left;margin-top:50px;background-color:#f0f;height:100px;width:300px;box-shadow:0 -50px 0 rgba(255,0,255,0.2);">清除左浮动（上外边距 50px）</div></div>
 
 （这里用阴影来标识外边距。）
 
@@ -98,7 +98,6 @@ css2.1 中除了 BFC（Block Formatting Contexts）还有 IFC（Inline formattin
     background-color:#0f0;
     height:100px;
     width:100px;
-    box-shadow:0 20px 0 rgba(0,255,0,0.2);
 }
 .middle {
     float:left;
@@ -112,7 +111,6 @@ css2.1 中除了 BFC（Block Formatting Contexts）还有 IFC（Inline formattin
     margin-top:50px;
     background-color:#f0f;
     height:100px;width:300px;
-    box-shadow:0 -50px 0 rgba(255,0,255,0.2);
 }
 ```
 
