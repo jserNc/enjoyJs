@@ -10,7 +10,7 @@
 }
 
 .pln {
-  color: #0f0;
+  color: #dddddd;
   font-family: Monaco,Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Consolas, monospace !important;
   font-size: 1.1em;
 }
@@ -46,7 +46,7 @@ li.L9 {
   /* string content */
 
   .str {
-    color: #6f0;
+    color: #88b966;
 	font-size: 1.1em;
 	font-family: Monaco,Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Consolas, monospace !important;
   }
@@ -54,7 +54,7 @@ li.L9 {
   /* keyword */
 
   .kwd {
-    color: #f60;
+    color: #b85cd5;
 	font-size: 1.1em;
 	font-family: Monaco,Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Consolas, monospace !important;
   }
@@ -70,7 +70,7 @@ li.L9 {
   /* type name */
 
   .typ {
-    color: #ff8000;
+    color: #deb468;
 	font-size: 1.1em;
 	font-family: Monaco,Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Consolas, monospace !important;
   }
@@ -155,5 +155,3 @@ li.L9 {
 	font-family: Monaco,Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Consolas, monospace !important;
   }
 }
-
-
