@@ -72,7 +72,7 @@ var obj3 = {};
 
 ![作用域链](/css/images/variable/reference-type.png)
 
-一般情况下，基本类型变量只有部分一和部分二；引用类型变量有三个部分，其中，部分二中“栈区变量的值”是部分三种对象堆内存的地址。
+一般情况下，基本类型变量只有部分一和部分二；引用类型变量有全部三个部分，其中，部分二中“栈区变量的值”是部分三中对象堆内存的地址。
 
 这里也可以解释为什么 null 比 undefined 更耗内存的问题：
 当变量的值为 undefined 时候，它是基本类型变量，并且该变量只有栈区的标示符，如果我们对这个变量进行赋值操作，那么栈区的值就有值了；如果栈区是对象标识符那么堆区会有一个对象，而栈区的值则是堆区对象的地址，对于 null ，JavaScript 认为它是一个对象，虽然它的堆区是个空对象，但是栈区的标示符和值都会有值，堆区也有，这么说来 null 确实比 undefined 更耗内存了。
@@ -165,7 +165,7 @@ function deepCopy(parent,child){
         astr = "[object Array]";
 
     child = child || {};
-    
+
     for (i in parent){
         if (parent.hasOwnProperty(i)){
             if (typeof parent[i] === "object"){
