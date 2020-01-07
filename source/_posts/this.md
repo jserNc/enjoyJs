@@ -413,15 +413,14 @@ print()
 
 ```
 if (typeof Function.prototype.bind === 'undefined'){
-  Function.portotype.bind = function(thisArg){
-     var Fn = this,
-         slice = Array.prototype.slice(),
-         args = slice.call(arguments,1);
-
-     return function(){
-         var argArr = args.concat(slice.call(arguments));
-         Fn.apply(thisArg,argArr);
-     };
+  Function.prototype.bind = function(thisArg){
+    var Fn = this,
+        slice = Array.prototype.slice,
+        args = slice.call(arguments,1);
+    return function(){
+        var argArr = args.concat(slice.call(arguments));
+        return Fn.apply(thisArg,argArr);
+    };
   }
 }
 
