@@ -91,7 +91,7 @@ fn();   // 进入 fn 函数上下文
 
 ![执行上下文栈](/css/images/execution-context/stack1.png)
 
-（其中：EC 指 Execution Context，执行上下文）：
+（其中：EC 指 Execution Context，执行上下文）
 
 为了理解执行上下文这个抽象概念，有几点再强调一下：**单线程同步执行、唯一的一个全局上下文、函数上下文个数没限制，只要函数被调用就会创建一个新的上下文！**
 
