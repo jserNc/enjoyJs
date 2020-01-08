@@ -134,8 +134,8 @@ v instanceof Vehicle	// true
 
 ```
 var arr = [];
-arr instanceof Array;		// true
-arr instanceof Object;	    // true
+arr instanceof Array;       // true
+arr instanceof Object;      // true
 
 arr.__proto__ === Array.prototype  // true
 Array.prototype.__proto__ === Object.prototype  // true
