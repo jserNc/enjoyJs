@@ -185,7 +185,7 @@ window.onkeypress = game.handleKeypress;
 新建游戏者：
 
 ```
-var palyername,key;
+var playername,key;
 while (1) {
     playername = prompt("Add player (name)");
     if (!playername){
