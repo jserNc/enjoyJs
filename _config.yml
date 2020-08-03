@@ -70,5 +70,5 @@ theme: cyanstyle
 deploy:
       type: git
       repo:
-            githubnc: git@github.com:jserNc/jserNc.github.io.git,master
+            githubnc: https://github.com/jserNc/jserNc.github.io.git,master
             #githubzx: git@github-zx:myzixuan/myzixuan.github.io.git,master
