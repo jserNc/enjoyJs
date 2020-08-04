@@ -279,7 +279,7 @@ Uncaught ReferenceError: x is not defined(…)
 
 可以看到，内层函数的作用域确实是和其外层函数息息相关！
 
-最后，看看如果利用闭包实现单体模式：
+最后，看看如何利用闭包实现单例模式：
 
 ```
 function Singleton(){
