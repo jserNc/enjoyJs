@@ -4,11 +4,11 @@ date: 2016-10-24 15:00:44
 tags: js
 ---
 
-js 中，除了 null，每个对象都会继承另一个对象（“原型对象”）。**原型对象的所有属性和方法都可以被派生对象共享，这就是 js 的继承机制。**通过构造函数生成实例对象的时候，会自动给实例对象分配原型对象。**实例对象生成时候的构造函数的 prototype 属性即为实例对象的原型对象。**（在此我们需要注意原型对象是实例对象【生成时】的构造函数的 prototype 属性，因为构造函数的 prototype 属性后来是可以更改的，而先前生成好的实例的原型是不会跟着变的。）
+js 中，除了 null，每个对象都会继承另一个对象（“原型对象”）。**原型对象的所有属性和方法都可以被派生对象共享，这就是 js 的继承机制。**通过构造函数生成实例对象的时候，会自动给实例对象分配原型对象。**实例对象生成时候的构造函数的 prototype 属性即为实例对象的原型对象。**（在此我们需要注意原型对象是实例对象【生成时】的构造函数的 prototype 属性，因为构造函数的 prototype 属性后来是可以更改的，而之前生成好的实例的原型是不会跟着变的。）
 
 <!-- more -->
 
-换个角度讲：所有的 js 对象都有构造函数，而所有的构造函数都有 prototype 属性（其实是所有函数都有该属性），所以，我们可以说所有的对象都有自己的原型对象(该对象的构造的 prototype 属性)。而原型对象也是对象，也有自己的原型对象，于是，层层上溯就形成了一条**“原型链”**。
+换个角度讲：所有的 js 对象都有构造函数，而所有的构造函数都有 prototype 属性（其实是所有函数都有该属性），所以，我们可以说所有的对象都有自己的原型对象(该对象的构造函数的 prototype 属性)。而原型对象也是对象，也有自己的原型对象，于是，层层上溯就形成了一条**“原型链”**。
 
 **“原型链”**的作用是：读取对象的某个属性的时候，js 引擎首先会遍历对象本身的属性，如果找不到，就去对象的原型对象去找，如果还是没有，就去对象的原型对象的原型对象去找，层层上溯，直到最顶层的原型对象 Object.prototype，如果还是找不到，那么就会返回 undefined（所以，读取对象的某个属性时，哪怕它不存在也不会报错）。
 
@@ -27,7 +27,7 @@ var foo = {
 
 ![foo对象结构](/css/images/prototype/basic-object.png)
 
-以上我们看到，可以用对象的 \_\_proto\_\_ 属性直观的表示对象的原型对象（当然了，标准做法是，用 Object.getPrototypeOf() 方法和 Object.setPrototypeOf() 方法，来读写对象的原型对象）。再看另一个例子：
+以上我们看到，可以用对象的 \_\_proto\_\_ 属性直观的表示对象的原型对象（当然了，推荐做法是，用 Object.getPrototypeOf() 方法和 Object.setPrototypeOf() 方法，来读写对象的原型对象）。再看一个例子：
 
 ```
 var A = {
@@ -124,8 +124,8 @@ Foo.prototype.__proto__ === Function.prototype.__proto__
 原型对象先说到这里。再来看看 instanceof 运算符：
 
 ```
-var v = new Vehicle();
-v instanceof Vehicle	// true
+var v = new F();
+v instanceof F	// true
 ```
 
 对于以上结果我们并不会感到意外，instanceof 运算符左边运算子是一个实例对象，右边运算子是某个构造函数。** instanceof 运算的实质是：检查右边构造函数的 prototype 属性是否在左边的实例对象的原型链上。**上例中判断 Vehicle.prototype 是否在对象 v 的原型链上，显然是的。
@@ -140,7 +140,7 @@ arr instanceof Object;      // true
 arr.__proto__ === Array.prototype  // true
 Array.prototype.__proto__ === Object.prototype  // true
 ```
-所有对象（除了null）的原型链的顶层就是 Object.prototype，所以，任何对象对 Object 进行 instanceof 运算都返回 true。
+所有对象（除了null）的原型链的顶层就是 Object.prototype，所以，任何对象对 Object 对象进行 instanceof 运算都返回 true。
 
 好，再看：
 
@@ -174,7 +174,7 @@ a.__proto__ === protoA;         // true
 a.__proto__ === A.prototype;    // false
 ```
 
-事实确实如此，a 的原型对象依然是原来的 protoA 。所以我们有理由认为对象 a 的原型对象在对象生 a 成的时候就已经确定了，并不会随着构造函数的 prototype 属性改变自动改变。**总结一点：对象的原型对象就是该对象生成时刻其构造函数对应的 prototype 属性。**
+事实证明确实如此，a 的原型对象依然是原来的 protoA 。所以我们有理由认为对象 a 的原型对象在对象生 a 成的时候就已经确定了，并不会随着构造函数的 prototype 属性改变自动改变。**总结一点：对象的原型对象就是该对象生成时刻其构造函数对应的 prototype 属性。**
 
 所以，对下面的执行结果也很好理解了：
 
@@ -219,11 +219,11 @@ function B(){};
 A.prototype = B.prototype;
 A.prototype.constructor = A;
 
-a instanceof A;		// false,返回false不应该意外
+a instanceof A;		// false，返回false不应该意外
 
 aa = new A();
 aa.constructor === A; 	
-// true,是因为中间把constructor重新指向了A
+// true，是因为中间把constructor重新指向了A
 ```
 
 如果让某个函数的 prototype 属性指向一个数组，那么该函数就可以当做数组的构造函数。
