@@ -132,7 +132,7 @@ function setCookie(c_name,value,expTime){
 
 **(4) cookie 个数限制**
 
-由于浏览器对 cookie 的个数又限制，每个域最多可以设置几十个。为了规避个数的限制，我们可以用一个 cookie 来存储多个键值对，如：name=a=b&c=d&e=f&g=h 这样实际上只设置 1 个 cookie，cookie 值内部使用 & 符号，隔开对个键值对。读取这个 cookie 的时候，我们自行解析，得到各个键值对。
+由于浏览器对 cookie 的个数又限制，每个域最多可以设置几十个。为了规避个数的限制，我们可以用一个 cookie 来存储多个键值对，如：name=a=b&c=d&e=f&g=h 这样实际上只设置 1 个 cookie，cookie 值内部使用 & 符号，隔开多个键值对。读取这个 cookie 的时候，我们自行解析，得到各个键值对。
 
 **(5) 同源政策**
 
