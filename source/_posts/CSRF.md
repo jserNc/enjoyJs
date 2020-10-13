@@ -105,6 +105,11 @@ B 网站也更新了代码：
 · 尽量不要是用 get 等明文请求；
 · 用户提交表单时加入验证码、伪随机值等。
 
+CSRF的两个特点：
+
+(1) CSRF（通常）发生在第三方域名
+(2) CSRF攻击者不能获取到cookie等信息，只是使用
+
 总结一下，对于CSRF攻击，我们可以做如下防范：
 
 (1) 验证码。应用程序和用户进行交互过程中，强制用户输入验证码，才能完成最终请求。
@@ -122,3 +127,4 @@ B 网站也更新了代码：
 [2] http://netsecurity.51cto.com/art/200811/97281.htm
 [3] https://blog.tonyseek.com/post/introduce-to-xss-and-csrf/
 [4] http://wetest.qq.com/lab/view/136.html
+[5] https://juejin.im/post/6844903689702866952
