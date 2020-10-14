@@ -4,7 +4,7 @@ date: 2017-01-11 09:49:12
 tags: grammar
 ---
 
-查看 [JSFuck源码](https://github.com/aemkei/jsfuck/blob/master/jsfuck.js) ，我们发现，之所以能用** [，]，(，)，!，+  **等 6 个字符来写 JavaScript 代码，是因为所有的字符（变量）都可以通过这 6 个字符来表示（直接或者间接转换），下面我们分析各个字符和这 6 个元字符之间的映射关系。
+查看 [JSFuck源码](https://github.com/aemkei/jsfuck/blob/master/jsfuck.js) ，我们发现，之所以能用** [ ] ( ) ! +  **等 6 个字符来写 JavaScript 代码，是因为所有的字符（变量）都可以通过这 6 个字符来表示（直接或者间接转换），下面我们分析各个字符和这 6 个元字符之间的映射关系。
 
 <!-- more -->
 
