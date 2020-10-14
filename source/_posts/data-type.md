@@ -49,9 +49,9 @@ o.toString();
 // "[object Object]"
 
 // 数组 Array
-var arr = ['I','love','zx',1314];
+var arr = ['I','love','yx',1314];
 arr.toString()
-// "I,love,zx,1314"
+// "I,love,yx,1314"
 
 // 数字 Number
 var num = 0.37208511093539554;
