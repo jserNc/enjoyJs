@@ -4,7 +4,7 @@ date: 2017-11-09 16:18:54
 tags: jquery
 ---
 
-用过 jQuery 的人应该都有感受，它比原生 JavaScript 容易得多，不得不好奇它是怎么做到的，于是决定打开 jQuery 源码一探究竟。本文针对的是 jQuery 2.0.3 版本源码，对其中一些重要又基本的概念进行梳理，如果有时间的话，后面会陆续对各个具体的功能模块进行分析。
+用过 jQuery 的人应该都有感受，它比原生 JavaScript 好用得多，不得不好奇它是怎么做到的，于是决定打开 jQuery 源码一探究竟。本文针对的是 jQuery 2.0.3 版本源码，对其中一些重要又基本的概念进行梳理。
 
 <!-- more -->
 
@@ -73,7 +73,7 @@ tags: jquery
 
 ③ 将 undefined 做为形参可以规避 ECMAScript3 中 undefined 可以被改写的问题。早期的 ECMAScript3 中，undefined 是可读可写的变量，后来的 ECMAScript5 中才修正为只读变量。而 undefined 作为有特殊含义的关键字，如果被修改会引起很多意想不到的麻烦。
 
-为什么这么写可以规避 undefined 被改写的问题呢？下面从正反两方面回答这个问题：
+为什么这么写可以规避 undefined 被改写的问题呢？下面从正反两角度回答这个问题：
 
 a. 假如不要形参 undefined，依据作用域链的原理，匿名函数中的 undefined 就会取全局的 undefined，而全局中的 undefined 是可能被修改的，所以这样是不好的。
   
@@ -211,7 +211,7 @@ jQuery 几乎所有的功能都离不开 dom 元素，所以，首先要做的�
 
 $('div span') 表示选取所有的 div 下的 span 元素。$('span > a[title="hi"]') 表示选取作为 span 的子元素并且 title 属性为 hi 的 a 标签
 
-给 $ 函数传入 'div span' 这种选择器 Sizzle 就能匹配出相应的元素。当然了，以上的例子还是比较简单，当选择器 selector 更加复杂时就更难体现出 Sizzle 的价值了，源码部分会详细地去了解它。
+给 $ 函数传入 'div span' 这种选择器 Sizzle 就能匹配出相应的元素。当然了，以上的例子还是比较简单，当选择器 selector 更加复杂时就更能体现出 Sizzle 的价值了。
 
 另外，Sizzle 是独立的一部分，不依赖任何库，如果你不想用 jQuery，可以把 Sizzle 单独拿出来用。
 
