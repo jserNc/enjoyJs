@@ -180,7 +180,7 @@ RegExp === Function("return/"+false+"/")().constructor
 -> "B"
 
 "C" === Function("return escape")()(("")["italics"]())[2]
--> scape("".italics())[2]
+-> escape("".italics())[2]
 -> escape("<i></i>")[2]
 -> "%3Ci%3E%3C/i%3E"[2]
 -> "C"
