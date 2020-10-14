@@ -6,7 +6,7 @@ tags: problem
 
 原文： http://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html
 
-由于 js 代码中有可能包含输出文档内容、修改 dom 结构、重定向等行为，所以默认情况下同步执行脚本。但是，js 同步脚本会阻塞浏览器对 dom 的解析，用户体验比较差。所以，我们应尽可能地采取异步方式调取 js 脚本。
+由于 js 代码中有可能包含输出文档内容、修改 dom 结构、重定向等行为，所以默认情况下 script 脚本会同步执行。但是，同步 js 脚本会阻塞浏览器对 dom 的解析，用户体验比较差。所以，我们应尽可能地采取异步方式调取 js 脚本。
 
 <!-- more -->
 
