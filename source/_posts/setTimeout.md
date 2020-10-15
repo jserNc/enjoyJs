@@ -159,7 +159,44 @@ setTimeout 和 setInterval 的运行机制是：将指定的代码移除本次�
 
 每一轮 Event Loop，都会将“任务队列”中需要执行的代码一次执行完。setTimeout 和 setInterval 都是把任务添加到“任务队列”的尾部。因此它们要等到当前脚本的所有同步任务执行完，然后再等到本次 Event Loop 中的“任务队列”中的所有任务执行完，才开始执行。而前面的任务到底要多久才能执行完是不确定的，所以，不能保证 setTimeout 和 setInterval 指定的任务一定会按照预定时间执行。
 
+**关于事件循环**
+
+javascript 中任务分为两类：**macro（宏任务）**和 **micro（微任务）**。
+
+1. 常见的 macro-task 比如：setTimeout、setInterval、 setImmediate、script（整体代码）、 I/O 操作、UI 渲染等。
+2. 常见的 micro-task 比如：process.nextTick、new Promise().then(回调)、MutationObserver(html5 新特性) 等。
+
+任务执行过程为：当某个宏任务执行完后，会查看是否有微任务队列。如果有，先执行微任务队列中的所有任务，如果没有，会读取宏任务队列中排在最前的任务，执行宏任务的过程中，遇到微任务，依次加入微任务队列。栈空后，再次读取微任务队列里的任务，依次类推。
+
+简单说就是：**执行1个宏任务 -> 执行所有的微任务 -> 执行1个宏任务 -> 执行所有的微任务 -> ……**
+
+注意： 普通的 script 脚本代码也是宏任务，一般情况下首先执行该宏任务。
+
+```
+Promise.resolve().then(()=>{
+  console.log('Promise1')
+  setTimeout(()=>{
+    console.log('setTimeout2')
+  },0)
+})
+setTimeout(()=>{
+  console.log('setTimeout1')
+  Promise.resolve().then(()=>{
+    console.log('Promise2')
+  })
+},0)
+```
+
+这段代码的执行结果是： Promise1，setTimeout1，Promise2，setTimeout2
+
+执行过程分析如下：
+
+1. 一开始执行栈的同步任务（这属于宏任务）执行完毕，会去查看是否有微任务队列，上题中存在(有且只有一个)，然后执行微任务队列中的所有任务输出 Promise1，同时会生成一个宏任务 setTimeout2
+2. 然后去查看宏任务队列，宏任务 setTimeout1 在 setTimeout2 之前，先执行宏任务 setTimeout1，输出 setTimeout1
+3. 在执行宏任务 setTimeout1 时会生成微任务 Promise2 ，放入微任务队列中，接着先去清空微任务队列中的所有任务，输出 Promise2
+4. 清空完微任务队列中的所有任务后，就又会去宏任务队列取一个，这回执行的是 setTimeout2
 
 
 参考：
 [1] http://javascript.ruanyifeng.com/advanced/timer.html
+[2] https://zhuanlan.zhihu.com/p/54882306
