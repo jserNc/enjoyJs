@@ -128,7 +128,7 @@ var v = new F();
 v instanceof F	// true
 ```
 
-对于以上结果我们并不会感到意外，instanceof 运算符左边运算子是一个实例对象，右边运算子是某个构造函数。** instanceof 运算的实质是：检查右边构造函数的 prototype 属性是否在左边的实例对象的原型链上。**上例中判断 Vehicle.prototype 是否在对象 v 的原型链上，显然是的。
+对于以上结果我们并不会感到意外，instanceof 运算符左边运算子是一个实例对象，右边运算子是某个构造函数。** instanceof 运算的实质是：检查右边构造函数的 prototype 属性是否在左边的实例对象的原型链上。**上例中判断 F.prototype 是否在对象 v 的原型链上，显然是的。
 
 那么，对以下结果我们应该也不意外：
 
