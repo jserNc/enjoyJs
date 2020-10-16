@@ -308,7 +308,7 @@ var nextTick = function queueNextTick (cb, ctx) {
       timerFunc();
     }
 
-    // 参数为空并且不支持 Promise
+    // 参数为空并且支持 Promise
     if (!cb && typeof Promise !== 'undefined') {
       return new Promise(function (resolve, reject) {
         // 于是可以用 _resolve 方法来触发 Promise 实例的 then 回调
@@ -388,6 +388,7 @@ function set (target, key, val) {
   }
 
   /*
+    ③ 给 target 对象添加新的 key 属性
     走到这说明 ob 存在，即对象 target 是响应式的
 
     ob.value 其实就是 target。以下几句作用是：
@@ -682,7 +683,7 @@ function mergeOptions (parent, child, vm) {
     ① strats = config.optionMergeStrategies 
        我们可以为该对象添加方法属性，自定义合并策略的选项
 
-       每一个 strats[key] 是一个 functio
+       每一个 strats[key] 是一个 function
        不同的 key 对应不同的 function，也就是不同的合并策略
 
     ② defaultStrat(parentVal, childVal) 作为默认的合并函数
