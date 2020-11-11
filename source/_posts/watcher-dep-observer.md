@@ -214,7 +214,7 @@ function popTarget () {
 
 每一个 Watcher 实例就是一个订阅者，为什么订阅者可以起到观察某个 expOrFn（表达式/函数）的作用呢？这里分两种情况说明：
 
-① expOrFn 为表达式，例如 'a'
+① expOrFn 为表达式，例如 'aaa.bbb.ccc'
 
 ```
 // 新建 Vue 实例
